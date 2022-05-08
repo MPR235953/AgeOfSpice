@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.speciesChoiceController">
+   <children>
+      <ImageView fitHeight="1010.0" fitWidth="1920.0">
+         <image>
+            <Image url="@arts/cosmos3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="750.0" fitWidth="400.0" layoutX="180.0" layoutY="48.0">
+         <image>
+            <Image url="@arts/Javelers_choice_frame.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="230.0" layoutY="77.0">
+         <image>
+            <Image url="@arts/javeler_profile300.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="750.0" fitWidth="400.0" layoutX="760.0" layoutY="48.0">
+         <image>
+            <Image url="@arts/Ludzie_choice_frame.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="810.0" layoutY="77.0">
+         <image>
+            <Image url="@arts/Ludzie_portret.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="750.0" fitWidth="400.0" layoutX="1340.0" layoutY="41.0">
+         <image>
+            <Image url="@arts/Szrungals_choice_frame.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playButton" fitHeight="100.0" fitWidth="200.0" layoutX="860.0" layoutY="855.0">
+         <image>
+            <Image url="@arts/play_button_disable.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="pl1_TextField" layoutX="271.0" layoutY="697.0" onAction="#changeButton" prefHeight="35.0" prefWidth="219.0">
+         <font>
+            <Font name="ArcadeClassic" size="30.0" />
+         </font>
+      </TextField>
+      <Label fx:id="JavelersNameLabel" layoutX="281.0" layoutY="391.0" text="JavALERZY" textFill="#00e6ff">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="894.0" layoutY="391.0" text="LUdzie" textFill="#dd2c00">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <TextArea editable="false" layoutX="217.0" layoutY="437.0" prefHeight="180.0" prefWidth="330.0" text="&gt; Lorem ipsum dolor sit amet, &#10;consectetur adipisci&#10;Quisque finibus imperdiet&#10;justo, ut ullamcorper libe&#10;ro tincidunt non. Integer &#10;o, ut ullamc icula viverra." wrapText="true">
+         <font>
+            <Font name="ArcadeClassic" size="21.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="217.0" layoutY="651.0" text="ENTER  YOUR  NAME :" textFill="#00e6ff">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <TextArea editable="false" layoutX="795.0" layoutY="437.0" prefHeight="180.0" prefWidth="330.0" text="&gt; Lorem ipsum dolor sit &#10;amet, consectetur adipisci&#10;Quisque finibus imp&#10;erdietjusto, ut ullamcorper libe&#10;ro tincidunt non. Integer &#10;o, ut ullamc icula viverra." wrapText="true">
+         <font>
+            <Font name="ArcadeClassic" size="21.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="797.0" layoutY="651.0" text="ENTER  YOUR  NAME :" textFill="#dd2c00">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <TextField fx:id="pl2_TextField" layoutX="851.0" layoutY="697.0" onAction="#changeButton" prefHeight="35.0" prefWidth="219.0">
+         <font>
+            <Font name="ArcadeClassic" size="30.0" />
+         </font>
+      </TextField>
+      <Label layoutX="1437.0" layoutY="393.0" text="SzrunG'ale" textFill="#e91e62">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <TextArea editable="false" layoutX="1375.0" layoutY="437.0" prefHeight="180.0" prefWidth="330.0" text="&gt; Lorem ipsum dolor sit amet, consectetur adipisciQuisque finibus imp&#10;erdietjusto, utullamcorperlibe&#10;ro tincidunt non. Integer o, ut ullamc icula viverra." wrapText="true">
+         <font>
+            <Font name="ArcadeClassic" size="21.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="1377.0" layoutY="651.0" text="ENTER  YOUR  NAME :" textFill="#e91e62">
+         <font>
+            <Font name="ArcadeClassic" size="40.0" />
+         </font>
+      </Label>
+      <TextField fx:id="pl3_TextField" layoutX="1431.0" layoutY="697.0" onAction="#changeButton" prefHeight="35.0" prefWidth="219.0">
+         <font>
+            <Font name="ArcadeClassic" size="30.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

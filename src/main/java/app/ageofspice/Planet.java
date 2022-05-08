@@ -12,19 +12,19 @@ public class Planet extends ImageView {
         this.relocate(x * MapController.TILE_SIZE, y * MapController.TILE_SIZE);
         this.planetType = planetType;
 
-        // ################################# Grafika do podmianki
+        // ################################# pomieszana grafika, do poprawki (tylko prezentacja)
         switch(this.planetType){
             case ALGA_PLANET -> {
-                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\grain100.png"))));
+                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javeler_explorer_ship.png"))));
             }
             case VIBRANIUM_PLANET -> {
-                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\mountain100.png"))));
+                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Ludzie_stateczek2.png"))));
             }
             case CRYSTAL_PLANET -> {
-                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\grass100.png"))));
+                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Szrungale_stateczek.png"))));
             }
             case SPICE_PLANET -> {
-                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\forest100.png"))));
+                this.setImage(new Image(String.valueOf(getClass().getResource("arts\\alga_planet.png"))));
             }
         }
     }

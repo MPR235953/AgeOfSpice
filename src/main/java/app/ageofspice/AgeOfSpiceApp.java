@@ -14,8 +14,10 @@ public class AgeOfSpiceApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        //FXMLLoader fxmlLoader = new FXMLLoader(AgeOfSpiceApp.class.getResource("speciesChoice.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(AgeOfSpiceApp.class.getResource("map.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), SCREEN_WIDTH, SCREEN_HEIGHT);
+        //scene.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
         stage.setTitle("Age of Spice");
         //stage.setFullScreen(true);
         stage.setScene(scene);

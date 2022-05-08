@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'arcadeclassic';
+    src: url('ARCADECLASSIC.TTF');
+}
+
+.text {
+    -fx-font-family: "arcadeclassic";
+}
+
+#JavelersNameLabel{
+    -fx-text-fill: #00e6ff;
+}

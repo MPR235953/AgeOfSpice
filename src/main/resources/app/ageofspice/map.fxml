@@ -2,4 +2,5 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
+
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.MapController" />
