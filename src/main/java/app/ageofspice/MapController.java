@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 
 import java.net.URL;
@@ -16,7 +17,7 @@ public class MapController implements Initializable {
 
     public static final int TILE_SIZE = 70;
     public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
-    public static final int VERTICAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_HEIGHT / TILE_SIZE;
+    public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
 
     public static final int ALGA_QUANTITY = 5;
     public static final int VIBRANIUM_QUANTITY = 5;
@@ -30,6 +31,7 @@ public class MapController implements Initializable {
     private int crystalOnMap = 0;
 
     @FXML private AnchorPane anchorPane;
+    @FXML private Pane pane;
     ImageView background = new ImageView();
     Group tileGroup = new Group();
     Group planetGroup = new Group();
@@ -38,14 +40,22 @@ public class MapController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //anchorPane.getChildren().add(pane);
+        //anchorPane.relocate(0, 50);
+        anchorPane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
+        anchorPane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
 
-        anchorPane.getChildren().add(background);
+        pane.getChildren().add(background);
+        pane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
+        pane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE);
+        pane.relocate(0, AgeOfSpiceApp.FRAME_SIZE);
+
         background.setImage(new Image(String.valueOf(getClass().getResource("arts\\space_map.png"))));
         background.setFitWidth(AgeOfSpiceApp.SCREEN_WIDTH);
-        background.setFitHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
+        background.setFitHeight(AgeOfSpiceApp.SCREEN_HEIGHT );  //- AgeOfSpiceApp.FRAME_SIZE);
 
         tileGroup.setStyle("-fx-view-order: -5;");      //z-index im mniejszy tym obiekt jest blizej ekranu
-        anchorPane.getChildren().addAll(tileGroup, planetGroup);
+        pane.getChildren().addAll(tileGroup, planetGroup);
 
         for(int y = 0; y < VERTICAL_TILE_COUNT; y++){
             for(int x = 0; x < HORIZONTAL_TILE_COUNT; x++){

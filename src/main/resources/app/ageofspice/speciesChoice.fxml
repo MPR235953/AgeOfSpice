@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.speciesChoiceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.speciesChoiceController">
    <children>
       <ImageView fitHeight="1010.0" fitWidth="1920.0">
          <image>
-            <Image url="@arts/cosmos3.png" />
+            <Image url="@arts/choseSpecies_background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="750.0" fitWidth="400.0" layoutX="180.0" layoutY="48.0">
