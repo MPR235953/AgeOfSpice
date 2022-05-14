@@ -18,12 +18,12 @@
       </ImageView>
       <ImageView fitHeight="550.0" fitWidth="300.0" layoutX="180.0" layoutY="48.0">
          <image>
-            <Image url="@arts/Javelers_choice_frame.png" />
+            <Image url="@arts/Javalerzy_choice_frame.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="231.0" layoutY="94.0">
          <image>
-            <Image url="@arts/javeler_profile300.png" />
+            <Image url="@arts/Javalerzy_profile300.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="550.0" fitWidth="300.0" layoutX="760.0" layoutY="59.0">
@@ -33,7 +33,7 @@
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="813.0" layoutY="94.0">
          <image>
-            <Image url="@arts/Ludzie_portret.png" />
+            <Image url="@arts/Ludzie_portret300.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="550.0" fitWidth="300.0" layoutX="1342.0" layoutY="77.0">

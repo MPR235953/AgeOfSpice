@@ -24,6 +24,7 @@ public class AgeOfSpiceApp extends Application {
 
         AgeOfSpiceApp.stage = stage;
         SceneController.switchToFXML("speciesChoice.fxml");
+        //SceneController.switchToFXML("map.fxml");
 
     }
 

@@ -5,7 +5,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Tile extends Rectangle {
 
-    private TileType tileType;
+    private TileType tileType = TileType.EMPTY_SPACE;
 
     public void setTileType(TileType tileType) {
         this.tileType = tileType;

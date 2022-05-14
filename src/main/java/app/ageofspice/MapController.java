@@ -37,13 +37,12 @@ public class MapController implements Initializable {
     ImageView background = new ImageView();
     Group tileGroup = new Group();
     Group planetGroup = new Group();
+    Group parentalStationGroup = new Group();
     Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //anchorPane.getChildren().add(pane);
-        //anchorPane.relocate(0, 50);
         anchorPane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         anchorPane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
 
@@ -57,7 +56,7 @@ public class MapController implements Initializable {
         background.setFitHeight(AgeOfSpiceApp.SCREEN_HEIGHT );  //- AgeOfSpiceApp.FRAME_SIZE);
 
         tileGroup.setStyle("-fx-view-order: -5;");      //z-index im mniejszy tym obiekt jest blizej ekranu
-        pane.getChildren().addAll(tileGroup, planetGroup);
+        pane.getChildren().addAll(tileGroup, planetGroup, parentalStationGroup);
 
         //generacja kafelkow
         for(int y = 0; y < VERTICAL_TILE_COUNT; y++){
@@ -71,21 +70,38 @@ public class MapController implements Initializable {
             }
         }
 
+        //generacja stacji macierzystych kazdej z ras (stale polozenie)
+        board[1][1].setTileType(TileType.JAV_PARENTAL_STATION);
+        ParentalStation javParentalStation = new ParentalStation(1,1,TileType.JAV_PARENTAL_STATION);
+
+        board[HORIZONTAL_TILE_COUNT / 2][VERTICAL_TILE_COUNT - 1].setTileType(TileType.LUD_PARENTAL_STATION);
+        ParentalStation ludParentalStation = new ParentalStation(HORIZONTAL_TILE_COUNT / 2,VERTICAL_TILE_COUNT - 1,TileType.LUD_PARENTAL_STATION);
+
+        board[HORIZONTAL_TILE_COUNT - 1][1].setTileType(TileType.SZR_PARENTAL_STATION);
+        ParentalStation szrParentalStation = new ParentalStation(HORIZONTAL_TILE_COUNT - 1,1, TileType.SZR_PARENTAL_STATION);
+
+        parentalStationGroup.getChildren().addAll(javParentalStation, ludParentalStation, szrParentalStation);
+
         //generacja planet
         for(int i = 0; i < PLANET_QUANTITY; i++){
             Random random = new Random();
 
+            int randX = random.nextInt(HORIZONTAL_TILE_COUNT);
+            int randY = random.nextInt(VERTICAL_TILE_COUNT);
+
+            if(board[randX][randY].getTileType() != TileType.EMPTY_SPACE) continue;
+
             boolean again;
-            TileType planetType;
+            TileType parentalStationType;
             do {
                 again = false;
-                planetType = TileType.randomPlanetType();
-                if(planetType == TileType.ALGA_PLANET && algaOnMap >= ALGA_QUANTITY) again = true;
-                else if(planetType == TileType.VIBRANIUM_PLANET && vibraniumOnMap >= VIBRANIUM_QUANTITY) again = true;
-                else if(planetType == TileType.CRYSTAL_PLANET && crystalOnMap >= CRYSTAL_QUANTITY) again = true;
-                else if(planetType == TileType.SPICE_PLANET && spiceOnMap >= SPICE_QUANTITY) again = true;
+                parentalStationType = TileType.randomPlanetType();
+                if(parentalStationType == TileType.ALGA_PLANET && algaOnMap >= ALGA_QUANTITY) again = true;
+                else if(parentalStationType == TileType.VIBRANIUM_PLANET && vibraniumOnMap >= VIBRANIUM_QUANTITY) again = true;
+                else if(parentalStationType == TileType.CRYSTAL_PLANET && crystalOnMap >= CRYSTAL_QUANTITY) again = true;
+                else if(parentalStationType == TileType.SPICE_PLANET && spiceOnMap >= SPICE_QUANTITY) again = true;
 
-                switch(planetType){
+                switch(parentalStationType){
                     case ALGA_PLANET -> algaOnMap++;
                     case VIBRANIUM_PLANET -> vibraniumOnMap++;
                     case CRYSTAL_PLANET -> crystalOnMap++;
@@ -94,15 +110,11 @@ public class MapController implements Initializable {
 
             }while(again);
 
-            int randX = random.nextInt(HORIZONTAL_TILE_COUNT);
-            int randY = random.nextInt(VERTICAL_TILE_COUNT);
 
-            board[randX][randY].setTileType(planetType);
-            Planet planet = new Planet(randX, randY, planetType);
+            board[randX][randY].setTileType(parentalStationType);
+            Planet planet = new Planet(randX, randY, parentalStationType);
             planetGroup.getChildren().add(planet);
         }
+
     }
-
-
-
 }
