@@ -23,7 +23,7 @@ public class speciesChoiceController {
     @FXML TextField pl1_TextField, pl2_TextField, pl3_TextField;
     @FXML ImageView playButton;
 
-    SceneController sceneController = new SceneController();
+    //SceneController sceneController = new SceneController();
 
     public void changeButton(){
         if(pl1_TextField.getText().equals("") || pl2_TextField.getText().equals("") || pl3_TextField.getText().equals(""))
@@ -31,9 +31,11 @@ public class speciesChoiceController {
         else {
             playButton.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/play_button_ready.png").toURI().toString()));
 
+            playButton.setStyle("-fx-cursor: hand;");
+
             playButton.setOnMouseClicked(event -> {
                 try {
-                    sceneController.makeScene("map.fxml");
+                    SceneController.switchToFXML("map.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

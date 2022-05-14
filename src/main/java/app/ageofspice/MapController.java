@@ -15,10 +15,12 @@ import java.util.Random;
 
 public class MapController implements Initializable {
 
+    //################################################  Rozmiary kafelkow
     public static final int TILE_SIZE = 70;
     public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
     public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
 
+    //################################################  Okreslenie liczby generowanych planet
     public static final int ALGA_QUANTITY = 5;
     public static final int VIBRANIUM_QUANTITY = 5;
     public static final int CRYSTAL_QUANTITY = 5;
@@ -57,6 +59,7 @@ public class MapController implements Initializable {
         tileGroup.setStyle("-fx-view-order: -5;");      //z-index im mniejszy tym obiekt jest blizej ekranu
         pane.getChildren().addAll(tileGroup, planetGroup);
 
+        //generacja kafelkow
         for(int y = 0; y < VERTICAL_TILE_COUNT; y++){
             for(int x = 0; x < HORIZONTAL_TILE_COUNT; x++){
 
@@ -68,6 +71,7 @@ public class MapController implements Initializable {
             }
         }
 
+        //generacja planet
         for(int i = 0; i < PLANET_QUANTITY; i++){
             Random random = new Random();
 
