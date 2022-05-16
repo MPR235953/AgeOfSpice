@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.startController">
    <children>
       <ImageView fitHeight="1080.0" fitWidth="1920.0">
          <image>
@@ -16,7 +16,7 @@
             <Image url="@arts/TITLE_START.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="100.0" fitWidth="200.0" layoutX="820.0" layoutY="800.0">
+      <ImageView fx:id="startButton" fitHeight="100.0" fitWidth="200.0" layoutX="820.0" layoutY="800.0">
          <image>
             <Image url="@arts/start2.png" />
          </image>

@@ -22,9 +22,9 @@ public class ParentalStation extends ImageView {
 
         // ################################# Grafika planet do zamieszczenia
         switch(this.parentalStationType){
-            case JAV_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_parental_station.png"))));
-            case LUD_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Ludzie_parental_station.png"))));
-            case SZR_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Szrungale_parental_station.png"))));
+            case JAV_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_textures\\Javalerzy_parental_station.png"))));
+            case LUD_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Ludzie_textures\\Ludzie_parental_station.png"))));
+            case SZR_PARENTAL_STATION -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\Szrungale_textures\\Szrungale_parental_station.png"))));
         }
     }
 }

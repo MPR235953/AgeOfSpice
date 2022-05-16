@@ -22,10 +22,10 @@ public class Planet extends ImageView {
 
         // ################################# Grafika planet do zamieszczenia
         switch(this.planetType){
-            case ALGA_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\alga_planet100.png"))));
-            case VIBRANIUM_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\vibranium_planet100.png"))));
-            case CRYSTAL_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\"))));
-            case SPICE_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\"))));
+            case ALGA_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\alga_planet100.png"))));
+            case VIBRANIUM_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\vibranium_planet100.png"))));
+            case CRYSTAL_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\crystal_planet100.png"))));
+            case SPICE_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\spiceplanet.png"))));
         }
     }
 }
