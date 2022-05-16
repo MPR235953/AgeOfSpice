@@ -3,6 +3,7 @@ package app.ageofspice.UnitandBuildingStorage;
 import app.ageofspice.Resourcesandcosts.AlgiRes;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Resourcesandcosts.VibraniumRes;
+import app.ageofspice.SpeciesType;
 
 /**
  * Głowna klasa do obsługi gracza.
@@ -16,5 +17,11 @@ import app.ageofspice.Resourcesandcosts.VibraniumRes;
 public class PlayerResourcesandUnitsStorage {
     private UnitsStorage unitBuilData;
     private ResourceStorage resources;
+    private String playerName;
+    private SpeciesType speciesType;
 
+    public String getPlayerName() { return playerName; }
+    public void setPlayerName(String playerName) { this.playerName = playerName; }
+    public SpeciesType getSpeciesType() { return speciesType; }
+    public void setSpeciesType(SpeciesType speciesType) { this.speciesType = speciesType; }
 }

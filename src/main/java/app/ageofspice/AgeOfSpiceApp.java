@@ -8,7 +8,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
 
 public class AgeOfSpiceApp extends Application {
 
@@ -25,12 +25,9 @@ public class AgeOfSpiceApp extends Application {
 
         AgeOfSpiceApp.stage = stage;
         //SceneController.switchToFXML("start.fxml");
-        //SceneController.switchToFXML("speciesChoice.fxml");
+        SceneController.switchToFXML("speciesChoice.fxml");
+        //SceneController.switchToFXML("map.fxml");
 
-        SceneController.switchToFXML("map.fxml");
-        MapController.board[3][3].setTileType(TileType.PEOPLE_DRED_SHIP);
-
-        MapController.board[5][5].setTileType(TileType.EMPTY_SPACE);
     }
 
     public static void main(String[] args) {

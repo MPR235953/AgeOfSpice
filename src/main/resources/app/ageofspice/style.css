@@ -25,3 +25,7 @@
     -fx-cursor: default;
 }
 
+#tryAgainButton{
+    -fx-font-size: 20;
+}
+
