@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum TileType {
+    //TU NIE ZMIENIAC NIC, FUNKCJE PONIZEJ KORZYSTAJA Z TYCHE ENUMOW
     EMPTY_SPACE,
 
     ALGA_PLANET,            //1
@@ -13,10 +14,15 @@ public enum TileType {
     CRYSTAL_PLANET,
     SPICE_PLANET,
 
-    JAV_PARENTAL_STATION,   //5
+    JAV_PARENTAL_STATION,
     LUD_PARENTAL_STATION,
     SZR_PARENTAL_STATION,
 
+    //TUTAJ ROB CO CHCESZ
+
+    WAR_SHIP,
+    EXPLORER_SHIP,
+    NORMAL_SHIP,
     FRIENDLY_SHIP,
     ENEMY_SHIP,
 

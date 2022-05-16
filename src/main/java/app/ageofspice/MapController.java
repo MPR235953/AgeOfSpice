@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 import java.net.URL;
@@ -15,18 +16,26 @@ import java.util.Random;
 
 public class MapController implements Initializable {
 
+    public static final int STROKE_TILE_WIDTH = 3;
+
     //################################################  Rozmiary kafelkow
     public static final int TILE_SIZE = 70;
     public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
     public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
 
+    //################################################ Poczatkowe pozycje statkow macierzytych dla ras
+    public static final int JAV_X = 0, JAV_Y = 1;
+    public static final int LUD_X = HORIZONTAL_TILE_COUNT / 2, LUD_Y = VERTICAL_TILE_COUNT - 1;
+    public static final int SZR_X = HORIZONTAL_TILE_COUNT - 1, SZR_Y = 1;
+
     //################################################  Okreslenie liczby generowanych planet
-    public static final int ALGA_QUANTITY = 5;
-    public static final int VIBRANIUM_QUANTITY = 5;
-    public static final int CRYSTAL_QUANTITY = 5;
-    public static final int SPICE_QUANTITY = 10;
+    public static final int ALGA_QUANTITY = 3;
+    public static final int VIBRANIUM_QUANTITY = 3;
+    public static final int CRYSTAL_QUANTITY = 3;
+    public static final int SPICE_QUANTITY = 3;
     public static final int PLANET_QUANTITY = ALGA_QUANTITY + VIBRANIUM_QUANTITY + CRYSTAL_QUANTITY + SPICE_QUANTITY;
 
+    //###############################################  Ile jest juz planet na mapie
     private int algaOnMap = 0;
     private int vibraniumOnMap = 0;
     private int spiceOnMap = 0;
@@ -35,10 +44,10 @@ public class MapController implements Initializable {
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     ImageView background = new ImageView();
-    Group tileGroup = new Group();
+    Group tileGroup = new Group();                                      //###### Grupy kafelkow, planet i stacji
     Group planetGroup = new Group();
     Group parentalStationGroup = new Group();
-    Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];
+    Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
 
     @Override
@@ -56,7 +65,8 @@ public class MapController implements Initializable {
         background.setFitHeight(AgeOfSpiceApp.SCREEN_HEIGHT );  //- AgeOfSpiceApp.FRAME_SIZE);
 
         tileGroup.setStyle("-fx-view-order: -5;");      //z-index im mniejszy tym obiekt jest blizej ekranu
-        pane.getChildren().addAll(tileGroup, planetGroup, parentalStationGroup);
+
+        pane.getChildren().addAll(tileGroup, planetGroup, parentalStationGroup);                    //######  Wyswietlenie wszystkiego na scenie
 
         //generacja kafelkow
         for(int y = 0; y < VERTICAL_TILE_COUNT; y++){
@@ -71,14 +81,20 @@ public class MapController implements Initializable {
         }
 
         //generacja stacji macierzystych kazdej z ras (stale polozenie)
-        board[1][1].setTileType(TileType.JAV_PARENTAL_STATION);
-        ParentalStation javParentalStation = new ParentalStation(1,1,TileType.JAV_PARENTAL_STATION);
+        board[JAV_X][JAV_Y].setTileType(TileType.JAV_PARENTAL_STATION);
+        board[JAV_X][JAV_Y].setStroke(Color.rgb(0,230,250));
+        board[JAV_X][JAV_Y].setStrokeWidth(STROKE_TILE_WIDTH);
+        ParentalStation javParentalStation = new ParentalStation(JAV_X, JAV_Y, TileType.JAV_PARENTAL_STATION);
 
-        board[HORIZONTAL_TILE_COUNT / 2][VERTICAL_TILE_COUNT - 1].setTileType(TileType.LUD_PARENTAL_STATION);
-        ParentalStation ludParentalStation = new ParentalStation(HORIZONTAL_TILE_COUNT / 2,VERTICAL_TILE_COUNT - 1,TileType.LUD_PARENTAL_STATION);
+        board[LUD_X][LUD_Y].setTileType(TileType.LUD_PARENTAL_STATION);
+        board[LUD_X][LUD_Y].setStroke(Color.rgb(221, 44,0));
+        board[LUD_X][LUD_Y].setStrokeWidth(STROKE_TILE_WIDTH);
+        ParentalStation ludParentalStation = new ParentalStation(LUD_X, LUD_Y, TileType.LUD_PARENTAL_STATION);
 
-        board[HORIZONTAL_TILE_COUNT - 1][1].setTileType(TileType.SZR_PARENTAL_STATION);
-        ParentalStation szrParentalStation = new ParentalStation(HORIZONTAL_TILE_COUNT - 1,1, TileType.SZR_PARENTAL_STATION);
+        board[SZR_X][SZR_Y].setTileType(TileType.SZR_PARENTAL_STATION);
+        board[SZR_X][SZR_Y].setStroke(Color.rgb(233,30,98));
+        board[SZR_X][SZR_Y].setStrokeWidth(STROKE_TILE_WIDTH);
+        ParentalStation szrParentalStation = new ParentalStation(SZR_X, SZR_Y, TileType.SZR_PARENTAL_STATION);
 
         parentalStationGroup.getChildren().addAll(javParentalStation, ludParentalStation, szrParentalStation);
 
