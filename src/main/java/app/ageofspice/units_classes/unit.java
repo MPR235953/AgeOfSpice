@@ -1,6 +1,7 @@
 package app.ageofspice.units_classes;
 
 import app.ageofspice.Resourcesandcosts.Cost;
+import app.ageofspice.movement.ActualPosition;
 
 /**
  * Klasa abstrakcyjna z której beda dziedziczyć wszystkie klasy jednostek
@@ -20,4 +21,6 @@ public abstract class unit {
     public int movementSpeed;
     public int baseDMG;
     public Cost baseCost;
+    public ActualPosition position;
+
 }
