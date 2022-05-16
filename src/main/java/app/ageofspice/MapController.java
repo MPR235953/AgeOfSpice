@@ -47,7 +47,7 @@ public class MapController implements Initializable {
     Group tileGroup = new Group();                                      //###### Grupy kafelkow, planet i stacji
     Group planetGroup = new Group();
     Group parentalStationGroup = new Group();
-    Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
+    public static Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
 
     @Override

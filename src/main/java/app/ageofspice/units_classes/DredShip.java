@@ -1,7 +1,12 @@
 package app.ageofspice.units_classes;
 
 
+import app.ageofspice.MapController;
 import app.ageofspice.Resourcesandcosts.*;
+import app.ageofspice.TileType;
+import javafx.scene.image.Image;
+
+import javax.swing.text.html.ImageView;
 
 /**
  * Ciezka  jednostka.
