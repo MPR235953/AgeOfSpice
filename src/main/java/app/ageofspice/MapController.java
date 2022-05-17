@@ -49,6 +49,9 @@ public class MapController implements Initializable {
     Group parentalStationGroup = new Group();
     public static Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
+    public Pane getPane(){ return this.pane; }
+
+    public static Pane notBozyPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,6 +83,7 @@ public class MapController implements Initializable {
             }
         }
 
+        /// TODO: Zamiana kolorow na enumy z klasy PlayerResources ..., dodanie denerowanych obiektow do tej klasy
         //generacja stacji macierzystych kazdej z ras (stale polozenie)
         board[JAV_X][JAV_Y].setTileType(TileType.JAV_PARENTAL_STATION);
         board[JAV_X][JAV_Y].setStroke(Color.rgb(0,230,250));
@@ -131,6 +135,12 @@ public class MapController implements Initializable {
             Planet planet = new Planet(randX, randY, parentalStationType);
             planetGroup.getChildren().add(planet);
         }
+
+
+        ///TODO:   Ostra fuszera jest tu wlasnie robiona xd
+        notBozyPane = pane;
+        GameLoop gameLoop = new GameLoop();
+        gameLoop.startGame();
 
     }
 }

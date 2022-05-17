@@ -3,8 +3,8 @@ package app.ageofspice.units_classes;
 import app.ageofspice.Resourcesandcosts.Cost;
 import app.ageofspice.TileType;
 import app.ageofspice.movement.ActualPosition;
+import javafx.scene.image.ImageView;
 
-import javax.swing.text.html.ImageView;
 
 /**
  * Klasa abstrakcyjna z której beda dziedziczyć wszystkie klasy jednostek
