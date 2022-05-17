@@ -24,6 +24,7 @@ public abstract class unit {
     public int baseHP;
     public int actualHP;
     public int movementSpeed;
+    public int movementSpeedleft;
     public int baseDMG;
     public Cost baseCost;
     public ActualPosition position;

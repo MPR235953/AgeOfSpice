@@ -16,6 +16,7 @@ public class ScoutShip extends unit{
         baseDMG = 5;
         baseHP = 20;
         movementSpeed = 3;
+        movementSpeedleft = movementSpeed;
         actualHP = baseHP;
         baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
     }
