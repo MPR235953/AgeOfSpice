@@ -20,6 +20,7 @@ public class speciesChoiceController {
     @FXML TextField pl1_TextField, pl2_TextField, pl3_TextField;
     @FXML ImageView playButton;
 
+    /// TODO: Ewentualnie mozna zrobic to jako private i napisac gettera
     public static PlayerResourcesandUnitsStorage[] player = {   new PlayerResourcesandUnitsStorage(),
                                                                 new PlayerResourcesandUnitsStorage(),
                                                                 new PlayerResourcesandUnitsStorage()
@@ -41,6 +42,9 @@ public class speciesChoiceController {
             player[0].setSpeciesType(SpeciesType.JAVALERZY);
             player[1].setSpeciesType(SpeciesType.LUDZIE);
             player[2].setSpeciesType(SpeciesType.SZRUNGALE);
+
+            for(int i = 0; i < player.length; i++)
+                player[i].setSpeciesColor();
         }
     }
 

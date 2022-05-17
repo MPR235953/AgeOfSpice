@@ -1,9 +1,5 @@
 package app.ageofspice.movement;
 
-import app.ageofspice.units_classes.unit;
-
-import java.lang.runtime.SwitchBootstraps;
-
 public enum StatusandDirection {
     UP(0),
     DOWN(1),

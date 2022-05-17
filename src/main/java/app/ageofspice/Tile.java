@@ -1,8 +1,13 @@
 package app.ageofspice;
 
 import javafx.beans.value.ChangeListener;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
+import java.io.IOException;
+import java.util.Map;
 
 public class Tile extends Rectangle {
 
@@ -26,7 +31,9 @@ public class Tile extends Rectangle {
         this.setHeight(MapController.TILE_SIZE);
         this.relocate(this.x , this.y);
         this.setFill(Color.TRANSPARENT);
+
         tileLight();
+        tileClick();
     }
 
     public void tileLight(){
@@ -46,6 +53,29 @@ public class Tile extends Rectangle {
                 this.setStrokeWidth(3);
                 this.setStyle("-fx-cursor: default;");
             }
+        });
+    }
+
+    public void tileClick(){
+        this.setOnMouseClicked(event -> {
+            //if(this.tileType == TileType.EMPTY_SPACE) {
+                Pane actionPane = new Pane();
+                Button buildButton = new Button();
+                Button closeButton = new Button();
+
+                actionPane.setPrefWidth(30);
+                actionPane.setPrefHeight(50);
+                actionPane.getChildren().addAll(buildButton, closeButton);
+                closeButton.relocate(0, 20);
+
+
+
+                ///TODO: Fuszery ciag dalszy
+                MapController.notBozyPane.getChildren().add(actionPane);
+
+            //}
+
+
         });
     }
 }
