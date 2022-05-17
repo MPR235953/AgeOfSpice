@@ -8,10 +8,11 @@ package app.ageofspice.Resourcesandcosts;
 
 
 public class Cost {
-    AlgiRes algi;
-    SpiceRes przyprawa;
-    VibraniumRes wibranium;
-    CrystalRes krysztal;
+    public AlgiRes algi;
+    public SpiceRes przyprawa;
+    public VibraniumRes wibranium;
+    public CrystalRes krysztal;
+
     public Cost(AlgiRes A,SpiceRes P,VibraniumRes W,CrystalRes K){
         algi = A;
         przyprawa = P;
