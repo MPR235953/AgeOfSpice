@@ -20,7 +20,7 @@ public class Planet extends ImageView {
         this.planetType = planetType;
         this.materialQuantity = new Random().nextInt(MATERIAL_MAX - MATERIAL_MIN) + MATERIAL_MIN;
 
-        // ################################# Grafika planet do zamieszczenia
+        // ################################# Grafika planet
         switch(this.planetType){
             case ALGA_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\alga_planet100.png"))));
             case VIBRANIUM_PLANET -> this.setImage(new Image(String.valueOf(getClass().getResource("arts\\resources_and_planets\\vibranium_planet100.png"))));

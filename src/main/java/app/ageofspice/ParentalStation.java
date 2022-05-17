@@ -13,9 +13,11 @@ public class ParentalStation extends ImageView {
     public void setHP(double newHP){ this.HP = newHP; }
 
     public ParentalStation(int x, int y, TileType parentalStationType){
-        this.setFitWidth(MapController.TILE_SIZE);
-        this.setFitHeight(MapController.TILE_SIZE);
-        this.relocate(x * MapController.TILE_SIZE, y * MapController.TILE_SIZE);
+        /**TEST rozmiarow mapy**/
+        ///TODO: zrobienie satlych do skalowania
+        this.setFitWidth(MapController.TILE_SIZE * 0.5);
+        this.setFitHeight(MapController.TILE_SIZE * 0.5);
+        this.relocate(x * MapController.TILE_SIZE + MapController.TILE_SIZE * 0.25, y * MapController.TILE_SIZE + MapController.TILE_SIZE * 0.25);
 
         this.parentalStationType = parentalStationType;
         this.HP = BASIC_HP;

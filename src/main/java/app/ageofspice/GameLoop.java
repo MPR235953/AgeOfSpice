@@ -17,11 +17,11 @@ public class GameLoop{
 
     public void startGame() {
 
-        ///TODO: Sakowicz nie krzywdz pls ;(
+        ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez
         boolean oneShipGenerated = false;
         for(int i = 0; i < MapController.HORIZONTAL_TILE_COUNT; i++){
             for(int j = 0; j < MapController.VERTICAL_TILE_COUNT; j++){
-                if(MapController.board[i][j].getTileType() == TileType.EMPTY_SPACE && !oneShipGenerated){
+                if(MapController.board[i][j].getTileType() == TileType.EMPTY_SPACE){
                     oneShipGenerated = true;
 
                     MapController.board[i][j].setTileType(TileType.JAVALERERS_EXPLORER_SHIP);
@@ -34,9 +34,11 @@ public class GameLoop{
                     javExplorerShip.imageView.relocate(i * MapController.TILE_SIZE, j * MapController.TILE_SIZE);
 
                     javExplorerShip.imageView.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_textures\\Javalerzy_explorer_ship.png"))));
-                    MapController.notBozyPane.getChildren().add(javExplorerShip.imageView);
+                    MapController.staticPane.getChildren().add(javExplorerShip.imageView);
                 }
+                if(oneShipGenerated) break;
             }
+            if(oneShipGenerated) break;
         }
 
         System.out.println("TEST");

@@ -32,11 +32,11 @@ public class Tile extends Rectangle {
         this.relocate(this.x , this.y);
         this.setFill(Color.TRANSPARENT);
 
-        tileLight();
+        tileHover();
         tileClick();
     }
 
-    public void tileLight(){
+    public void tileHover(){
         this.hoverProperty().addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
             if (newValue){
                 this.setStroke(Color.WHITE);
@@ -58,24 +58,15 @@ public class Tile extends Rectangle {
 
     public void tileClick(){
         this.setOnMouseClicked(event -> {
-            //if(this.tileType == TileType.EMPTY_SPACE) {
-                Pane actionPane = new Pane();
-                Button buildButton = new Button();
-                Button closeButton = new Button();
+            if(this.tileType == TileType.EMPTY_SPACE) {
+                OnClickSpaceWin win = new OnClickSpaceWin();
+                win.makeWin(this.x, this.y);
+                MapController.staticPane.getChildren().add(win);
+            }
 
-                actionPane.setPrefWidth(30);
-                actionPane.setPrefHeight(50);
-                actionPane.getChildren().addAll(buildButton, closeButton);
-                closeButton.relocate(0, 20);
-
-
-
-                ///TODO: Fuszery ciag dalszy
-                MapController.notBozyPane.getChildren().add(actionPane);
-
-            //}
-
-
+            ///TODO: inne okienka dla innych rodzajow obiektow
         });
+
+
     }
 }

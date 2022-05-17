@@ -49,9 +49,7 @@ public class MapController implements Initializable {
     Group parentalStationGroup = new Group();
     public static Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
-    public Pane getPane(){ return this.pane; }
-
-    public static Pane notBozyPane;
+    public static Pane staticPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -137,8 +135,10 @@ public class MapController implements Initializable {
         }
 
 
-        ///TODO:   Ostra fuszera jest tu wlasnie robiona xd
-        notBozyPane = pane;
+        ///TODO: przez staticPane mozna pokazywac obiekty na mapie
+        staticPane = pane;
+
+        //Wystartowanie petli gry
         GameLoop gameLoop = new GameLoop();
         gameLoop.startGame();
 
