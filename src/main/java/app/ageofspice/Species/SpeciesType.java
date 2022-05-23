@@ -1,4 +1,4 @@
-package app.ageofspice;
+package app.ageofspice.Species;
 
 public enum SpeciesType {
     NONE,

@@ -1,10 +1,10 @@
 package app.ageofspice;
 
+import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

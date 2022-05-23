@@ -1,17 +1,15 @@
 package app.ageofspice;
 
+import app.ageofspice.Species.SpeciesColors;
+import app.ageofspice.Windows.OnClickSpaceWin;
 import javafx.beans.value.ChangeListener;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
-import java.util.Map;
-
 public class Tile extends Rectangle {
 
-    private int x, y;
+    public int x, y;
+    public boolean active = false;      //true jezeli kafelek zostal klikniety, zmiana na false poprzez klasy okienek
 
     private TileType tileType = TileType.EMPTY_SPACE;
 
@@ -36,19 +34,23 @@ public class Tile extends Rectangle {
         tileClick();
     }
 
+    //zmiana po najechaniu na kafelek
     public void tileHover(){
         this.hoverProperty().addListener((ChangeListener<Boolean>) (observable, oldValue, newValue) -> {
             if (newValue){
-                this.setStroke(Color.WHITE);
+                if(!active) this.setStroke(Color.WHITE);
                 this.setStrokeWidth(3);
                 this.setStyle("-fx-cursor: hand;");
             }
             else{
                 switch(this.tileType){
-                    case JAV_PARENTAL_STATION -> this.setStroke(Color.rgb(0,230,250));
-                    case LUD_PARENTAL_STATION -> this.setStroke(Color.rgb(221, 44,0));
-                    case SZR_PARENTAL_STATION -> this.setStroke(Color.rgb(233,30,98));
-                    default -> this.setStroke(Color.TRANSPARENT);
+                    case JAV_PARENTAL_STATION -> this.setStroke(SpeciesColors.javColor);
+                    case LUD_PARENTAL_STATION -> this.setStroke(SpeciesColors.ludColor);
+                    case SZR_PARENTAL_STATION -> this.setStroke(SpeciesColors.szrColor);
+                    default -> {
+                        if(!active)
+                            this.setStroke(Color.TRANSPARENT);
+                    }
                 }
                 this.setStrokeWidth(3);
                 this.setStyle("-fx-cursor: default;");
@@ -56,12 +58,14 @@ public class Tile extends Rectangle {
         });
     }
 
+    //Zmiana po kliknieciu w kafelek
     public void tileClick(){
         this.setOnMouseClicked(event -> {
             if(this.tileType == TileType.EMPTY_SPACE) {
+                active = true;
                 OnClickSpaceWin win = new OnClickSpaceWin();
+                win.setParentTile(this);
                 win.makeWin(this.x, this.y);
-                MapController.staticPane.getChildren().add(win);
             }
 
             ///TODO: inne okienka dla innych rodzajow obiektow

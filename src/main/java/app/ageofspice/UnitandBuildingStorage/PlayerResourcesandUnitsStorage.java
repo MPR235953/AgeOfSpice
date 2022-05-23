@@ -1,9 +1,8 @@
 package app.ageofspice.UnitandBuildingStorage;
 
-import app.ageofspice.Resourcesandcosts.AlgiRes;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
-import app.ageofspice.Resourcesandcosts.VibraniumRes;
-import app.ageofspice.SpeciesType;
+import app.ageofspice.Species.SpeciesColors;
+import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.units_classes.unit;
 import javafx.scene.paint.Color;
 
@@ -68,9 +67,9 @@ public class PlayerResourcesandUnitsStorage {
     public Color getSpeciesColor(){ return this.speciesColor; }
     public void setSpeciesColor(){
         switch(this.speciesType){
-            case JAVALERZY -> this.speciesColor = Color.rgb(0,230,250);
-            case LUDZIE -> this.speciesColor = Color.rgb(221, 44,0);
-            case SZRUNGALE -> this.speciesColor = Color.rgb(233,30,98);
+            case JAVALERZY -> this.speciesColor = SpeciesColors.javColor;
+            case LUDZIE -> this.speciesColor = SpeciesColors.ludColor;
+            case SZRUNGALE -> this.speciesColor = SpeciesColors.szrColor;
         }
     }
 

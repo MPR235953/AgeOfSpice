@@ -1,5 +1,6 @@
 package app.ageofspice;
 
+import app.ageofspice.Species.SpeciesColors;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
@@ -7,8 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +21,10 @@ public class MapController implements Initializable {
     public static final int TILE_SIZE = 70;
     public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
     public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
+
+    //################################################  skalowanie stacji i statkow
+    public static final double SAS_SCALE = 0.5;
+    public static final double SAS_SCALE_POS = TILE_SIZE * SAS_SCALE / 2;
 
     //################################################ Poczatkowe pozycje statkow macierzytych dla ras
     public static final int JAV_X = 0, JAV_Y = 1;
@@ -81,20 +84,20 @@ public class MapController implements Initializable {
             }
         }
 
-        /// TODO: Zamiana kolorow na enumy z klasy PlayerResources ..., dodanie denerowanych obiektow do tej klasy
+        /// TODO: Uzupelnienie pol klasy z zasobami gracza
         //generacja stacji macierzystych kazdej z ras (stale polozenie)
         board[JAV_X][JAV_Y].setTileType(TileType.JAV_PARENTAL_STATION);
-        board[JAV_X][JAV_Y].setStroke(Color.rgb(0,230,250));
+        board[JAV_X][JAV_Y].setStroke(SpeciesColors.javColor);
         board[JAV_X][JAV_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation javParentalStation = new ParentalStation(JAV_X, JAV_Y, TileType.JAV_PARENTAL_STATION);
 
         board[LUD_X][LUD_Y].setTileType(TileType.LUD_PARENTAL_STATION);
-        board[LUD_X][LUD_Y].setStroke(Color.rgb(221, 44,0));
+        board[LUD_X][LUD_Y].setStroke(SpeciesColors.ludColor);
         board[LUD_X][LUD_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation ludParentalStation = new ParentalStation(LUD_X, LUD_Y, TileType.LUD_PARENTAL_STATION);
 
         board[SZR_X][SZR_Y].setTileType(TileType.SZR_PARENTAL_STATION);
-        board[SZR_X][SZR_Y].setStroke(Color.rgb(233,30,98));
+        board[SZR_X][SZR_Y].setStroke(SpeciesColors.szrColor);
         board[SZR_X][SZR_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation szrParentalStation = new ParentalStation(SZR_X, SZR_Y, TileType.SZR_PARENTAL_STATION);
 
