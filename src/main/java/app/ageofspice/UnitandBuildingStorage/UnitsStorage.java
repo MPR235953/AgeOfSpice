@@ -5,7 +5,7 @@ import app.ageofspice.Tile;
 import app.ageofspice.TileType;
 import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.unit;
-//import app.ageofspice.Buildings.absBuilding;
+import app.ageofspice.Buildings.absBuilding;
 import java.util.ArrayList;
 
 import static app.ageofspice.MapController.TILE_SIZE;
@@ -19,7 +19,7 @@ public class UnitsStorage {
 
 
     private ArrayList<unit> unitstorage = new ArrayList<unit>();
-    //private ArrayList<absBuilding> buildingsstorage = new ArrayList<absBuilding>();
+    private ArrayList<absBuilding> buildingsstorage = new ArrayList<absBuilding>();
 
 
     void resetstats(){
