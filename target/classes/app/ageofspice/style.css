@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'arcadeclassic';
+    src: url('ARCADECLASSIC.TTF');
+}
+
+.text {
+    -fx-font-family: "arcadeclassic";
+}
+
+.text-area{
+    -fx-font-family: "arcadeclassic";
+}
+
+.text-field{
+    -fx-font-family: "arcadeclassic";
+    -fx-font-size: 20;
+}
+
+.label{
+    -fx-font-family: "arcadeclassic";
+    -fx-font-size: 25;
+}
+
+#playButton{
+    -fx-cursor: default;
+}
+
+#tryAgainButton{
+    -fx-font-size: 20;
+}
+

@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="app.ageofspice.AppController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.startController">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@arts/startgr.png" />
+         </image>
+      </ImageView>
+      <ImageView blendMode="HARD_LIGHT" cache="true" cacheHint="QUALITY" fitHeight="609.0" fitWidth="700.0" layoutX="610.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@arts/TITLE_START.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="startButton" fitHeight="100.0" fitWidth="200.0" layoutX="820.0" layoutY="800.0">
+         <image>
+            <Image url="@arts/start2.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
