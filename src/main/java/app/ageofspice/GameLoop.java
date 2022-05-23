@@ -1,6 +1,7 @@
 package app.ageofspice;
 
 import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
+import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.ExplorerShip;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -9,8 +10,10 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.movement;
+
 public class GameLoop{
-    PlayerResourcesandUnitsStorage[] playerResources = {    new PlayerResourcesandUnitsStorage(),
+    PlayerResourcesandUnitsStorage[] players = {    new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage()
                                                         };
@@ -35,6 +38,10 @@ public class GameLoop{
 
                     javExplorerShip.imageView.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_textures\\Javalerzy_explorer_ship.png"))));
                     MapController.staticPane.getChildren().add(javExplorerShip.imageView);
+                    MapController.staticPane.getChildren().add(javExplorerShip.imageView);
+                    javExplorerShip.position.x =j;
+                    javExplorerShip.position.y =i;
+                    players[0].getUnitBuilData().getUnitstorage().add(javExplorerShip);
                 }
                 if(oneShipGenerated) break;
             }
@@ -42,9 +49,21 @@ public class GameLoop{
         }
 
         System.out.println("TEST");
+        StatusandDirection direction =  StatusandDirection.RIGHT;
+        int a =0;
+        while(true) {
 
-        for(int i = 0; i < playerResources.length; i++){
+            for (int i = 0; i < 100000000; i++) ;
 
+            movement(players[0].getUnitBuilData().getUnitstorage().get(0), direction);
+            //  movement(javExplorerShip, direction);
+           a++;
+           if (a ==4){
+               break;
+           }
         }
+      /*  for(int i = 0; i < players.length; i++){
+
+        }*/
     }
 }

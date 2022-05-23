@@ -19,8 +19,8 @@ import javafx.scene.paint.Color;
 public class PlayerResourcesandUnitsStorage {
 
 
-    private UnitsStorage unitBuilData;
-    private ResourceStorage resources;
+    private UnitsStorage unitBuilData = new UnitsStorage();
+    private ResourceStorage resources = new ResourceStorage();
     private String playerName;
     private SpeciesType speciesType = SpeciesType.NONE;
     private Color speciesColor = Color.BLACK;

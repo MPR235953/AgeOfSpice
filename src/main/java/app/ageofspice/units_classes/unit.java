@@ -26,7 +26,7 @@ public abstract class unit {
     public int movementSpeed;
     public int movementSpeedleft;
     public int baseDMG;
-    public Cost baseCost;
-    public ActualPosition position;
+    public Cost baseCost ;
+    public ActualPosition position = new ActualPosition();
 
 }

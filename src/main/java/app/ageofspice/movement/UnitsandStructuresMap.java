@@ -1,7 +1,7 @@
 package app.ageofspice.movement;
 
 /**
- * Mapa dla jednostek i budynkow
+ * Mapa dla jednostek i budynkow. Nieczynna
  */
 
 

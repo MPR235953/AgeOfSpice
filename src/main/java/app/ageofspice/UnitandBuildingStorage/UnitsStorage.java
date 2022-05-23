@@ -39,7 +39,7 @@ public class UnitsStorage {
     }
 
 
-    void movement(unit UnittoMove, StatusandDirection Dir){
+    public static void movement(unit UnittoMove, StatusandDirection Dir){
 
         int x1=UnittoMove.position.x,y1=UnittoMove.position.y;
 
@@ -55,10 +55,11 @@ public class UnitsStorage {
                 return;
 
 
-        switch (MapController.board[y1][x1].getTileType()){
+        switch (MapController.board[y1/TILE_SIZE][x1/TILE_SIZE].getTileType()){
             case EMPTY_SPACE:
-                MapController.board[y1][x1].setTileType(UnittoMove.shipType);
-                MapController.board[UnittoMove.position.y*TILE_SIZE][UnittoMove.position.x*TILE_SIZE].setTileType(TileType.EMPTY_SPACE);
+                MapController.board[y1/TILE_SIZE][x1/TILE_SIZE].setTileType(UnittoMove.shipType);
+                MapController.board[UnittoMove.position.y][UnittoMove.position.x].setTileType(TileType.EMPTY_SPACE);
+
                 UnittoMove.position.y = y1/TILE_SIZE;
                 UnittoMove.position.x = x1/TILE_SIZE;
                 break;
