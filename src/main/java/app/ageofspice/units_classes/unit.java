@@ -19,14 +19,14 @@ import javafx.scene.image.ImageView;
 // TODO: 16.05.2022 Przemyslec czy bawimy sie w armor czy nie
 //Koszt zmienic o klase zawierającą koszty
 public abstract class unit {
-    public ImageView imageView;
-    public TileType shipType;
+    public ImageView imageView ;
+    public TileType shipType ;
     public int baseHP;
     public int actualHP;
     public int movementSpeed;
     public int movementSpeedleft;
     public int baseDMG;
     public Cost baseCost;
-    public ActualPosition position;
-
+    public ActualPosition position =new ActualPosition();
+    public  abstract void imageviewconstructor(String imview);
 }

@@ -8,13 +8,14 @@ import app.ageofspice.units_classes.unit;
 import app.ageofspice.Buildings.absBuilding;
 import java.util.ArrayList;
 
-import static app.ageofspice.MapController.TILE_SIZE;
+import static app.ageofspice.MapController.*;
 
 /**
  * klasa przeznaczona do trzymania informacji o ilosci i budynkach oraz jednostakch danej nacji/gracza.
  */
 /// TODO: 16.05.2022 Modyfikacja funkcji do ruchu i rozbudowa ich
 /// TODO: 16.05.2022 Modyfikacja movementu
+    /// TODO: 23.05.2022 Switche ruchu (rotate)
 public class UnitsStorage {
 
 
@@ -39,30 +40,42 @@ public class UnitsStorage {
     }
 
 
-    void movement(unit UnittoMove, StatusandDirection Dir){
+    public static void movement(unit UnittoMove, StatusandDirection Dir,int NewCorX , int NewCorY){
 
-        int x1=UnittoMove.position.x,y1=UnittoMove.position.y;
+    //sprawdzanie poprawnosci z mapa
+        if ((NewCorX > HORIZONTAL_TILE_COUNT || NewCorX <   0) || (NewCorY > VERTICAL_TILE_COUNT || NewCorY < 0 ))
+            return;
+    //sprawdzanie zakresu
+        if ((NewCorX > UnittoMove.movementSpeedleft + UnittoMove.position.x || NewCorX <   UnittoMove.position.x - UnittoMove.movementSpeedleft)
+        || (NewCorY > UnittoMove.movementSpeedleft + UnittoMove.position.y || NewCorY <  UnittoMove.position.y - UnittoMove.movementSpeedleft ))
+            return;
+
+        int x1=NewCorX,y1=NewCorY;
+
+        //rotate
+
 
         switch (Dir){
-            case UP -> x1=(x1+1)*TILE_SIZE;
-            case DOWN -> x1=(x1-1)*TILE_SIZE;
-            case LEFT -> y1=(y1-1)*TILE_SIZE;
-            case RIGHT -> y1=(y1+1)*TILE_SIZE;
+            case UP -> UnittoMove.imageView.setRotate(0);
+            case DOWN -> UnittoMove.imageView.setRotate(180);
+            case LEFT -> UnittoMove.imageView.setRotate(270);
+            case RIGHT -> UnittoMove.imageView.setRotate(90);
 
         }
 
-        if (UnittoMove.position.x == x1 && UnittoMove.position.y ==y1)
-                return;
 
 
-        switch (MapController.board[y1][x1].getTileType()){
+        switch (MapController.board[x1][y1].getTileType()){
             case EMPTY_SPACE:
-                MapController.board[y1][x1].setTileType(UnittoMove.shipType);
-                MapController.board[UnittoMove.position.y*TILE_SIZE][UnittoMove.position.x*TILE_SIZE].setTileType(TileType.EMPTY_SPACE);
-                UnittoMove.position.y = y1/TILE_SIZE;
-                UnittoMove.position.x = x1/TILE_SIZE;
-                break;
+                MapController.board[x1][y1].setTileType(UnittoMove.shipType);
+                MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
+                UnittoMove.imageView.relocate(x1*TILE_SIZE,y1*TILE_SIZE);
+                UnittoMove.position.y = y1;
+                UnittoMove.position.x = x1;
+                return;
+            //case E
             default:
+
                 break;
         }
 

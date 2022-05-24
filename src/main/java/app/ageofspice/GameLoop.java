@@ -1,6 +1,8 @@
 package app.ageofspice;
 
 import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
+import app.ageofspice.UnitandBuildingStorage.UnitsStorage;
+import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.ExplorerShip;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -9,13 +11,16 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.movement;
+
 public class GameLoop{
-    PlayerResourcesandUnitsStorage[] playerResources = {    new PlayerResourcesandUnitsStorage(),
+    public static PlayerResourcesandUnitsStorage[] playerResources = {    new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage()
                                                         };
 
     public void startGame() {
+
 
         ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez
         boolean oneShipGenerated = false;
@@ -35,6 +40,9 @@ public class GameLoop{
 
                     javExplorerShip.imageView.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_textures\\Javalerzy_explorer_ship.png"))));
                     MapController.staticPane.getChildren().add(javExplorerShip.imageView);
+                    javExplorerShip.position.x =i;
+                    javExplorerShip.position.y =j;
+                    playerResources[0].getUnitBuilData().getUnitstorage().add(javExplorerShip);
                 }
                 if(oneShipGenerated) break;
             }
@@ -42,9 +50,21 @@ public class GameLoop{
         }
 
         System.out.println("TEST");
+        StatusandDirection direction =  StatusandDirection.RIGHT;
+        int a =0;
+        while(true) {
 
-        for(int i = 0; i < playerResources.length; i++){
+          //  for (int i = 0; i < 100000000; i++) ;
 
+       //     movement(playerResources[0].getUnitBuilData().getUnitstorage().get(0), direction,playerResources[0].getUnitBuilData().getUnitstorage().get(0).position.x+2,playerResources[0].getUnitBuilData().getUnitstorage().get(0).position.y+3);
+
+            a++;
+            if (a ==5){
+                break;
+            }
+            //break;
         }
+      /*  for(int i = 0; i < players.length; i++){
+        }*/
     }
 }

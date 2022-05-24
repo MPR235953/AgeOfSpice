@@ -20,8 +20,11 @@ public enum TileType {
 
     //TUTAJ ROB CO CHCESZ
 
-    WAR_SHIP,
+    DESTROYER_SHIP,
     EXPLORER_SHIP,
+    SCOUT_SHIP,
+    DRED_SHIP,
+
     NORMAL_SHIP,
     FRIENDLY_SHIP,
     ENEMY_SHIP,

@@ -61,11 +61,22 @@ public class Tile extends Rectangle {
     //Zmiana po kliknieciu w kafelek
     public void tileClick(){
         this.setOnMouseClicked(event -> {
+            //zmien  na switcha
             if(this.tileType == TileType.EMPTY_SPACE) {
                 active = true;
+                //zmodyfikuj pod stacje
                 OnClickSpaceWin win = new OnClickSpaceWin();
                 win.setParentTile(this);
                 win.makeWin(this.x, this.y);
+            }
+            else if (this.tileType == TileType.JAV_PARENTAL_STATION || this.tileType == TileType.LUD_PARENTAL_STATION
+            || this.tileType == TileType.SZR_PARENTAL_STATION){
+                ///TODO: Dodanie ogranicznika(Ludzie mogą klikac tylko na swoja stacje i wykonywac akcje itp)
+
+                OnClickSpaceWin win = new OnClickSpaceWin();
+                win.setParentTile(this);
+                win.makeWinForStation(this.x, this.y);
+
             }
 
             ///TODO: inne okienka dla innych rodzajow obiektow
