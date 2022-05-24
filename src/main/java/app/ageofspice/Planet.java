@@ -7,10 +7,8 @@ import java.util.Random;
 
 public class Planet extends ImageView {
 
-    public static final int MATERIAL_MAX = 30;
-    public static final int MATERIAL_MIN = 5;
-    private TileType planetType;
-    private int materialQuantity;
+    public TileType planetType;
+    public final int materialQuantity = 20;
 
     public Planet(int x, int y, TileType planetType){
         this.setFitWidth(MapController.TILE_SIZE);
@@ -18,7 +16,6 @@ public class Planet extends ImageView {
         this.relocate(x * MapController.TILE_SIZE, y * MapController.TILE_SIZE);
 
         this.planetType = planetType;
-        this.materialQuantity = new Random().nextInt(MATERIAL_MAX - MATERIAL_MIN) + MATERIAL_MIN;
 
         // ################################# Grafika planet
         switch(this.planetType){

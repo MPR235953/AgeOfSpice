@@ -1,6 +1,8 @@
 package app.ageofspice.UnitandBuildingStorage;
 
+import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.MapController;
+import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
 import app.ageofspice.movement.StatusandDirection;
@@ -20,7 +22,8 @@ public class UnitsStorage {
 
 
     private ArrayList<unit> unitstorage = new ArrayList<unit>();
-    private ArrayList<absBuilding> buildingsstorage = new ArrayList<absBuilding>();
+    private ArrayList<absBuilding> buildingstorage = new ArrayList<absBuilding>();
+    public int bonusAttack = 0;    //bonusowy atak z WarStation
 
 
     void resetstats(){
@@ -84,6 +87,22 @@ public class UnitsStorage {
 
     };
 
+    public ArrayList<absBuilding> getBuildingstorage() {
+        return buildingstorage;
+    }
 
+/*
+    void gatherResources(ResourceStorage resources){
+        //TODO: pętla przechodząca przez wszystkie planety
+        //resources.algi.quantity += 10;
+
+        for(absBuilding building : buildingstorage){
+            if(building instanceof MineStation){
+            //if(building.getClass() == MineStation.class){
+                resources.algi.quantity += building.minedResource;    //TODO: jak rozpoznawać tą klasę i odpowiednie surowce?
+            }
+        }
+    }
+ */
 
 }
