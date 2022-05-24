@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.movement;
 
 public class GameLoop{
-    PlayerResourcesandUnitsStorage[] playerResources = {    new PlayerResourcesandUnitsStorage(),
+    public static PlayerResourcesandUnitsStorage[] playerResources = {    new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage()
                                                         };
