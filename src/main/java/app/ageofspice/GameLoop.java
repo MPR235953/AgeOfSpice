@@ -35,6 +35,7 @@ public class GameLoop{
 
                     javExplorerShip.imageView.setImage(new Image(String.valueOf(getClass().getResource("arts\\Javalerzy_textures\\Javalerzy_explorer_ship.png"))));
                     MapController.staticPane.getChildren().add(javExplorerShip.imageView);
+                    //MapController.staticPane.getChildren().remove(javExplorerShip.imageView);
                 }
                 if(oneShipGenerated) break;
             }

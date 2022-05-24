@@ -68,6 +68,7 @@ public class Tile extends Rectangle {
                 win.makeWin(this.x, this.y);
             }
 
+
             ///TODO: inne okienka dla innych rodzajow obiektow
         });
 
