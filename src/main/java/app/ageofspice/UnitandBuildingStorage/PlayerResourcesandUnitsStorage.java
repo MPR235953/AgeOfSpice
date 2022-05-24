@@ -1,9 +1,14 @@
 package app.ageofspice.UnitandBuildingStorage;
 
+import app.ageofspice.MapController;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
-import app.ageofspice.units_classes.unit;
+import app.ageofspice.TileType;
+import app.ageofspice.movement.ActualPosition;
+import app.ageofspice.units_classes.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 /**
@@ -19,11 +24,12 @@ import javafx.scene.paint.Color;
 public class PlayerResourcesandUnitsStorage {
 
 
-    private UnitsStorage unitBuilData;
-    private ResourceStorage resources;
+    private UnitsStorage unitBuilData = new UnitsStorage();
+    private ResourceStorage resources = new ResourceStorage();
     private String playerName;
     private SpeciesType speciesType = SpeciesType.NONE;
     private Color speciesColor = Color.BLACK;
+    //private
 
     public String getPlayerName() { return playerName; }
     public void setPlayerName(String playerName) { this.playerName = playerName; }
@@ -45,23 +51,85 @@ public class PlayerResourcesandUnitsStorage {
         this.resources = resources;
     }
 
-    void buyunits(unit unittobuy){
+
+    public int enoughMoney(unit unittobuy){
         if (resources.algi.quantity >= unittobuy.baseCost.algi.quantity && resources.wibranium.quantity >= unittobuy.baseCost.wibranium.quantity
-         && resources.krysztal.quantity >= unittobuy.baseCost.krysztal.quantity && resources.przyprawa.quantity >= unittobuy.baseCost.przyprawa.quantity){
+                && resources.krysztal.quantity >= unittobuy.baseCost.krysztal.quantity && resources.przyprawa.quantity >= unittobuy.baseCost.przyprawa.quantity) {
             resources.algi.quantity -= unittobuy.baseCost.algi.quantity;
             resources.wibranium.quantity -= unittobuy.baseCost.wibranium.quantity;
             resources.krysztal.quantity -= unittobuy.baseCost.krysztal.quantity;
             resources.przyprawa.quantity -= unittobuy.baseCost.przyprawa.quantity;
-            //########Do rozważenia
-                unitBuilData.getUnitstorage().add(unittobuy);
-            //########
+        return 1;
         }
+        return 0;
+    }
+    /// TODO: 24.05.2022 zmiana obrazow imageview, przemyslec wyglad funkcji, dodac spawnowanie sie na mapie.Do poprawy
+    public int buyunits(TileType type, ActualPosition pos){
+
+            //########Do rozważenia
+             //  unitBuilData.getUnitstorage().add(unittobuy);
+            //########
+
+
+        switch (type){
+            case SCOUT_SHIP:
+                ScoutShip scout = new ScoutShip();
+                scout.position = pos;
+                if (enoughMoney(scout) == 0)
+                    return -1;
+                switch (speciesType) {
+                    case LUDZIE ->  scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case JAVALERZY -> scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case SZRUNGALE -> scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                }
+                this.unitBuilData.getUnitstorage().add(scout);
+                break;
+            case DESTROYER_SHIP:
+                DestroyerShip destroyerShip = new DestroyerShip();
+                destroyerShip.position = pos;
+                if (enoughMoney(destroyerShip) == 0)
+                    return -1;
+                switch (speciesType) {
+                    case LUDZIE ->  destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case JAVALERZY -> destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case SZRUNGALE -> destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                }
+                this.unitBuilData.getUnitstorage().add(destroyerShip);
+                break;
+            case DRED_SHIP:
+                DredShip dredShip = new DredShip();
+                dredShip.position = pos;
+                if (enoughMoney(dredShip) == 0)
+                    return -1;
+                switch (speciesType) {
+                    case LUDZIE ->  dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case JAVALERZY -> dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case SZRUNGALE -> dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                }
+                this.unitBuilData.getUnitstorage().add(dredShip);
+                break;
+            case EXPLORER_SHIP:
+                ExplorerShip explorerShip = new ExplorerShip();
+                explorerShip.position = pos;
+                if (enoughMoney(explorerShip) == 0)
+                    return -1;
+                switch (speciesType) {
+                    case LUDZIE ->  explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case JAVALERZY -> explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case SZRUNGALE -> explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                }
+                this.unitBuilData.getUnitstorage().add(explorerShip);
+                break;
+        }
+
+        return  0;
     }
 
 
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
+        resources.resourcesaction();
     }
 
     public Color getSpeciesColor(){ return this.speciesColor; }

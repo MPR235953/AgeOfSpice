@@ -47,6 +47,41 @@ public class OnClickSpaceWin extends Pane{
         closeButton.setOnAction(this::closeWin);
     }
 
+    //Makewin dla stacji tylko by rekrutowac jednostki
+    public void makeWinForStation(int x, int y){
+        MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
+        parentTile.setStroke(Color.RED);
+
+        //Konfiguracja glownego Pane
+        this.setPrefWidth(100);
+        this.setPrefHeight(120);
+        this.setStyle("-fx-background-color: white;" +
+                "-fx-border-color: orange;" +
+                "-fx-border-width: 5;" +
+                "-fx-view-order: -10;");
+        this.getChildren().addAll(buildButton, closeButton);
+        this.relocate(x + MapController.TILE_SIZE, y);
+
+        //Konfiguracja buttonow
+        buildButton.setText("Rekrutuj");
+        buildButton.relocate(10, 10);
+        buildButton.setPrefWidth(80);
+        buildButton.setOnAction(this::showBuildWinForStation);
+
+        closeButton.setText("Zamknij");
+        closeButton.relocate(10, 40);
+        closeButton.setPrefWidth(80);
+        closeButton.setOnAction(this::closeWin);
+    }
+
+    //funkcja tworzaca kolejne sub okienko z wyborem jednostek w stacji do budowania
+    public void showBuildWinForStation(ActionEvent event){
+        BuildWinForStation buildWin = new BuildWinForStation();
+        buildWin.setParentTile(parentTile);     //przekazanie kliknietego kafelka glebiej do kolejnej klasy
+        buildWin.makeWin();                     //tworzenie nowego okienka
+        MapController.staticPane.getChildren().remove(this);    //jako ze mamy nowe okienko, to to aktualne powinno zniknac z mapy
+    }
+
     public void closeWin(ActionEvent event){
         MapController.staticPane.getChildren().remove(this);
         parentTile.setStroke(Color.TRANSPARENT);

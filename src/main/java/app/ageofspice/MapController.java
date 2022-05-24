@@ -2,13 +2,16 @@ package app.ageofspice;
 
 import app.ageofspice.Species.SpeciesColors;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Random;
@@ -46,6 +49,7 @@ public class MapController implements Initializable {
 
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
+    public static Pane framePane;
     ImageView background = new ImageView();
     Group tileGroup = new Group();                                      //###### Grupy kafelkow, planet i stacji
     Group planetGroup = new Group();
@@ -53,9 +57,11 @@ public class MapController implements Initializable {
     public static Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
     public static Pane staticPane;
+    public static AnchorPane staticAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Konfiguracja
         anchorPane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         anchorPane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
 
@@ -140,6 +146,14 @@ public class MapController implements Initializable {
 
         ///TODO: przez staticPane mozna pokazywac obiekty na mapie
         staticPane = pane;
+        staticAnchorPane = anchorPane;
+
+        try {
+            framePane = FXMLLoader.load(getClass().getResource("javFrame.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        staticAnchorPane.getChildren().add(framePane);
 
         //Wystartowanie petli gry
         GameLoop gameLoop = new GameLoop();
