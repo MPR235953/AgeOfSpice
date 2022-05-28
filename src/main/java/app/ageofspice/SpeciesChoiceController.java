@@ -28,18 +28,11 @@ public class SpeciesChoiceController {
         else return true;
     }
 
-    public void createPlayers(){
+    public void saveNames(){
         if(diffNames()){
             playerResources[0].setPlayerName(pl1_TextField.getText());
             playerResources[1].setPlayerName(pl2_TextField.getText());
             playerResources[2].setPlayerName(pl3_TextField.getText());
-
-            playerResources[0].setSpeciesType(SpeciesType.JAVALERZY);
-            playerResources[1].setSpeciesType(SpeciesType.LUDZIE);
-            playerResources[2].setSpeciesType(SpeciesType.SZRUNGALE);
-
-            for(int i = 0; i < playerResources.length; i++)
-                playerResources[i].setSpeciesColor();
         }
     }
 
@@ -53,7 +46,7 @@ public class SpeciesChoiceController {
         else if(!diffNames())
             alertAppear();
         else {
-            createPlayers();
+            saveNames();
 
             playButton.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/play_button_ready.png").toURI().toString()));
 

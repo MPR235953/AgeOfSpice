@@ -12,6 +12,9 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
+import static app.ageofspice.GameLoop.playerNumber;
+import static app.ageofspice.GameLoop.playerResources;
+
 public class BuildWin extends Pane{
     public Button closeButton = new Button("Zamknij");
     public Button[] buildButtons = {new Button("Buduj"), new Button("Buduj"), new Button("Buduj")};
@@ -64,7 +67,7 @@ public class BuildWin extends Pane{
         //TODO: Napisac klasy dla stacji i zaprojektowac grafike
         //Narazie roboczo tylko dla playera nr 0, pozniej nalezy to powiazac z aktualnym
         //graczem w petli np robiac statyczna zmienna gracza i po kazdej iteracji nadpisywac ta zmienna
-        switch(SpeciesType.JAVALERZY){//speciesChoiceController.player[0].getSpeciesType()){
+        switch(playerResources[playerNumber].getSpeciesType()){//speciesChoiceController.player[0].getSpeciesType()){
             //grafika tez narazie roboczo
             case JAVALERZY -> {
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
@@ -72,10 +75,14 @@ public class BuildWin extends Pane{
                 imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
             }
             case LUDZIE -> {
-
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
             }
             case SZRUNGALE -> {
-
+                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
             }
         }
 
@@ -90,10 +97,21 @@ public class BuildWin extends Pane{
     }
 
     public void buildKop(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
                 parentTile.setTileType(TileType.ALGA_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
                 imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                playerResources[playerNumber].getResources().algi.quantity -= 10;
+            }
+            case LUDZIE -> {
+                parentTile.setTileType(TileType.VIBRANIUM_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
+                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                playerResources[playerNumber].getResources().przyprawa.quantity -= 10;
+            }
+            case SZRUNGALE -> {
+                parentTile.setTileType(TileType.CRYSTAL_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
+                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                playerResources[playerNumber].getResources().krysztal.quantity -= 10;
             }
         }
         MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie

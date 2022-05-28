@@ -24,11 +24,11 @@ public class GameLoop{
 
     public void startGame() {
         //Ustawienie tylow gatonkow graczy i odpowiadajace im kolory
-        /*playerResources[0].setSpeciesType(SpeciesType.JAVALERZY);
+        playerResources[0].setSpeciesType(SpeciesType.JAVALERZY);
         playerResources[1].setSpeciesType(SpeciesType.LUDZIE);
         playerResources[2].setSpeciesType(SpeciesType.SZRUNGALE);
         for(int i = 0; i < playerResources.length; i++)
-            playerResources[i].setSpeciesColor();*/
+            playerResources[i].setSpeciesColor();
 
 
         ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez

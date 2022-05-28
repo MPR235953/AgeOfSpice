@@ -24,13 +24,10 @@ public class PlayerFrameController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        changePlayer();
+        timerInit();
     }
 
-    public void changePlayer() {
-        if(timer != null) timer.cancel();       //stopowanie timera
-
-        if(playerNumber == 3) playerNumber = 0;
+    public void refreshStats(){
         //ustawienie dopowiedniego pana w lewym gornym rogu
         if(framePane != null) {
             framePane.getChildren().remove(javPane);
@@ -62,7 +59,9 @@ public class PlayerFrameController implements Initializable{
         algaStatusLabel.setText(String.valueOf(playerResources[playerNumber].getResources().algi.quantity));
         vibraniumStatusLabel.setText(String.valueOf(playerResources[playerNumber].getResources().wibranium.quantity));
         roundNumberLabel.setText("Tura   " + roundNumber);
+    }
 
+    public void timerInit(){
         //Aktywacja timera roboczo 15s bo chcialem zobaczyc jak sie kolorek zmienia
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -70,6 +69,8 @@ public class PlayerFrameController implements Initializable{
             @Override
             public void run() {
                 Platform.runLater(() -> {
+                    refreshStats();
+
                     if(counter <= 10) timeLabel.setTextFill(Color.RED);
                     else timeLabel.setTextFill(Color.WHITE);
                     if(counter > 0){
@@ -85,6 +86,7 @@ public class PlayerFrameController implements Initializable{
                         ///TODO: Zakomentowac sobie fragment ponizej jesli kogos drazni przalacanie banerow
 
                         //od
+                        //nextPlayer = true;
                         changePlayer();
                         //do
 
@@ -92,10 +94,15 @@ public class PlayerFrameController implements Initializable{
                 });
             }
         }, 0, 1000);
+    }
 
+    public void changePlayer() {
+        if(timer != null) timer.cancel();       //stopowanie timera
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
         roundNumber++;
         playerNumber++;
+        if(playerNumber == 3) playerNumber = 0;
+        timerInit();
     }
 
 }

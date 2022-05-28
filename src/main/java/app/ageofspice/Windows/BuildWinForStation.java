@@ -102,7 +102,7 @@ public class BuildWinForStation extends Pane{
     }
 
     public void buildScout(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
                 if (playerResources[playerNumber].buyunits(TileType.SCOUT_SHIP,new ActualPosition(4,4)) == -1)
                     return;
