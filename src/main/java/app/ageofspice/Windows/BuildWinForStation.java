@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static app.ageofspice.GameLoop.playerNumber;
 import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.MapController.*;
 
 //klasa robocza. Możliwe błędy
 //Będę grzebał przy niej jeszcze
@@ -75,7 +76,7 @@ public class BuildWinForStation extends Pane{
         //TODO: Napisac klasy dla stacji i zaprojektowac grafike
         //Narazie roboczo tylko dla playera nr 0, pozniej nalezy to powiazac z aktualnym
         //graczem w petli np robiac statyczna zmienna gracza i po kazdej iteracji nadpisywac ta zmienna
-        switch(SpeciesType.JAVALERZY){//speciesChoiceController.player[0].getSpeciesType()){
+        switch(playerResources[playerNumber].getSpeciesType()){//speciesChoiceController.player[0].getSpeciesType()){
             //grafika tez narazie roboczo
             case JAVALERZY -> {
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
@@ -84,9 +85,17 @@ public class BuildWinForStation extends Pane{
                 imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_sniper_ship.png").toURI().toString()));
             }
             case LUDZIE -> {
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_explorer_ship.png").toURI().toString()));
+                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_dreadnought.png").toURI().toString()));
+                imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_destroyer.png").toURI().toString()));
 
             }
             case SZRUNGALE -> {
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png").toURI().toString()));
+                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_tank_ship.png").toURI().toString()));
+                imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_sniper_ship.png").toURI().toString()));
 
             }
         }
@@ -101,45 +110,152 @@ public class BuildWinForStation extends Pane{
         imageToUpload.relocate(parentTile.x, parentTile.y);
     }
 
-    public void buildScout(ActionEvent event){
-        switch(playerResources[playerNumber].getSpeciesType()){
+    public ActualPosition seekFreeSpace(SpeciesType type){
+        switch (type){
             case JAVALERZY -> {
-                if (playerResources[playerNumber].buyunits(TileType.SCOUT_SHIP,new ActualPosition(4,4)) == -1)
-                    return;
-                // nadany enum dla zlego tile
-                //parentTile.setTileType(TileType.SCOUT_SHIP);       //oznaczenie ze obiekt znajduje sie na mapie
-                MapController.board[4][4].setTileType(TileType.SCOUT_SHIP);
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png").toURI().toString()));
-                //Tu masz pokazanie tego statku na odpowiedniej pozycji na mapie
-                imageToUpload.relocate(4 * MapController.TILE_SIZE, 4 * MapController.TILE_SIZE);
+                for (int i = 0; i< 2; i++ ){
+                    for (int j = 0; j< 3; j++ ){
+                        if (board[JAV_X+i][JAV_Y-1+j].getTileType() == TileType.EMPTY_SPACE)
+                            return new ActualPosition(JAV_X+i,JAV_Y-1+j);
+                    }
+                }
+            }
+            case LUDZIE -> {
+                for (int i = 0; i< 3; i++ ){
+                    for (int j = 0; j< 2; j++ ){
+                        if (board[LUD_X+i-1][LUD_Y-1+j].getTileType() == TileType.EMPTY_SPACE)
+                            return new ActualPosition(LUD_X+i-1,LUD_Y-1+j);
+                    }
+                }
+            }
+            case SZRUNGALE -> {
+                for (int i = 0; i< 2; i++ ){
+                    for (int j = 0; j< 3; j++ ){
+                        if (board[SZR_X+i-1][SZR_Y-1+j].getTileType() == TileType.EMPTY_SPACE)
+                            return new ActualPosition(SZR_X+i-1,SZR_Y-1+j);
+                    }
+                }
             }
         }
+
+
+        return  null;
+    }
+
+    public void buildScout(ActionEvent event){
+        ActualPosition actualPosition = new ActualPosition();
+        switch(playerResources[playerNumber].getSpeciesType()){
+            case JAVALERZY -> {
+                actualPosition = seekFreeSpace(SpeciesType.JAVALERZY);
+            }
+            case LUDZIE -> {
+                actualPosition = seekFreeSpace(SpeciesType.LUDZIE);
+            }
+            case SZRUNGALE -> {
+                actualPosition = seekFreeSpace(SpeciesType.SZRUNGALE);
+            }
+            default -> {
+                break;
+            }
+        }
+        if (actualPosition == null) {
+            closeWin(event);
+            return;
+        }
+        if (playerResources[playerNumber].buyunits(TileType.SCOUT_SHIP, actualPosition) == -1){
+            closeWin(event);
+            return;
+        }
+        board[actualPosition.x][actualPosition.y].setTileType(TileType.SCOUT_SHIP);
         MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         closeWin(event);
     }
 
     public void buildExpl(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        ActualPosition actualPosition = new ActualPosition();
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-
+                actualPosition = seekFreeSpace(SpeciesType.JAVALERZY);
+            }
+            case LUDZIE -> {
+                actualPosition = seekFreeSpace(SpeciesType.LUDZIE);
+            }
+            case SZRUNGALE -> {
+                actualPosition = seekFreeSpace(SpeciesType.SZRUNGALE);
+            }
+            default -> {
+                break;
             }
         }
+        if (actualPosition == null) {
+            closeWin(event);
+            return;
+        }
+        if (playerResources[playerNumber].buyunits(TileType.EXPLORER_SHIP, actualPosition) == -1){
+            closeWin(event);
+            return;
+        }
+        board[actualPosition.x][actualPosition.y].setTileType(TileType.EXPLORER_SHIP);
+        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
+        closeWin(event);
     }
 
     public void buildDred(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        ActualPosition actualPosition = new ActualPosition();
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-
+                actualPosition = seekFreeSpace(SpeciesType.JAVALERZY);
+            }
+            case LUDZIE -> {
+                actualPosition = seekFreeSpace(SpeciesType.LUDZIE);
+            }
+            case SZRUNGALE -> {
+                actualPosition = seekFreeSpace(SpeciesType.SZRUNGALE);
+            }
+            default -> {
+                break;
             }
         }
+        if (actualPosition == null) {
+            closeWin(event);
+            return;
+        }
+        if (playerResources[playerNumber].buyunits(TileType.DRED_SHIP, actualPosition) == -1){
+            closeWin(event);
+            return;
+        }
+        board[actualPosition.x][actualPosition.y].setTileType(TileType.DRED_SHIP);
+        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
+        closeWin(event);
     }
 
     public void buildDest(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        ActualPosition actualPosition = new ActualPosition();
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-
+                actualPosition = seekFreeSpace(SpeciesType.JAVALERZY);
+            }
+            case LUDZIE -> {
+                actualPosition = seekFreeSpace(SpeciesType.LUDZIE);
+            }
+            case SZRUNGALE -> {
+                actualPosition = seekFreeSpace(SpeciesType.SZRUNGALE);
+            }
+            default -> {
+                break;
             }
         }
+        if (actualPosition == null) {
+            closeWin(event);
+            return;
+        }
+        if (playerResources[playerNumber].buyunits(TileType.DESTROYER_SHIP, actualPosition) == -1){
+            closeWin(event);
+            return;
+        }
+        board[actualPosition.x][actualPosition.y].setTileType(TileType.DESTROYER_SHIP);
+        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
+        closeWin(event);
     }
 
 

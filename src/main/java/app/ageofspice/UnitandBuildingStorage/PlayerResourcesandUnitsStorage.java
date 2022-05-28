@@ -66,11 +66,6 @@ public class PlayerResourcesandUnitsStorage {
     /// TODO: 24.05.2022 zmiana obrazow imageview, przemyslec wyglad funkcji, dodac spawnowanie sie na mapie.Do poprawy
     public int buyunits(TileType type, ActualPosition pos){
 
-            //########Do rozważenia
-             //  unitBuilData.getUnitstorage().add(unittobuy);
-            //########
-
-
         switch (type){
             case SCOUT_SHIP:
                 ScoutShip scout = new ScoutShip();
@@ -78,9 +73,9 @@ public class PlayerResourcesandUnitsStorage {
                 if (enoughMoney(scout) == 0)
                     return -1;
                 switch (speciesType) {
-                    case LUDZIE ->  scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case JAVALERZY -> scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case SZRUNGALE -> scout.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case LUDZIE ->  scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case JAVALERZY -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Ludzie_scout.png");
+                    case SZRUNGALE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
                 }
                 this.unitBuilData.getUnitstorage().add(scout);
                 break;
@@ -90,9 +85,10 @@ public class PlayerResourcesandUnitsStorage {
                 if (enoughMoney(destroyerShip) == 0)
                     return -1;
                 switch (speciesType) {
-                    case LUDZIE ->  destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case JAVALERZY -> destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case SZRUNGALE -> destroyerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case LUDZIE ->  destroyerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_destroyer.png");
+                    case JAVALERZY -> destroyerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_sniper_ship.png");
+                    case SZRUNGALE -> destroyerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+
                 }
                 this.unitBuilData.getUnitstorage().add(destroyerShip);
                 break;
@@ -102,9 +98,9 @@ public class PlayerResourcesandUnitsStorage {
                 if (enoughMoney(dredShip) == 0)
                     return -1;
                 switch (speciesType) {
-                    case LUDZIE ->  dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case JAVALERZY -> dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case SZRUNGALE -> dredShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case LUDZIE ->  dredShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_dreadnought.png");
+                    case JAVALERZY -> dredShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_tank_ship.png");
+                    case SZRUNGALE -> dredShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
                 }
                 this.unitBuilData.getUnitstorage().add(dredShip);
                 break;
@@ -114,9 +110,9 @@ public class PlayerResourcesandUnitsStorage {
                 if (enoughMoney(explorerShip) == 0)
                     return -1;
                 switch (speciesType) {
-                    case LUDZIE ->  explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case JAVALERZY -> explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case SZRUNGALE -> explorerShip.imageviewconstructor("app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                    case LUDZIE ->  explorerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_explorer_ship.png");
+                    case JAVALERZY -> explorerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png");
+                    case SZRUNGALE -> explorerShip.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Szrungale_explorer_ship.png");
                 }
                 this.unitBuilData.getUnitstorage().add(explorerShip);
                 break;

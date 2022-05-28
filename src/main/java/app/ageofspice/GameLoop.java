@@ -32,7 +32,7 @@ public class GameLoop{
 
 
         ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez
-        boolean oneShipGenerated = false;
+       /* boolean oneShipGenerated = false;
         for(int i = 0; i < MapController.HORIZONTAL_TILE_COUNT; i++){
             for(int j = 0; j < MapController.VERTICAL_TILE_COUNT; j++){
                 if(MapController.board[i][j].getTileType() == TileType.EMPTY_SPACE){
@@ -57,7 +57,6 @@ public class GameLoop{
             }
             if(oneShipGenerated) break;
         }
-
         System.out.println("TEST");
         StatusandDirection direction =  StatusandDirection.RIGHT;
         int a =0;
@@ -72,6 +71,6 @@ public class GameLoop{
                 break;
             }
             //break;
-        }
+        }*/
     }
 }

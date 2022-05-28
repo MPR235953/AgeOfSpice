@@ -1,5 +1,6 @@
 package app.ageofspice;
 
+import app.ageofspice.movement.ActualPosition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -8,6 +9,7 @@ public class ParentalStation extends ImageView {
     public static final int BASIC_HP = 1000;
     private TileType parentalStationType;
     private double HP;
+    public ActualPosition stationposition= new ActualPosition(0,0);
 
     public double getHP(){ return this.HP; }
     public void setHP(double newHP){ this.HP = newHP; }
@@ -16,7 +18,8 @@ public class ParentalStation extends ImageView {
         this.setFitWidth(MapController.TILE_SIZE * MapController.SAS_SCALE);
         this.setFitHeight(MapController.TILE_SIZE * MapController.SAS_SCALE);
         this.relocate(x * MapController.TILE_SIZE + MapController.SAS_SCALE_POS, y * MapController.TILE_SIZE + MapController.SAS_SCALE_POS);
-
+        stationposition.x = x;
+        stationposition.y = y;
         this.parentalStationType = parentalStationType;
         this.HP = BASIC_HP;
 

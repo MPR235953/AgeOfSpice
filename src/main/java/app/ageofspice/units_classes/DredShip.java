@@ -5,8 +5,9 @@ import app.ageofspice.MapController;
 import app.ageofspice.Resourcesandcosts.*;
 import app.ageofspice.TileType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-import javax.swing.text.html.ImageView;
+import java.io.File;
 
 /**
  * Ciezka  jednostka.
@@ -28,6 +29,13 @@ public class DredShip extends unit{
 
     @Override
     public void imageviewconstructor(String imview) {
+        this.imageView = new ImageView();
+        this.imageView.setFitHeight(MapController.TILE_SIZE);
+        this.imageView.setFitWidth(MapController.TILE_SIZE);
+        this.imageView.relocate(position.x * MapController.TILE_SIZE, position.y * MapController.TILE_SIZE);
+        this.imageView.setImage(new Image(new File(imview).toURI().toString()));
+        MapController.staticPane.getChildren().add(this.imageView);
+
 
     }
 }

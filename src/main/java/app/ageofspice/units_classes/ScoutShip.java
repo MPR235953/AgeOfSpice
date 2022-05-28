@@ -7,6 +7,8 @@ import app.ageofspice.movement.ActualPosition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+
 import static app.ageofspice.TileType.SCOUT_SHIP;
 
 /**
@@ -34,8 +36,9 @@ public class ScoutShip extends unit{
         this.imageView.setFitHeight(MapController.TILE_SIZE);
         this.imageView.setFitWidth(MapController.TILE_SIZE);
         this.imageView.relocate(position.x * MapController.TILE_SIZE, position.y * MapController.TILE_SIZE);
-        this.imageView.setImage(new Image(String.valueOf(getClass().getResource(imview))));
+        this.imageView.setImage(new Image(new File(imview).toURI().toString()));
         MapController.staticPane.getChildren().add(this.imageView);
+
 
     }
 }
