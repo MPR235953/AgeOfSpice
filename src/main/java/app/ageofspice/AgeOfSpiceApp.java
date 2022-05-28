@@ -24,11 +24,19 @@ public class AgeOfSpiceApp extends Application {
     public void start(Stage stage) throws IOException {
 
         AgeOfSpiceApp.stage = stage;
-        //SceneController.switchToFXML("start.fxml");
+        SceneController.switchToFXML("start.fxml");
         //SceneController.switchToFXML("speciesChoice.fxml");
-        SceneController.switchToFXML("map.fxml");
-        //SceneController.switchToFXML("javFrame.fxml");
+        //SceneController.switchToFXML("map.fxml");
+        //SceneController.switchToFXML("playerFrame.fxml");
 
+        AgeOfSpiceApp.stage.setOnCloseRequest(event -> end());
+    }
+
+    public void end(){
+        // podczas zamykania aplikacji trzeba zakonczyc jeszcze dzialanie timera ktory liczy czas do konca tury gracza
+        // inaczej po zamknieciu appki timer nadal dziala jako watek a apka dziala w tle
+        if(PlayerFrameController.timer != null)
+            PlayerFrameController.timer.cancel();
     }
 
     public static void main(String[] args) {

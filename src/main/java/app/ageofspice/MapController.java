@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Random;
 
@@ -148,12 +149,10 @@ public class MapController implements Initializable {
         staticPane = pane;
         staticAnchorPane = anchorPane;
 
-        try {
-            framePane = FXMLLoader.load(getClass().getResource("javFrame.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        staticAnchorPane.getChildren().add(framePane);
+        try { framePane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerFrame.fxml"))); }
+        catch (IOException e) { e.printStackTrace(); }
+
+        staticAnchorPane.getChildren().add(framePane);  //wyswietlenie frama graczy
 
         //Wystartowanie petli gry
         GameLoop gameLoop = new GameLoop();

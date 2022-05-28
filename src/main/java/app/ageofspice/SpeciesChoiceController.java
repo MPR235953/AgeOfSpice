@@ -1,7 +1,6 @@
 package app.ageofspice;
 
 import app.ageofspice.Species.SpeciesType;
-import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,17 +13,13 @@ import javafx.scene.layout.Pane;
 import java.io.File;
 import java.io.IOException;
 
-public class speciesChoiceController {
+import static app.ageofspice.GameLoop.playerResources;
+
+public class SpeciesChoiceController {
     @FXML AnchorPane anchorPane;
     @FXML Pane alertPane;
     @FXML TextField pl1_TextField, pl2_TextField, pl3_TextField;
     @FXML ImageView playButton;
-
-    /// TODO: Ewentualnie mozna zrobic to jako private i napisac gettera
-    public static PlayerResourcesandUnitsStorage[] player = {   new PlayerResourcesandUnitsStorage(),
-                                                                new PlayerResourcesandUnitsStorage(),
-                                                                new PlayerResourcesandUnitsStorage()
-                                                            };
 
     public boolean diffNames(){
         if(pl1_TextField.getText().equals(pl2_TextField.getText()) ||
@@ -35,16 +30,16 @@ public class speciesChoiceController {
 
     public void createPlayers(){
         if(diffNames()){
-            player[0].setPlayerName(pl1_TextField.getText());
-            player[1].setPlayerName(pl2_TextField.getText());
-            player[2].setPlayerName(pl3_TextField.getText());
+            playerResources[0].setPlayerName(pl1_TextField.getText());
+            playerResources[1].setPlayerName(pl2_TextField.getText());
+            playerResources[2].setPlayerName(pl3_TextField.getText());
 
-            player[0].setSpeciesType(SpeciesType.JAVALERZY);
-            player[1].setSpeciesType(SpeciesType.LUDZIE);
-            player[2].setSpeciesType(SpeciesType.SZRUNGALE);
+            playerResources[0].setSpeciesType(SpeciesType.JAVALERZY);
+            playerResources[1].setSpeciesType(SpeciesType.LUDZIE);
+            playerResources[2].setSpeciesType(SpeciesType.SZRUNGALE);
 
-            for(int i = 0; i < player.length; i++)
-                player[i].setSpeciesColor();
+            for(int i = 0; i < playerResources.length; i++)
+                playerResources[i].setSpeciesColor();
         }
     }
 

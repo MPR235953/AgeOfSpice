@@ -1,9 +1,7 @@
 package app.ageofspice;
 
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,7 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class startController implements Initializable {
+public class StartController implements Initializable {
     @FXML ImageView startButton;
 
     @Override

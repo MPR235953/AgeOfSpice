@@ -18,6 +18,8 @@ public class GameLoop{
                                                             new PlayerResourcesandUnitsStorage(),
                                                             new PlayerResourcesandUnitsStorage()
                                                         };
+    public static int roundNumber = 1;
+    public static int playerNumber = 0;
 
     public void startGame() {
 
