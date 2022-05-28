@@ -2,6 +2,7 @@ package app.ageofspice.Windows;
 
 import app.ageofspice.MapController;
 import app.ageofspice.Tile;
+import app.ageofspice.TileType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -84,7 +85,8 @@ public class OnClickSpaceWin extends Pane{
 
     public void closeWin(ActionEvent event){
         MapController.staticPane.getChildren().remove(this);
-        parentTile.setStroke(Color.TRANSPARENT);
+        if(parentTile.getTileType() == TileType.EMPTY_SPACE)
+            parentTile.setStroke(Color.TRANSPARENT);
         parentTile.active = false;
     }
 

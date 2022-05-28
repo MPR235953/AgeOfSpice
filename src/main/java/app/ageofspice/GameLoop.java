@@ -1,5 +1,6 @@
 package app.ageofspice;
 
+import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import app.ageofspice.UnitandBuildingStorage.UnitsStorage;
 import app.ageofspice.movement.StatusandDirection;
@@ -22,6 +23,13 @@ public class GameLoop{
     public static int playerNumber = 0;
 
     public void startGame() {
+        //Ustawienie tylow gatonkow graczy i odpowiadajace im kolory
+        /*playerResources[0].setSpeciesType(SpeciesType.JAVALERZY);
+        playerResources[1].setSpeciesType(SpeciesType.LUDZIE);
+        playerResources[2].setSpeciesType(SpeciesType.SZRUNGALE);
+        for(int i = 0; i < playerResources.length; i++)
+            playerResources[i].setSpeciesColor();*/
+
 
         ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez
         boolean oneShipGenerated = false;

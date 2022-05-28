@@ -14,7 +14,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.File;
+import java.util.Map;
 
+import static app.ageofspice.GameLoop.playerNumber;
 import static app.ageofspice.GameLoop.playerResources;
 
 //klasa robocza. Możliwe błędy
@@ -102,10 +104,14 @@ public class BuildWinForStation extends Pane{
     public void buildScout(ActionEvent event){
         switch(SpeciesType.JAVALERZY){
             case JAVALERZY -> {
-                if (playerResources[0].buyunits(TileType.SCOUT_SHIP,new ActualPosition(4,4)) == -1)
+                if (playerResources[playerNumber].buyunits(TileType.SCOUT_SHIP,new ActualPosition(4,4)) == -1)
                     return;
-                parentTile.setTileType(TileType.SCOUT_SHIP);       //oznaczenie ze obiekt znajduje sie na mapie
+                // nadany enum dla zlego tile
+                //parentTile.setTileType(TileType.SCOUT_SHIP);       //oznaczenie ze obiekt znajduje sie na mapie
+                MapController.board[4][4].setTileType(TileType.SCOUT_SHIP);
                 imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png").toURI().toString()));
+                //Tu masz pokazanie tego statku na odpowiedniej pozycji na mapie
+                imageToUpload.relocate(4 * MapController.TILE_SIZE, 4 * MapController.TILE_SIZE);
             }
         }
         MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
@@ -139,7 +145,8 @@ public class BuildWinForStation extends Pane{
 
     public void closeWin(ActionEvent event){
         parentTile.active = false;
-        parentTile.setStroke(Color.TRANSPARENT);
+        if(parentTile.getTileType() == TileType.EMPTY_SPACE)
+            parentTile.setStroke(Color.TRANSPARENT);
         MapController.staticPane.getChildren().remove(this);
     }
 }

@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 public class Tile extends Rectangle {
 
     public int x, y;
+    public int boardX, boardY;
     public boolean active = false;      //true jezeli kafelek zostal klikniety, zmiana na false poprzez klasy okienek
 
     private TileType tileType = TileType.EMPTY_SPACE;
@@ -22,6 +23,9 @@ public class Tile extends Rectangle {
     }
 
     public Tile(int x, int y){
+        this.boardX = x;
+        this.boardY = y;
+
         this.x = x * MapController.TILE_SIZE;
         this.y = y * MapController.TILE_SIZE;
 
