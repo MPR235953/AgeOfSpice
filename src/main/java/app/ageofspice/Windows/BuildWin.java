@@ -32,7 +32,7 @@ public class BuildWin extends Pane{
         this.setPrefWidth(700);
         this.setPrefHeight(150);
         this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: orange;" +
+                "-fx-border-color: green;" +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;");
         this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
@@ -48,7 +48,7 @@ public class BuildWin extends Pane{
         for(int i = 0; i < subPanes.length; i++) {
             subPanes[i].setPrefHeight(150);
             subPanes[i].setPrefWidth(200);
-            subPanes[i].setStyle("-fx-border-color: black;");
+            subPanes[i].setStyle("-fx-border-color: green;");
             subPanes[i].relocate(i * subPanes[i].getPrefWidth(), 0);
             subPanes[i].getChildren().addAll(imgines[i], labels[i], buildButtons[i]);   //dodanie do subPane img, label i button
             imgines[i].setFitWidth(70);

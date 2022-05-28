@@ -2,6 +2,7 @@ package app.ageofspice.UnitandBuildingStorage;
 
 import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.MapController;
+import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
@@ -23,6 +24,7 @@ public class UnitsStorage {
 
     private ArrayList<unit> unitstorage = new ArrayList<unit>();
     private ArrayList<absBuilding> buildingstorage = new ArrayList<absBuilding>();
+    private ArrayList<Planet> planetStorage = new ArrayList<Planet>();
     public int bonusAttack = 0;    //bonusowy atak z WarStation
 
 

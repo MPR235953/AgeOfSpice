@@ -1,6 +1,7 @@
 package app.ageofspice.UnitandBuildingStorage;
 
 import app.ageofspice.MapController;
+import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
@@ -74,7 +75,7 @@ public class PlayerResourcesandUnitsStorage {
                     return -1;
                 switch (speciesType) {
                     case LUDZIE ->  scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                    case JAVALERZY -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Ludzie_scout.png");
+                    case JAVALERZY -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_scout_ship.png");
                     case SZRUNGALE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
                 }
                 this.unitBuilData.getUnitstorage().add(scout);
