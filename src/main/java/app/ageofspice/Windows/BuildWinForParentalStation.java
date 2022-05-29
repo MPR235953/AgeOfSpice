@@ -3,8 +3,6 @@ package app.ageofspice.Windows;
 import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.movement.ActualPosition;
-import app.ageofspice.units_classes.ScoutShip;
-import app.ageofspice.units_classes.unit;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.util.Map;
 
 import static app.ageofspice.GameLoop.playerNumber;
 import static app.ageofspice.GameLoop.playerResources;
@@ -24,11 +21,11 @@ import static app.ageofspice.MapController.*;
 //Będę grzebał przy niej jeszcze
 
 
-public class BuildWinForStation extends Pane{
+public class BuildWinForParentalStation extends Pane{
     public Button closeButton = new Button("Zamknij");
     public Button[] buildButtons = {new Button("Rekrutuj"), new Button("Rekrutuj"), new Button("Rekrutuj"),new Button("Rekrutuj")};
     public ImageView[] imgines = {new ImageView(), new ImageView(), new ImageView(),new ImageView()};
-    public Label[] labels = {new Label("Statek zwiadowczy"), new Label("Statek eksploracyjny"), new Label("Pancernik"), new Label("Niszczyciel")};
+    public Label[] labels = {new Label("Zwiadowca"), new Label("Explorer"), new Label("Pancernik"), new Label("Niszczyciel")};
     public Pane[] subPanes = {new Pane(), new Pane(), new Pane(),new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();
@@ -38,10 +35,10 @@ public class BuildWinForStation extends Pane{
     public void makeWin(){
 
         //konfiguracja glownego Pane okienka
-        this.setPrefWidth(1200);
+        this.setPrefWidth(1300);
         this.setPrefHeight(150);
         this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: orange;" +
+                "-fx-border-color: green;" +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;");
         this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
@@ -57,7 +54,7 @@ public class BuildWinForStation extends Pane{
         for(int i = 0; i < subPanes.length; i++) {
             subPanes[i].setPrefHeight(150);
             subPanes[i].setPrefWidth(300);
-            subPanes[i].setStyle("-fx-border-color: black;");
+            subPanes[i].setStyle("-fx-border-color: green;");
             subPanes[i].relocate(i * subPanes[i].getPrefWidth(), 0);
             subPanes[i].getChildren().addAll(imgines[i], labels[i], buildButtons[i]);   //dodanie do subPane img, label i button
             imgines[i].setFitWidth(70);
@@ -79,7 +76,7 @@ public class BuildWinForStation extends Pane{
         switch(playerResources[playerNumber].getSpeciesType()){//speciesChoiceController.player[0].getSpeciesType()){
             //grafika tez narazie roboczo
             case JAVALERZY -> {
-                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_scout_ship.png").toURI().toString()));
                 imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png").toURI().toString()));
                 imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_tank_ship.png").toURI().toString()));
                 imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_sniper_ship.png").toURI().toString()));
@@ -104,10 +101,10 @@ public class BuildWinForStation extends Pane{
         MapController.staticPane.getChildren().add(this);   //dodanie glownego Pane do staticPane tak aby mozna bylo wyswietlic okienko na mapie
 
 
-        //Centrowanie obrazka stacji na mapie
-        imageToUpload.setFitHeight(MapController.TILE_SIZE);
-        imageToUpload.setFitWidth(MapController.TILE_SIZE);
-        imageToUpload.relocate(parentTile.x, parentTile.y);
+        //Centrowanie obrazka statkow na mapie
+        imageToUpload.setFitHeight(TILE_SIZE * SAS_SCALE);
+        imageToUpload.setFitWidth(TILE_SIZE * SAS_SCALE);
+        imageToUpload.relocate(parentTile.x + SAS_SCALE_POS, parentTile.y + SAS_SCALE_POS);
     }
 
     public ActualPosition seekFreeSpace(SpeciesType type){

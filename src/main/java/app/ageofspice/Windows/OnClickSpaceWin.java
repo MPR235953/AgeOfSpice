@@ -26,7 +26,7 @@ public class OnClickSpaceWin extends Pane{
         this.setPrefWidth(100);
         this.setPrefHeight(120);
         this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: orange;" +
+                "-fx-border-color: green;" +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;");
         this.getChildren().addAll(buildButton, occupyButton, closeButton);
@@ -57,7 +57,7 @@ public class OnClickSpaceWin extends Pane{
         this.setPrefWidth(100);
         this.setPrefHeight(120);
         this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: orange;" +
+                "-fx-border-color: green;" +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;");
         this.getChildren().addAll(buildButton, closeButton);
@@ -77,7 +77,7 @@ public class OnClickSpaceWin extends Pane{
 
     //funkcja tworzaca kolejne sub okienko z wyborem jednostek w stacji do budowania
     public void showBuildWinForStation(ActionEvent event){
-        BuildWinForStation buildWin = new BuildWinForStation();
+        BuildWinForParentalStation buildWin = new BuildWinForParentalStation();
         buildWin.setParentTile(parentTile);     //przekazanie kliknietego kafelka glebiej do kolejnej klasy
         buildWin.makeWin();                     //tworzenie nowego okienka
         MapController.staticPane.getChildren().remove(this);    //jako ze mamy nowe okienko, to to aktualne powinno zniknac z mapy

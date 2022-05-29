@@ -27,8 +27,8 @@ public class MapController implements Initializable {
     public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
 
     //################################################  skalowanie stacji i statkow
-    public static final double SAS_SCALE = 0.5;
-    public static final double SAS_SCALE_POS = TILE_SIZE * SAS_SCALE / 2;
+    public static final double SAS_SCALE = 0.66;
+    public static final double SAS_SCALE_POS = TILE_SIZE * SAS_SCALE / 4;
 
     //################################################ Poczatkowe pozycje statkow macierzytych dla ras
     public static final int JAV_X = 0, JAV_Y = 1;

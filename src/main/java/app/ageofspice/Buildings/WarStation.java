@@ -1,6 +1,7 @@
 package app.ageofspice.Buildings;
 
 import app.ageofspice.Resourcesandcosts.*;
+import app.ageofspice.TileType;
 import app.ageofspice.UnitandBuildingStorage.UnitsStorage;
 import app.ageofspice.movement.ActualPosition;
 
@@ -14,6 +15,7 @@ public class WarStation extends absBuilding{
     public WarStation(ActualPosition newPosition, UnitsStorage playerStorage){
         baseHP = 40;
         actualHP = baseHP;
+        buildType = TileType.WAR_STATION;
         baseCost = new Cost(new AlgiRes(20),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(20));
 
         position = newPosition;

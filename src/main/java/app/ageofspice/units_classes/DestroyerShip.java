@@ -27,16 +27,4 @@ public class DestroyerShip extends unit {
         shipType = TileType.DESTROYER_SHIP;
         baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
     }
-
-    @Override
-    public void imageviewconstructor(String imview) {
-        this.imageView = new ImageView();
-        this.imageView.setFitHeight(MapController.TILE_SIZE);
-        this.imageView.setFitWidth(MapController.TILE_SIZE);
-        this.imageView.relocate(position.x * MapController.TILE_SIZE, position.y * MapController.TILE_SIZE);
-        this.imageView.setImage(new Image(new File(imview).toURI().toString()));
-        MapController.staticPane.getChildren().add(this.imageView);
-
-
-    }
 }

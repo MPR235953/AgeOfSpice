@@ -2,6 +2,7 @@ package app.ageofspice.UnitandBuildingStorage;
 
 import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.MapController;
+import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
@@ -23,6 +24,7 @@ public class UnitsStorage {
 
     private ArrayList<unit> unitstorage = new ArrayList<unit>();
     private ArrayList<absBuilding> buildingstorage = new ArrayList<absBuilding>();
+    private ArrayList<Planet> planetStorage = new ArrayList<Planet>();
     public int bonusAttack = 0;    //bonusowy atak z WarStation
 
 
@@ -125,18 +127,20 @@ public class UnitsStorage {
         return this.unitstorage.size();
     }
 
-/*
-    void gatherResources(ResourceStorage resources){
-        //TODO: pętla przechodząca przez wszystkie planety
-        //resources.algi.quantity += 10;
 
-        for(absBuilding building : buildingstorage){
-            if(building instanceof MineStation){
-            //if(building.getClass() == MineStation.class){
-                resources.algi.quantity += building.minedResource;    //TODO: jak rozpoznawać tą klasę i odpowiednie surowce?
+    public ArrayList<Planet> getPlanetStorage() {
+        return planetStorage;
+    }
+
+    void gatherResources(ResourceStorage resources){
+        for(Planet planet : planetStorage){
+            switch (planet.planetType){
+                case ALGA_PLANET -> resources.algi.quantity += planet.materialQuantity;
+                case VIBRANIUM_PLANET -> resources.wibranium.quantity += planet.materialQuantity;
+                case CRYSTAL_PLANET -> resources.krysztal.quantity += planet.materialQuantity;
+                case SPICE_PLANET -> resources.przyprawa.quantity += planet.materialQuantity;
             }
         }
     }
- */
 
 }

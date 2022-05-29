@@ -1,5 +1,6 @@
 package app.ageofspice;
 
+import app.ageofspice.movement.ActualPosition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -8,7 +9,8 @@ import java.util.Random;
 public class Planet extends ImageView {
 
     public TileType planetType;
-    public final int materialQuantity = 20;
+    public int materialQuantity = 20;
+    public ActualPosition pos;
 
     public Planet(int x, int y, TileType planetType){
         this.setFitWidth(MapController.TILE_SIZE);
