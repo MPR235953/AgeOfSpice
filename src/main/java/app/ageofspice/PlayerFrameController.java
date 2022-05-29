@@ -99,6 +99,7 @@ public class PlayerFrameController implements Initializable{
     public void changePlayer() {
         if(timer != null) timer.cancel();       //stopowanie timera
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
+        playerResources[playerNumber].getUnitBuilData().resetstats();
         roundNumber++;
         playerNumber++;
         if(playerNumber == 3) playerNumber = 0;

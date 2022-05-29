@@ -17,7 +17,7 @@ import static app.ageofspice.MapController.*;
  */
 /// TODO: 16.05.2022 Modyfikacja funkcji do ruchu i rozbudowa ich
 /// TODO: 16.05.2022 Modyfikacja movementu
-    /// TODO: 23.05.2022 Switche ruchu (rotate)
+/// TODO: 23.05.2022 Switche ruchu (rotate)
 public class UnitsStorage {
 
 
@@ -26,9 +26,9 @@ public class UnitsStorage {
     public int bonusAttack = 0;    //bonusowy atak z WarStation
 
 
-    void resetstats(){
+    public void resetstats(){
         for (int i = 0; i < unitstorage.size(); i++){
-            unitstorage.get(i).movementSpeedleft = unitstorage.get(i).movementSpeedleft;
+            unitstorage.get(i).movementSpeedleft = unitstorage.get(i).movementSpeed;
              if (unitstorage.get(i).actualHP<unitstorage.get(i).baseHP)
              unitstorage.get(i).actualHP +=1;
         }
@@ -43,19 +43,43 @@ public class UnitsStorage {
     }
 
 
-    public static void movement(unit UnittoMove, StatusandDirection Dir,int NewCorX , int NewCorY){
+    public unit searchforunit(int x,int y){
+        for (int i = 0; i<this.unitstorage.size();i++){
+            if (unitstorage.get(i).position.x  == x && unitstorage.get(i).position.y  == y){
+                return  unitstorage.get(i);
+            }
+
+        }
+        return null;
+    }
+
+    public int searchforunitindex(int x,int y){
+        for (int i = 0; i<this.unitstorage.size();i++){
+            if (unitstorage.get(i).position.x  == x && unitstorage.get(i).position.y  == y){
+                return  i;
+            }
+
+        }
+        return 0;
+    }
+
+
+    public static int movementCalculator(int oldx,int oldy,int newx,int newy){
+        if (Math.abs(newx-oldx) >= Math.abs(newy-oldy))
+            return Math.abs(newx-oldx);
+
+        return Math.abs(newy-oldy);
+    }
+
+    public static int movement(unit UnittoMove, StatusandDirection Dir,int NewCorX , int NewCorY){
 
     //sprawdzanie poprawnosci z mapa
         if ((NewCorX > HORIZONTAL_TILE_COUNT || NewCorX <   0) || (NewCorY > VERTICAL_TILE_COUNT || NewCorY < 0 ))
-            return;
+            return -1;
     //sprawdzanie zakresu
         if ((NewCorX > UnittoMove.movementSpeedleft + UnittoMove.position.x || NewCorX <   UnittoMove.position.x - UnittoMove.movementSpeedleft)
         || (NewCorY > UnittoMove.movementSpeedleft + UnittoMove.position.y || NewCorY <  UnittoMove.position.y - UnittoMove.movementSpeedleft ))
-            return;
-
-        int x1=NewCorX,y1=NewCorY;
-
-        //rotate
+            return -1;
 
 
         switch (Dir){
@@ -68,27 +92,37 @@ public class UnitsStorage {
 
 
 
-        switch (MapController.board[x1][y1].getTileType()){
+        switch (MapController.board[NewCorX][NewCorY].getTileType()){
             case EMPTY_SPACE:
-                MapController.board[x1][y1].setTileType(UnittoMove.shipType);
+                MapController.board[NewCorX][NewCorY].setTileType(UnittoMove.shipType);
                 MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
-                UnittoMove.imageView.relocate(x1*TILE_SIZE,y1*TILE_SIZE);
-                UnittoMove.position.y = y1;
-                UnittoMove.position.x = x1;
-                return;
-            //case E
-            default:
+                UnittoMove.imageView.relocate(NewCorX*TILE_SIZE,NewCorY*TILE_SIZE);
+                UnittoMove.movementSpeedleft = UnittoMove.movementSpeedleft - movementCalculator(UnittoMove.position.x,UnittoMove.position.y,NewCorX,NewCorY);
+                UnittoMove.position.y = NewCorY;
+                UnittoMove.position.x = NewCorX;
 
+            case DRED_SHIP,SCOUT_SHIP,DESTROYER_SHIP,EXPLORER_SHIP:
+                //poszukaj u siebie
+                //poszukaj u przeciwnika
+
+
+                break;
+            case JAV_PARENTAL_STATION,LUD_PARENTAL_STATION,SZR_PARENTAL_STATION:
+            default:
                 break;
         }
 
 
 
-
+            return 0;
     };
 
     public ArrayList<absBuilding> getBuildingstorage() {
         return buildingstorage;
+    }
+
+    public int getsize() {
+        return this.unitstorage.size();
     }
 
 /*

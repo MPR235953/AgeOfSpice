@@ -97,4 +97,7 @@ public class OnClickSpaceWin extends Pane{
         buildWin.makeWin();                     //tworzenie nowego okienka
         MapController.staticPane.getChildren().remove(this);    //jako ze mamy nowe okienko, to to aktualne powinno zniknac z mapy
     }
+
+
+
 }
