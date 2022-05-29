@@ -93,18 +93,19 @@ public class UnitsStorage {
         return buildingstorage;
     }
 
-/*
-    void gatherResources(ResourceStorage resources){
-        //TODO: pętla przechodząca przez wszystkie planety
-        //resources.algi.quantity += 10;
+    public ArrayList<Planet> getPlanetStorage() {
+        return planetStorage;
+    }
 
-        for(absBuilding building : buildingstorage){
-            if(building instanceof MineStation){
-            //if(building.getClass() == MineStation.class){
-                resources.algi.quantity += building.minedResource;    //TODO: jak rozpoznawać tą klasę i odpowiednie surowce?
+    void gatherResources(ResourceStorage resources){
+        for(Planet planet : planetStorage){
+            switch (planet.planetType){
+                case ALGA_PLANET -> resources.algi.quantity += planet.materialQuantity;
+                case VIBRANIUM_PLANET -> resources.wibranium.quantity += planet.materialQuantity;
+                case CRYSTAL_PLANET -> resources.krysztal.quantity += planet.materialQuantity;
+                case SPICE_PLANET -> resources.przyprawa.quantity += planet.materialQuantity;
             }
         }
     }
- */
 
 }

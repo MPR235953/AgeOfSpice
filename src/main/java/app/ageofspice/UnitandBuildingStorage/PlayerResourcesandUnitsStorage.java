@@ -1,5 +1,9 @@
 package app.ageofspice.UnitandBuildingStorage;
 
+import app.ageofspice.Buildings.LabStation;
+import app.ageofspice.Buildings.MineStation;
+import app.ageofspice.Buildings.WarStation;
+import app.ageofspice.Buildings.absBuilding;
 import app.ageofspice.MapController;
 import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
@@ -64,6 +68,19 @@ public class PlayerResourcesandUnitsStorage {
         }
         return 0;
     }
+
+    public int enoughMoneyB(absBuilding buildingToBuy){
+        if (resources.algi.quantity >= buildingToBuy.baseCost.algi.quantity && resources.wibranium.quantity >= buildingToBuy.baseCost.wibranium.quantity
+                && resources.krysztal.quantity >= buildingToBuy.baseCost.krysztal.quantity && resources.przyprawa.quantity >= buildingToBuy.baseCost.przyprawa.quantity) {
+            resources.algi.quantity -= buildingToBuy.baseCost.algi.quantity;
+            resources.wibranium.quantity -= buildingToBuy.baseCost.wibranium.quantity;
+            resources.krysztal.quantity -= buildingToBuy.baseCost.krysztal.quantity;
+            resources.przyprawa.quantity -= buildingToBuy.baseCost.przyprawa.quantity;
+            return 1;
+        }
+        return 0;
+    }
+
     /// TODO: 24.05.2022 zmiana obrazow imageview, przemyslec wyglad funkcji, dodac spawnowanie sie na mapie.Do poprawy
     public int buyunits(TileType type, ActualPosition pos){
 
@@ -122,11 +139,50 @@ public class PlayerResourcesandUnitsStorage {
         return  0;
     }
 
+    public int buyBuilding(TileType type, ActualPosition pos){
+
+        switch (type) {
+            case MINE_STATION -> {
+                Planet planet = null;
+                for(Planet planet1: unitBuilData.getPlanetStorage()){
+                    if(planet1.pos.x == pos.x && planet1.pos.y == pos.y)
+                        planet = planet1;
+                }
+                if(planet == null)
+                    return -1;
+                MineStation building = new MineStation(planet, unitBuilData);
+                if (enoughMoneyB(building) == 0)
+                    return -1;
+                //switch (speciesType) {
+                //    case LUDZIE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                //    case JAVALERZY -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_scout_ship.png");
+                //    case SZRUNGALE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
+                //}
+                unitBuilData.getBuildingstorage().add(building);
+            }
+            case WAR_STATION -> {
+                WarStation building = new WarStation(pos, unitBuilData);
+                if (enoughMoneyB(building) == 0)
+                    return -1;
+                unitBuilData.getBuildingstorage().add(building);
+            }
+            case LAB_STATION -> {
+                LabStation building = new LabStation(pos, unitBuilData);
+                if (enoughMoneyB(building) == 0)
+                    return -1;
+                unitBuilData.getBuildingstorage().add(building);
+            }
+        }
+
+        return  0;
+    }
+
 
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
         resources.resourcesaction();
+        unitBuilData.gatherResources(resources);
     }
 
     public Color getSpeciesColor(){ return this.speciesColor; }
