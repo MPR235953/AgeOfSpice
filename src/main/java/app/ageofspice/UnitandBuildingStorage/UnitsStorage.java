@@ -11,8 +11,7 @@ import app.ageofspice.units_classes.unit;
 import app.ageofspice.Buildings.absBuilding;
 import java.util.ArrayList;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
 
 /**
@@ -25,7 +24,6 @@ public class UnitsStorage {
 
     private ArrayList<unit> unitstorage = new ArrayList<unit>();
     private ArrayList<absBuilding> buildingstorage = new ArrayList<absBuilding>();
-    private ArrayList<Planet> planetStorage = new ArrayList<Planet>();
     public int bonusAttack = 0;    //bonusowy atak z WarStation
 
 
@@ -229,16 +227,18 @@ public class UnitsStorage {
 
 
     public ArrayList<Planet> getPlanetStorage() {
-        return planetStorage;
+        return allPlanetStorage;
     }
 
     void gatherResources(ResourceStorage resources){
-        for(Planet planet : planetStorage){
-            switch (planet.planetType){
-                case ALGA_PLANET -> resources.algi.quantity += planet.materialQuantity;
-                case VIBRANIUM_PLANET -> resources.wibranium.quantity += planet.materialQuantity;
-                case CRYSTAL_PLANET -> resources.krysztal.quantity += planet.materialQuantity;
-                case SPICE_PLANET -> resources.przyprawa.quantity += planet.materialQuantity;
+        for(Planet planet : allPlanetStorage) {
+            if (planet.owner == playerResources[playerNumber].getSpeciesType()) {
+                switch (planet.planetType) {
+                    case ALGA_PLANET -> resources.algi.quantity += planet.materialQuantity;
+                    case VIBRANIUM_PLANET -> resources.wibranium.quantity += planet.materialQuantity;
+                    case CRYSTAL_PLANET -> resources.krysztal.quantity += planet.materialQuantity;
+                    case SPICE_PLANET -> resources.przyprawa.quantity += planet.materialQuantity;
+                }
             }
         }
     }

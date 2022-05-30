@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.movement;
@@ -21,6 +22,7 @@ public class GameLoop{
                                                         };
     public static int roundNumber = 1;
     public static int playerNumber = 0;
+    public static ArrayList<Planet> allPlanetStorage = new ArrayList<Planet>();
 
     public void startGame() {
         //Ustawienie tylow gatonkow graczy i odpowiadajace im kolory
@@ -30,6 +32,9 @@ public class GameLoop{
         for(int i = 0; i < playerResources.length; i++)
             playerResources[i].setSpeciesColor();
 
+        /*System.out.println(freePlanetStorage);
+        freePlanetStorage.remove(2);
+        System.out.println(freePlanetStorage);*/
 
         ///TODO: Wygenerowanie jednego statku dla testow i wklejenie go na ekran poprzez
        /* boolean oneShipGenerated = false;

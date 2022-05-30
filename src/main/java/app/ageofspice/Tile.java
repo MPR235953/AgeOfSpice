@@ -9,8 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
 import static app.ageofspice.MapController.board;
 import static app.ageofspice.TileType.*;
@@ -78,6 +77,23 @@ public class Tile extends Rectangle {
     //Zmiana po kliknieciu w kafelek
     public void tileClick(){
         this.setOnMouseClicked(event -> {
+
+            /*//position in board
+            if(this.tileType == TileType.ALGA_PLANET){
+                for(int i = 0; i < freePlanetStorage.toArray().length; i++){
+                    if(freePlanetStorage.get(i).planetPosition.x == this.boardX && freePlanetStorage.get(i).planetPosition.y == this.boardY)
+                        System.out.println(freePlanetStorage.get(i));
+                }
+            }*/
+
+            /*//position in pixels
+            if(this.tileType == TileType.ALGA_PLANET){
+                for(int i = 0; i < freePlanetStorage.toArray().length; i++){
+                    if(freePlanetStorage.get(i).x == this.x && freePlanetStorage.get(i).y == this.y)
+                        System.out.println(freePlanetStorage.get(i));
+                }
+            }*/
+
             //zmien  na switcha
             if(this.tileType == TileType.EMPTY_SPACE && !flagToMove) {
                 active = true;

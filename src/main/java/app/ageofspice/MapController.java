@@ -145,6 +145,7 @@ public class MapController implements Initializable {
 
             board[randX][randY].setTileType(parentalStationType);
             Planet planet = new Planet(randX, randY, parentalStationType);
+            GameLoop.allPlanetStorage.add(planet);
             planetGroup.getChildren().add(planet);
         }
 
