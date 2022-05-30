@@ -154,8 +154,9 @@ public class MapController implements Initializable {
 
 
         ///TODO: przez staticPane mozna pokazywac obiekty na mapie
-        staticPane = pane;
+
         staticAnchorPane = anchorPane;
+        staticPane = pane;
 
         try { framePane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerFrame.fxml"))); }
         catch (IOException e) { e.printStackTrace(); }

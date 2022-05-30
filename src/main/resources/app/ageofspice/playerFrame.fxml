@@ -21,22 +21,22 @@
       </Button>
       <ImageView layoutX="1416.0" layoutY="28.0">
          <image>
-            <Image url="@arts/alga50.png" />
+            <Image url="@arts/resources_and_planets/alga50.png" />
          </image>
       </ImageView>
       <ImageView layoutX="1264.0" layoutY="25.0">
          <image>
-            <Image url="@arts/crystal50.png" />
+            <Image url="@arts/resources_and_planets/crystal50.png" />
          </image>
       </ImageView>
       <ImageView layoutX="1103.0" layoutY="25.0">
          <image>
-            <Image url="@arts/spice50.png" />
+            <Image url="@arts/resources_and_planets/spice50.png" />
          </image>
       </ImageView>
       <ImageView layoutX="1583.0" layoutY="25.0">
          <image>
-            <Image url="@arts/vibranium50.png" />
+            <Image url="@arts/resources_and_planets/vibranium50.png" />
          </image>
       </ImageView>
       <Label fx:id="spiceStatusLabel" layoutX="1161.0" layoutY="36.0" text="0" textFill="WHITE" />

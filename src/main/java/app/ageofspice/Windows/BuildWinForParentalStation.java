@@ -1,8 +1,10 @@
 package app.ageofspice.Windows;
 
 import app.ageofspice.*;
+import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.movement.ActualPosition;
+import app.ageofspice.units_classes.ScoutShip;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,24 +25,40 @@ import static app.ageofspice.MapController.*;
 
 public class BuildWinForParentalStation extends Pane{
     public Button closeButton = new Button("Zamknij");
+    public Pane closePane = new Pane();
     public Button[] buildButtons = {new Button("Rekrutuj"), new Button("Rekrutuj"), new Button("Rekrutuj"),new Button("Rekrutuj")};
     public ImageView[] imgines = {new ImageView(), new ImageView(), new ImageView(),new ImageView()};
     public Label[] labels = {new Label("Zwiadowca"), new Label("Explorer"), new Label("Pancernik"), new Label("Niszczyciel")};
     public Pane[] subPanes = {new Pane(), new Pane(), new Pane(),new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();
+    public Pane[][] materialPanes = {   {new Pane(), new Pane(), new Pane(), new Pane()},
+                                        {new Pane(), new Pane(), new Pane(), new Pane()},
+                                        {new Pane(), new Pane(), new Pane(), new Pane()},
+                                        {new Pane(), new Pane(), new Pane(), new Pane()},
+    };
+    public ImageView[][] materialImageView = {  {new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spice50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium50.png").toURI().toString()))},
+                                                {new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spice50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium50.png").toURI().toString()))},
+                                                {new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spice50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium50.png").toURI().toString()))},
+                                                {new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spice50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium50.png").toURI().toString()))},
+    };
+    public Label[][] materialLabel = {  {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
+                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
+                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
+                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))}
+    };
 
     public void setParentTile(Tile tile){ parentTile = tile; }
 
     public void makeWin(){
 
         //konfiguracja glownego Pane okienka
-        this.setPrefWidth(1300);
-        this.setPrefHeight(150);
-        this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: green;" +
+        this.setPrefWidth(900);
+        this.setPrefHeight(370);
+        this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
-                "-fx-view-order: -10;");
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
         this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
 
         //konfiguracja przycisku zgaszenia okienka
@@ -52,19 +70,48 @@ public class BuildWinForParentalStation extends Pane{
         //konfiguracja 3 subPane'ow, imageViews, labelow i przyciskow
         //okienko to 1 glowny Pane w ktorym sa 3 subPany, ktore zawieraja imageView, label i przycisk
         for(int i = 0; i < subPanes.length; i++) {
-            subPanes[i].setPrefHeight(150);
-            subPanes[i].setPrefWidth(300);
-            subPanes[i].setStyle("-fx-border-color: green;");
+            subPanes[i].setPrefHeight(this.getPrefHeight());
+            subPanes[i].setPrefWidth(200);
+            subPanes[i].setStyle(SpeciesColors.ColorCSS[playerNumber]);
             subPanes[i].relocate(i * subPanes[i].getPrefWidth(), 0);
             subPanes[i].getChildren().addAll(imgines[i], labels[i], buildButtons[i]);   //dodanie do subPane img, label i button
             imgines[i].setFitWidth(70);
             imgines[i].setFitHeight(70);
             imgines[i].relocate(subPanes[i].getPrefWidth() / 2 - imgines[i].getFitWidth() / 2, 10);
             labels[i].relocate(0, 90);
+            labels[i].setTextFill(Color.WHITE);
             labels[i].layoutXProperty().bind(subPanes[i].widthProperty().subtract(labels[i].widthProperty()).divide(2));
-            buildButtons[i].relocate(0, 120);
+
+            //ustawienie obiektow zwiazanych z surowcami
+            for(int j = 0; j < 4; j++) {
+                subPanes[i].getChildren().addAll(materialPanes[i][j]);
+                materialPanes[i][j].setPrefWidth(130);
+                materialPanes[i][j].setPrefHeight(50);
+                materialPanes[i][j].relocate(0, 120 + (j * 50));
+                materialPanes[i][j].layoutXProperty().bind(subPanes[i].widthProperty().subtract(materialPanes[i][j].widthProperty()).divide(2));
+                materialPanes[i][j].getChildren().addAll(materialImageView[i][j], materialLabel[i][j]);
+                materialLabel[i][j].relocate(60, 15);
+                materialLabel[i][j].setTextFill(Color.WHITE);
+            }
+
+            //wylaczanie przyciskow rekrutacji w przypadku braku surowcow
+            if(playerResources[playerNumber].getResources().przyprawa.quantity < Integer.parseInt(materialLabel[i][0].getText()) ||
+                    playerResources[playerNumber].getResources().krysztal.quantity < Integer.parseInt(materialLabel[i][1].getText()) ||
+                    playerResources[playerNumber].getResources().algi.quantity < Integer.parseInt(materialLabel[i][2].getText()) ||
+                    playerResources[playerNumber].getResources().wibranium.quantity < Integer.parseInt(materialLabel[i][3].getText())){
+                buildButtons[i].setDisable(true);
+            }else buildButtons[i].setDisable(false);
+
+            buildButtons[i].relocate(0, subPanes[i].getPrefHeight() - 40);
+            //buildButtons[i].setStyle("-fx-background-color: #030303;" + "-fx-text-fill: white;");
             buildButtons[i].layoutXProperty().bind(subPanes[i].widthProperty().subtract(buildButtons[i].widthProperty()).divide(2));
         }
+        //konfiguracja zamykajacego pane
+        closePane.setPrefHeight(this.getPrefHeight());
+        closePane.setPrefWidth(100);
+        closePane.relocate(4 * subPanes[2].getPrefWidth(), 0);
+        closePane.getChildren().add(closeButton);
+        closePane.setStyle(SpeciesColors.ColorCSS[playerNumber]);
         //Kazdy przycisk ma ustawiona inna akcje na metode
         buildButtons[0].setOnAction(this::buildScout);
         buildButtons[1].setOnAction(this::buildExpl);
@@ -97,7 +144,7 @@ public class BuildWinForParentalStation extends Pane{
             }
         }
 
-        this.getChildren().addAll(subPanes[0], subPanes[1], subPanes[2],subPanes[3], closeButton);      //dodanie subPanow i przycisku do glownego Pane
+        this.getChildren().addAll(subPanes[0], subPanes[1], subPanes[2], subPanes[3] , closePane, closeButton);      //dodanie subPanow i przycisku do glownego Pane
         MapController.staticPane.getChildren().add(this);   //dodanie glownego Pane do staticPane tak aby mozna bylo wyswietlic okienko na mapie
 
 

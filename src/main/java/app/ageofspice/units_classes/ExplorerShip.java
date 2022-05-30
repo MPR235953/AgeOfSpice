@@ -20,6 +20,7 @@ import java.io.File;
 
 
 public class ExplorerShip extends unit{
+    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
     public ExplorerShip(){
         baseDMG = 100;
         baseHP = 40;

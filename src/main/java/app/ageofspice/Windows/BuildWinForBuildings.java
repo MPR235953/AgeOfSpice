@@ -1,6 +1,7 @@
 package app.ageofspice.Windows;
 
 import app.ageofspice.*;
+import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -31,10 +32,10 @@ public class BuildWinForBuildings extends Pane{
         //konfiguracja glownego Pane okienka
         this.setPrefWidth(500);
         this.setPrefHeight(150);
-        this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: green;" +
+        this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
-                "-fx-view-order: -10;");
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
         this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
 
         //konfiguracja przycisku zgaszenia okienka
@@ -48,7 +49,7 @@ public class BuildWinForBuildings extends Pane{
         for(int i = 0; i < subPanes.length; i++) {
             subPanes[i].setPrefHeight(150);
             subPanes[i].setPrefWidth(200);
-            subPanes[i].setStyle("-fx-border-color: green;");
+            subPanes[i].setStyle(SpeciesColors.ColorCSS[playerNumber]);
             subPanes[i].relocate(i * subPanes[i].getPrefWidth(), 0);
             subPanes[i].getChildren().addAll(imgines[i], labels[i], buildButtons[i]);   //dodanie do subPane img, label i button
             imgines[i].setFitWidth(70);

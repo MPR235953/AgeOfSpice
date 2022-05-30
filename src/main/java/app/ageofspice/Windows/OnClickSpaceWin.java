@@ -1,6 +1,8 @@
 package app.ageofspice.Windows;
 
+import app.ageofspice.Colors;
 import app.ageofspice.MapController;
+import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
 import javafx.event.ActionEvent;
@@ -8,9 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import static app.ageofspice.GameLoop.playerNumber;
+import static app.ageofspice.GameLoop.playerResources;
+
 public class OnClickSpaceWin extends Pane{
     public Button buildButton = new Button();
-    public Button occupyButton = new Button();
     public Button closeButton = new Button();
     public Tile parentTile;
 
@@ -20,16 +24,16 @@ public class OnClickSpaceWin extends Pane{
 
     public void makeWinForBuildings(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
-        parentTile.setStroke(Color.RED);
+        parentTile.setStroke(Colors.tileLight);
 
         //Konfiguracja glownego Pane
         this.setPrefWidth(100);
-        this.setPrefHeight(120);
-        this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: green;" +
+        this.setPrefHeight(75);
+        this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
-                "-fx-view-order: -10;");
-        this.getChildren().addAll(buildButton, occupyButton, closeButton);
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
+        this.getChildren().addAll(buildButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 
         //Konfiguracja buttonow
@@ -38,12 +42,8 @@ public class OnClickSpaceWin extends Pane{
         buildButton.setPrefWidth(80);
         buildButton.setOnAction(this::showBuildWinForBuildings);
 
-        occupyButton.setText("Zajmij");
-        occupyButton.relocate(10, 40);
-        occupyButton.setPrefWidth(80);
-
         closeButton.setText("Zamknij");
-        closeButton.relocate(10, 70);
+        closeButton.relocate(10, 40);
         closeButton.setPrefWidth(80);
         closeButton.setOnAction(this::closeWin);
     }
@@ -51,15 +51,15 @@ public class OnClickSpaceWin extends Pane{
     //Makewin dla stacji tylko by rekrutowac jednostki
     public void makeWinForStation(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
-        parentTile.setStroke(Color.RED);
+        parentTile.setStroke(Colors.tileLight);
 
         //Konfiguracja glownego Pane
         this.setPrefWidth(100);
-        this.setPrefHeight(120);
-        this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: green;" +
+        this.setPrefHeight(75);
+        this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
-                "-fx-view-order: -10;");
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
         this.getChildren().addAll(buildButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 

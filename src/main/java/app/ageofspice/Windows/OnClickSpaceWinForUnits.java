@@ -1,10 +1,7 @@
 package app.ageofspice.Windows;
 
-import app.ageofspice.MapController;
-import app.ageofspice.Planet;
+import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesColors;
-import app.ageofspice.Tile;
-import app.ageofspice.TileType;
 import app.ageofspice.units_classes.unit;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -33,15 +30,15 @@ public class OnClickSpaceWinForUnits extends Pane{
 
     public void makeWin(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
-        parentTile.setStroke(Color.RED);
+        parentTile.setStroke(Colors.tileLight);
 
         //Konfiguracja glownego Pane
         this.setPrefWidth(100);
-        this.setPrefHeight(120);
-        this.setStyle("-fx-background-color: white;" +
-                "-fx-border-color: orange;" +
+        this.setPrefHeight(105);
+        this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
-                "-fx-view-order: -10;");
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
         this.getChildren().addAll(moveButton, occupyButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 

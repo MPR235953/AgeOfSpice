@@ -20,6 +20,7 @@ import java.io.File;
  */
 
 public class DredShip extends unit{
+    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
     public DredShip(){
         shipType = TileType.DRED_SHIP;
         baseDMG = 10;
