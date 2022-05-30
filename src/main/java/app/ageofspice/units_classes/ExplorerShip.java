@@ -21,7 +21,7 @@ import java.io.File;
 
 public class ExplorerShip extends unit{
     public ExplorerShip(){
-        baseDMG = 10;
+        baseDMG = 100;
         baseHP = 40;
         movementSpeed = 10;
         movementSpeedleft = movementSpeed;

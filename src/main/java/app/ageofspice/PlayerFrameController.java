@@ -1,6 +1,7 @@
 package app.ageofspice;
 
 import app.ageofspice.Species.SpeciesColors;
+import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -66,7 +67,7 @@ public class PlayerFrameController implements Initializable{
         //Aktywacja timera roboczo 15s bo chcialem zobaczyc jak sie kolorek zmienia
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
-            int counter = 15;       // 2 minuty na ture
+            int counter = 120;       // 2 minuty na ture
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -101,7 +102,7 @@ public class PlayerFrameController implements Initializable{
         if(timer != null) timer.cancel();       //stopowanie timera
 
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
-        playerResources[playerNumber].getUnitBuilData().resetstats();
+        playerResources[playerNumber].endturactions();
         roundNumber++;
         playerNumber++;
 

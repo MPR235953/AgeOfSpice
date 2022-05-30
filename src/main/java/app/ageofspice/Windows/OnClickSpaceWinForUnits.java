@@ -76,22 +76,14 @@ public class OnClickSpaceWinForUnits extends Pane{
             for (int j = unitToMove.position.y-unitToMove.movementSpeedleft; j<=unitToMove.position.y+unitToMove.movementSpeedleft;j++) {
                 if (!((i < 0 || i >= HORIZONTAL_TILE_COUNT) || (j < 0 || j >= VERTICAL_TILE_COUNT))  &&  (board[i][j].getTileType() == EMPTY_SPACE || board[i][j].getTileType() == DESTROYER_SHIP
                  || board[i][j].getTileType() ==DRED_SHIP || board[i][j].getTileType() == SCOUT_SHIP || board[i][j].getTileType() == EXPLORER_SHIP) ) {
+
                     switch (playerResources[playerNumber].getSpeciesType()) {
-                        case JAVALERZY -> {
-
-                            board[i][j].setStroke(SpeciesColors.javColor);
-                            board[i][j].active = true;
-                        }
-                        case LUDZIE -> {
-                            board[i][j].setStroke(SpeciesColors.ludColor);
-                            board[i][j].active = true;
-                        }
-                        case SZRUNGALE -> {
-                            board[i][j].setStroke(SpeciesColors.szrColor);
-                            board[i][j].active = true;
-                        }
-
+                        case JAVALERZY -> board[i][j].setStroke(SpeciesColors.javColor);
+                        case LUDZIE -> board[i][j].setStroke(SpeciesColors.ludColor);
+                        case SZRUNGALE -> board[i][j].setStroke(SpeciesColors.szrColor);
                     }
+                    board[i][j].setStrokeWidth(3);
+                    board[i][j].active = true;
                 }
             }
         }

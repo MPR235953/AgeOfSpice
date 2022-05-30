@@ -154,7 +154,7 @@ public class UnitsStorage {
             case EMPTY_SPACE:
                 MapController.board[NewCorX][NewCorY].setTileType(UnittoMove.shipType);
                 MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
-                UnittoMove.imageView.relocate(NewCorX*TILE_SIZE,NewCorY*TILE_SIZE);
+                UnittoMove.imageView.relocate(NewCorX*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS);
                 UnittoMove.movementSpeedleft = UnittoMove.movementSpeedleft - movementCalculator(UnittoMove.position.x,UnittoMove.position.y,NewCorX,NewCorY);
                 UnittoMove.position.y = NewCorY;
                 UnittoMove.position.x = NewCorX;

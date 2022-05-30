@@ -15,6 +15,7 @@ public class SceneController {
         AgeOfSpiceApp.stage.setTitle("Age of Spice - " + FXML);
         AgeOfSpiceApp.stage.setFullScreen(true);
         AgeOfSpiceApp.stage.setScene(scene);
+        //AgeOfSpiceApp.stage.getScene().setRoot(scene);
         AgeOfSpiceApp.stage.show();
     }
 
