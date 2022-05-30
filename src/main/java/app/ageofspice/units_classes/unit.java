@@ -43,5 +43,6 @@ public abstract class unit {
         this.imageView.relocate(position.x * MapController.TILE_SIZE + SAS_SCALE_POS, position.y * MapController.TILE_SIZE + SAS_SCALE_POS);
         this.imageView.setImage(new Image(new File(imview).toURI().toString()));
         MapController.staticPane.getChildren().add(this.imageView);
+
     }
 }

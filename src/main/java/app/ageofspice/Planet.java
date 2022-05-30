@@ -1,5 +1,6 @@
 package app.ageofspice;
 
+import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.movement.ActualPosition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,12 +12,13 @@ public class Planet extends ImageView {
     public TileType planetType;
     public int materialQuantity = 20;
     public ActualPosition pos;
+    public SpeciesType speciesType;
 
     public Planet(int x, int y, TileType planetType){
         this.setFitWidth(MapController.TILE_SIZE);
         this.setFitHeight(MapController.TILE_SIZE);
         this.relocate(x * MapController.TILE_SIZE, y * MapController.TILE_SIZE);
-
+        this.speciesType = SpeciesType.NONE;
         this.planetType = planetType;
 
         // ################################# Grafika planet

@@ -23,9 +23,9 @@ import static app.ageofspice.TileType.SCOUT_SHIP;
 public class ScoutShip extends unit{
     public ScoutShip(){
         baseDMG = 5;
-        baseHP = 20;
+        baseHP = 45;
         shipType = SCOUT_SHIP;
-        movementSpeed = 3;
+        movementSpeed = 10;
         movementSpeedleft = movementSpeed;
         actualHP = baseHP;
         baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));

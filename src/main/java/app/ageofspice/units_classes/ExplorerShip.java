@@ -23,7 +23,7 @@ public class ExplorerShip extends unit{
     public ExplorerShip(){
         baseDMG = 10;
         baseHP = 40;
-        movementSpeed = 3;
+        movementSpeed = 10;
         movementSpeedleft = movementSpeed;
         actualHP = baseHP;
         shipType = TileType.EXPLORER_SHIP;

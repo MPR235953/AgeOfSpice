@@ -15,6 +15,7 @@ import static app.ageofspice.MapController.*;
 import static app.ageofspice.MapController.board;
 import static app.ageofspice.TileType.*;
 import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.movement;
+import static app.ageofspice.UnitandBuildingStorage.UnitsStorage.statusandDirection;
 import static app.ageofspice.Windows.OnClickSpaceWinForUnits.flagToMove;
 import static app.ageofspice.Windows.OnClickSpaceWinForUnits.unitToMove;
 
@@ -116,7 +117,7 @@ public class Tile extends Rectangle {
                         int oldX = unitToMove.position.x;
                         int oldY = unitToMove.position.y;
                         int movspedlef = unitToMove.movementSpeedleft;
-                       if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), StatusandDirection.RIGHT, this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
+                       if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), statusandDirection(unitToMove.position.x, unitToMove.position.y,this.x/TILE_SIZE, this.y/TILE_SIZE), this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
                             flagToMove = false;
                             clearFields(oldX,oldY,movspedlef);
                         }
