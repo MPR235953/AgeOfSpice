@@ -14,6 +14,8 @@ public class ParentalStation extends ImageView {
     public double x, y;
     public SpeciesType owner;
 
+
+
     public double getHP(){ return this.HP; }
     public void setHP(double newHP){ this.HP = newHP; }
 

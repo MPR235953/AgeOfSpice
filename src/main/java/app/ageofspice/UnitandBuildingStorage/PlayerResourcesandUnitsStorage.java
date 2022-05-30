@@ -34,6 +34,7 @@ public class PlayerResourcesandUnitsStorage {
     private String playerName;
     private SpeciesType speciesType = SpeciesType.NONE;
     private Color speciesColor = Color.BLACK;
+    public boolean Alive = true;
     //private
 
     public String getPlayerName() { return playerName; }
@@ -139,7 +140,7 @@ public class PlayerResourcesandUnitsStorage {
         return  0;
     }
 
-    public int buyBuilding(TileType type, ActualPosition pos){
+   /* public int buyBuilding(TileType type, ActualPosition pos){
 
         switch (type) {
             case MINE_STATION -> {
@@ -170,13 +171,13 @@ public class PlayerResourcesandUnitsStorage {
 
         return  0;
     }
-
+*/
 
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
         resources.resourcesaction();
-        unitBuilData.gatherResources(resources);
+     //   unitBuilData.gatherResources(resources);
     }
 
     public Color getSpeciesColor(){ return this.speciesColor; }

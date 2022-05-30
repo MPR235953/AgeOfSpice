@@ -22,7 +22,7 @@ import static app.ageofspice.TileType.SCOUT_SHIP;
 
 public class ScoutShip extends unit{
     public ScoutShip(){
-        baseDMG = 5;
+        baseDMG = 50000;
         baseHP = 45;
         shipType = SCOUT_SHIP;
         movementSpeed = 10;

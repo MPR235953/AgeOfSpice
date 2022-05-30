@@ -103,9 +103,25 @@ public class PlayerFrameController implements Initializable{
 
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
         playerResources[playerNumber].endturactions();
-        roundNumber++;
-        playerNumber++;
 
+
+
+        int countPlayersDead =0;
+        while(countPlayersDead<3)
+        {
+            playerNumber++;
+            if(playerNumber == 3) playerNumber = 0;
+            if (playerResources[playerNumber].Alive){
+                break;
+            }
+            countPlayersDead++;
+        }
+        //###dodac funkcje do skonczenia gry
+        //if (countPlayersDead==2)
+
+        //###
+
+        roundNumber++;
        /* for(int y = 0; y < MapController.VERTICAL_TILE_COUNT; y++) {
             for (int x = 0; x < MapController.HORIZONTAL_TILE_COUNT; x++) {
                 if(board[x][y].active){
@@ -114,7 +130,7 @@ public class PlayerFrameController implements Initializable{
             }
         }*/
 
-        if(playerNumber == 3) playerNumber = 0;
+
         timerInit();
     }
 

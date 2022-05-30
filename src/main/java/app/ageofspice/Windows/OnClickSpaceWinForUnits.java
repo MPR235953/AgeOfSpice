@@ -1,6 +1,7 @@
 package app.ageofspice.Windows;
 
 import app.ageofspice.MapController;
+import app.ageofspice.Planet;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
@@ -10,8 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
 import static app.ageofspice.TileType.*;
 
@@ -54,7 +54,7 @@ public class OnClickSpaceWinForUnits extends Pane{
         occupyButton.setText("Zajmij");
         occupyButton.relocate(10, 40);
         occupyButton.setPrefWidth(80);
-
+        occupyButton.setOnAction(this::takePlanetWin);
         closeButton.setText("Zamknij");
         closeButton.relocate(10, 70);
         closeButton.setPrefWidth(80);
@@ -91,6 +91,32 @@ public class OnClickSpaceWinForUnits extends Pane{
         closeWin(event);
         }
 
+        public void takePlanetWin(ActionEvent event) {
 
+            int i  = searchForPlanets();
+            if (i == -1){
+                return;
+            }
+            allPlanetStorage.get(i).owner = playerResources[playerNumber].getSpeciesType();
+
+            switch (playerResources[playerNumber].getSpeciesType()) {
+                case JAVALERZY ->   board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStroke(SpeciesColors.javColor);
+                case LUDZIE ->   board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStroke(SpeciesColors.ludColor);
+                case SZRUNGALE ->   board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStroke(SpeciesColors.szrColor);
+            }
+            board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStrokeWidth(3);
+            board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].active = true;
+            unitToMove.movementSpeedleft = 0;
+            closeWin(event);
+        }
+    public int searchForPlanets(){
+        Planet planet;
+        for (int i =0; i< allPlanetStorage.size();i++){
+            planet = allPlanetStorage.get(i);
+            if (Math.abs(unitToMove.position.x - planet.planetPosition.x) <=1 &&  Math.abs(unitToMove.position.y - planet.planetPosition.y) <=1)
+              return i;
+        }
+      return -1;
+    }
 
 }

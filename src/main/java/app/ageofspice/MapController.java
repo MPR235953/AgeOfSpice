@@ -99,18 +99,21 @@ public class MapController implements Initializable {
         board[JAV_X][JAV_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation javParentalStation = new ParentalStation(JAV_X, JAV_Y, TileType.JAV_PARENTAL_STATION);
         javParentalStation.owner = SpeciesType.JAVALERZY;
+        GameLoop.allParentalStationStorage.add(javParentalStation);
 
         board[LUD_X][LUD_Y].setTileType(TileType.LUD_PARENTAL_STATION);
         board[LUD_X][LUD_Y].setStroke(SpeciesColors.ludColor);
         board[LUD_X][LUD_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation ludParentalStation = new ParentalStation(LUD_X, LUD_Y, TileType.LUD_PARENTAL_STATION);
         ludParentalStation.owner = SpeciesType.LUDZIE;
+        GameLoop.allParentalStationStorage.add(ludParentalStation);
 
         board[SZR_X][SZR_Y].setTileType(TileType.SZR_PARENTAL_STATION);
         board[SZR_X][SZR_Y].setStroke(SpeciesColors.szrColor);
         board[SZR_X][SZR_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation szrParentalStation = new ParentalStation(SZR_X, SZR_Y, TileType.SZR_PARENTAL_STATION);
         szrParentalStation.owner = SpeciesType.SZRUNGALE;
+        GameLoop.allParentalStationStorage.add(szrParentalStation);
 
         parentalStationGroup.getChildren().addAll(javParentalStation, ludParentalStation, szrParentalStation);
 

@@ -4,11 +4,14 @@ import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.MapController;
 import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
+import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.Tile;
 import app.ageofspice.TileType;
 import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.unit;
 import app.ageofspice.Buildings.absBuilding;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 import static app.ageofspice.GameLoop.*;
@@ -197,6 +200,24 @@ public class UnitsStorage {
             }
                 break;
             case JAV_PARENTAL_STATION,LUD_PARENTAL_STATION,SZR_PARENTAL_STATION:
+                int i = 0;
+                for (; i<allParentalStationStorage.size();i++){
+                    if (allParentalStationStorage.get(i).stationposition.x == NewCorX && allParentalStationStorage.get(i).stationposition.y == NewCorY)
+                        break;
+                }
+
+                if (i != playerNumber){
+                    allParentalStationStorage.get(i).setHP( allParentalStationStorage.get(i).getHP() - (double)UnittoMove.baseDMG/2);
+                    UnittoMove.movementSpeedleft = 0;
+                }
+                if (allParentalStationStorage.get(i).getHP()<=0){
+                    allParentalStationStorage.get(i).setImage(null);
+                    board[NewCorX][NewCorY].setStroke(Color.TRANSPARENT);
+                    board[NewCorX][NewCorY].active = false;
+                    board[NewCorX][NewCorY].setTileType(TileType.EMPTY_SPACE);
+                    destroyPlayer(i);
+
+                }
 
             case ALGA_PLANET,CRYSTAL_PLANET,SPICE_PLANET,VIBRANIUM_PLANET:
              //   if (MapController.board[NewCorX][NewCorY].getTileType().)
@@ -215,7 +236,22 @@ public class UnitsStorage {
 
             return 0;
     };
+    public static void destroyPlayer(int playernumber){
 
+        playerResources[playernumber].Alive = false;
+        for ( ; !playerResources[playernumber].getUnitBuilData().unitstorage.isEmpty();){
+            MapController.staticPane.getChildren().remove(playerResources[playernumber].getUnitBuilData().unitstorage.get(0).imageView);
+            MapController.board[playerResources[playernumber].getUnitBuilData().unitstorage.get(0).position.x][playerResources[playernumber].getUnitBuilData().unitstorage.get(0).position.y].setTileType(TileType.EMPTY_SPACE);
+            playerResources[playernumber].getUnitBuilData().unitstorage.remove(playerResources[playernumber].getUnitBuilData().unitstorage.get(0));
+        }
+        for (int i =0 ; i<allPlanetStorage.size();i++){
+                if (playerResources[playernumber].getSpeciesType() == allPlanetStorage.get(i).owner){
+                    allPlanetStorage.get(i).owner = SpeciesType.NONE;
+                    board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStroke(Color.TRANSPARENT);
+                    board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].active = false;
+                }
+        }
+    }
 
     public ArrayList<absBuilding> getBuildingstorage() {
         return buildingstorage;
@@ -226,7 +262,7 @@ public class UnitsStorage {
     }
 
 
-    public ArrayList<Planet> getPlanetStorage() {
+   /* public ArrayList<Planet> getPlanetStorage() {
         return allPlanetStorage;
     }
 
@@ -242,5 +278,5 @@ public class UnitsStorage {
             }
         }
     }
-
+*/
 }

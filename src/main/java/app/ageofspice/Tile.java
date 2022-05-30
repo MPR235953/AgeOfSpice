@@ -103,8 +103,25 @@ public class Tile extends Rectangle {
                 win.setParentTile(this);
                 win.makeWinForBuildings(this.x, this.y);
             }
+
+            else if (flagToMove){
+
+                if (unitToMove !=null) {
+                    if ((this.x/TILE_SIZE >= unitToMove.position.x - unitToMove.movementSpeedleft && this.x/TILE_SIZE <= unitToMove.position.x + unitToMove.movementSpeedleft)
+                            && (this.y/TILE_SIZE >= unitToMove.position.y - unitToMove.movementSpeedleft && this.y/TILE_SIZE <= unitToMove.position.y + unitToMove.movementSpeedleft)) {
+                        int oldX = unitToMove.position.x;
+                        int oldY = unitToMove.position.y;
+                        int movspedlef = unitToMove.movementSpeedleft;
+                       if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), statusandDirection(unitToMove.position.x, unitToMove.position.y,this.x/TILE_SIZE, this.y/TILE_SIZE), this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
+                            flagToMove = false;
+                            clearFields(oldX,oldY,movspedlef);
+                        }
+                    }
+                }
+                
+            }
             else if (this.tileType == TileType.JAV_PARENTAL_STATION || this.tileType == TileType.LUD_PARENTAL_STATION
-            || this.tileType == TileType.SZR_PARENTAL_STATION){
+                    || this.tileType == TileType.SZR_PARENTAL_STATION){
 
                 /// TODO: 29.05.2022 Do poprawy. Zmienić na enumy i zbadać stacje
                 if (this.tileType == JAV_PARENTAL_STATION && playerNumber == 0) {
@@ -124,22 +141,7 @@ public class Tile extends Rectangle {
                 }
 
             }
-            else if (flagToMove){
-
-                if (unitToMove !=null) {
-                    if ((this.x/TILE_SIZE >= unitToMove.position.x - unitToMove.movementSpeedleft && this.x/TILE_SIZE <= unitToMove.position.x + unitToMove.movementSpeedleft)
-                            && (this.y/TILE_SIZE >= unitToMove.position.y - unitToMove.movementSpeedleft && this.y/TILE_SIZE <= unitToMove.position.y + unitToMove.movementSpeedleft)) {
-                        int oldX = unitToMove.position.x;
-                        int oldY = unitToMove.position.y;
-                        int movspedlef = unitToMove.movementSpeedleft;
-                       if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), statusandDirection(unitToMove.position.x, unitToMove.position.y,this.x/TILE_SIZE, this.y/TILE_SIZE), this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
-                            flagToMove = false;
-                            clearFields(oldX,oldY,movspedlef);
-                        }
-                    }
-                }
-                
-            } else if (this.tileType == TileType.SCOUT_SHIP || this.tileType == TileType.EXPLORER_SHIP || this.tileType == TileType.DESTROYER_SHIP
+            else if (this.tileType == TileType.SCOUT_SHIP || this.tileType == TileType.EXPLORER_SHIP || this.tileType == TileType.DESTROYER_SHIP
             || this.tileType == TileType.DRED_SHIP){
 
              unit  unitToMove1 = playerResources[playerNumber].getUnitBuilData().searchforunit(this.x/TILE_SIZE,this.y/TILE_SIZE);
