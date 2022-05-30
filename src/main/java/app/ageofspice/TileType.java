@@ -48,21 +48,7 @@ public enum TileType {
     SZRUNGALS_DRED_SHIP,
 
     MINE_STATION,
-    LAB_STATION,
-    WAR_STATION,
-
-    JAVALERERS_MINE_STATION,
-    JAVALERERS_LAB_STATION,
-    JAVALERERS_WAR_STATION,
-
-
-    PEOPLE_MINE_STATION,
-    PEOPLE_LAB_STATION,
-    PEOPLE_WAR_STATION,
-
-    SZRUNGALS_MINE_STATION,
-    SZRUNGALS_LAB_STATION,
-    SZRUNGALS_WAR_STATION;
+    WAR_STATION;
 
     private static final List<TileType> VALUES =
             Collections.unmodifiableList(Arrays.asList(values()));

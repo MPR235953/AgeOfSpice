@@ -17,7 +17,7 @@ public class LabStation extends absBuilding{
     public LabStation(ActualPosition newPosition, UnitsStorage playerStorage){
         baseHP = 40;
         actualHP = baseHP;
-        buildType = TileType.LAB_STATION;
+        //buildType = TileType.LAB_STATION;
         baseCost = new Cost(new AlgiRes(20),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(10));
 
         position = newPosition;

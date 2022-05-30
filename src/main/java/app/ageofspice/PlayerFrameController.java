@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static app.ageofspice.GameLoop.*;
+import static app.ageofspice.MapController.board;
 import static app.ageofspice.MapController.framePane;
 
 public class PlayerFrameController implements Initializable{
@@ -98,10 +99,20 @@ public class PlayerFrameController implements Initializable{
 
     public void changePlayer() {
         if(timer != null) timer.cancel();       //stopowanie timera
+
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
         playerResources[playerNumber].getUnitBuilData().resetstats();
         roundNumber++;
         playerNumber++;
+
+       /* for(int y = 0; y < MapController.VERTICAL_TILE_COUNT; y++) {
+            for (int x = 0; x < MapController.HORIZONTAL_TILE_COUNT; x++) {
+                if(board[x][y].active){
+
+                }
+            }
+        }*/
+
         if(playerNumber == 3) playerNumber = 0;
         timerInit();
     }

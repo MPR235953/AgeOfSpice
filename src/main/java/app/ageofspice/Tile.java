@@ -22,8 +22,8 @@ import static app.ageofspice.Windows.OnClickSpaceWinForUnits.unitToMove;
 
 public class Tile extends Rectangle {
 
-    public int x, y;
     public int boardX, boardY;
+    public int x, y;
     public boolean active = false;      //true jezeli kafelek zostal klikniety, zmiana na false poprzez klasy okienek
 
     private TileType tileType = TileType.EMPTY_SPACE;
@@ -39,7 +39,6 @@ public class Tile extends Rectangle {
     public Tile(int x, int y){
         this.boardX = x;
         this.boardY = y;
-
         this.x = x * MapController.TILE_SIZE;
         this.y = y * MapController.TILE_SIZE;
 
@@ -86,7 +85,7 @@ public class Tile extends Rectangle {
 
                 OnClickSpaceWin win = new OnClickSpaceWin();
                 win.setParentTile(this);
-                win.makeWin(this.x, this.y);
+                win.makeWinForBuildings(this.x, this.y);
             }
             else if (this.tileType == TileType.JAV_PARENTAL_STATION || this.tileType == TileType.LUD_PARENTAL_STATION
             || this.tileType == TileType.SZR_PARENTAL_STATION){

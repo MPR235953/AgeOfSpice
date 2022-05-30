@@ -101,10 +101,7 @@ public class BuildWinForParentalStation extends Pane{
         MapController.staticPane.getChildren().add(this);   //dodanie glownego Pane do staticPane tak aby mozna bylo wyswietlic okienko na mapie
 
 
-        //Centrowanie obrazka statkow na mapie
-        imageToUpload.setFitHeight(TILE_SIZE * SAS_SCALE);
-        imageToUpload.setFitWidth(TILE_SIZE * SAS_SCALE);
-        imageToUpload.relocate(parentTile.x + SAS_SCALE_POS, parentTile.y + SAS_SCALE_POS);
+
     }
 
     public ActualPosition seekFreeSpace(SpeciesType type){

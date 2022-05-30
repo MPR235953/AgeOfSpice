@@ -18,7 +18,7 @@ public class OnClickSpaceWin extends Pane{
 
     ///TODO: podlaczenie kolejnych zdarzen pod przyciski
 
-    public void makeWin(int x, int y){
+    public void makeWinForBuildings(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
         parentTile.setStroke(Color.RED);
 
@@ -36,7 +36,7 @@ public class OnClickSpaceWin extends Pane{
         buildButton.setText("Buduj");
         buildButton.relocate(10, 10);
         buildButton.setPrefWidth(80);
-        buildButton.setOnAction(this::showBuildWin);
+        buildButton.setOnAction(this::showBuildWinForBuildings);
 
         occupyButton.setText("Zajmij");
         occupyButton.relocate(10, 40);
@@ -91,8 +91,8 @@ public class OnClickSpaceWin extends Pane{
     }
 
     //funkcja tworzaca kolejne sub okienko z wyborem stacji do zbudowania
-    public void showBuildWin(ActionEvent event){
-        BuildWin buildWin = new BuildWin();
+    public void showBuildWinForBuildings(ActionEvent event){
+        BuildWinForBuildings buildWin = new BuildWinForBuildings();
         buildWin.setParentTile(parentTile);     //przekazanie kliknietego kafelka glebiej do kolejnej klasy
         buildWin.makeWin();                     //tworzenie nowego okienka
         MapController.staticPane.getChildren().remove(this);    //jako ze mamy nowe okienko, to to aktualne powinno zniknac z mapy

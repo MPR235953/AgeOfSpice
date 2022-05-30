@@ -15,12 +15,12 @@ import java.io.File;
 import static app.ageofspice.GameLoop.playerNumber;
 import static app.ageofspice.GameLoop.playerResources;
 
-public class BuildWin extends Pane{
+public class BuildWinForBuildings extends Pane{
     public Button closeButton = new Button("Zamknij");
-    public Button[] buildButtons = {new Button("Buduj"), new Button("Buduj"), new Button("Buduj")};
-    public ImageView[] imgines = {new ImageView(), new ImageView(), new ImageView()};
-    public Label[] labels = {new Label("Kopalnia"), new Label("Fabryka"), new Label("Laboratorium")};
-    public Pane[] subPanes = {new Pane(), new Pane(), new Pane()};
+    public Button[] buildButtons = {new Button("Buduj"), new Button("Buduj")};
+    public ImageView[] imgines = {new ImageView(), new ImageView()};
+    public Label[] labels = {new Label("Kopalnia"), new Label("Fabryka")};
+    public Pane[] subPanes = {new Pane(), new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();
 
@@ -29,7 +29,7 @@ public class BuildWin extends Pane{
     public void makeWin(){
 
         //konfiguracja glownego Pane okienka
-        this.setPrefWidth(700);
+        this.setPrefWidth(500);
         this.setPrefHeight(150);
         this.setStyle("-fx-background-color: white;" +
                 "-fx-border-color: green;" +
@@ -62,7 +62,6 @@ public class BuildWin extends Pane{
         //Kazdy przycisk ma ustawiona inna akcje na metode
         buildButtons[0].setOnAction(this::buildKop);
         buildButtons[1].setOnAction(this::buildFab);
-        buildButtons[2].setOnAction(this::buildLab);
 
         //TODO: Napisac klasy dla stacji i zaprojektowac grafike
         //Narazie roboczo tylko dla playera nr 0, pozniej nalezy to powiazac z aktualnym
@@ -72,21 +71,18 @@ public class BuildWin extends Pane{
             case JAVALERZY -> {
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
                 imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
             }
             case LUDZIE -> {
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
-                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
             }
             case SZRUNGALE -> {
-                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
             }
         }
 
-        this.getChildren().addAll(subPanes[0], subPanes[1], subPanes[2], closeButton);      //dodanie subPanow i przycisku do glownego Pane
+        this.getChildren().addAll(subPanes[0], subPanes[1], closeButton);      //dodanie subPanow i przycisku do glownego Pane
         MapController.staticPane.getChildren().add(this);   //dodanie glownego Pane do staticPane tak aby mozna bylo wyswietlic okienko na mapie
 
 
@@ -126,13 +122,6 @@ public class BuildWin extends Pane{
         }
     }
 
-    public void buildLab(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
-            case JAVALERZY -> {
-
-            }
-        }
-    }
 
     public void closeWin(ActionEvent event){
         parentTile.active = false;

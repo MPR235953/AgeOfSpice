@@ -145,7 +145,7 @@ public class PlayerResourcesandUnitsStorage {
             case MINE_STATION -> {
                 Planet planet = null;
                 for(Planet planet1: unitBuilData.getPlanetStorage()){
-                    if(planet1.pos.x == pos.x && planet1.pos.y == pos.y)
+                    if(planet1.planetPosition.x == pos.x && planet1.planetPosition.y == pos.y)
                         planet = planet1;
                 }
                 if(planet == null)
@@ -162,12 +162,6 @@ public class PlayerResourcesandUnitsStorage {
             }
             case WAR_STATION -> {
                 WarStation building = new WarStation(pos, unitBuilData);
-                if (enoughMoneyB(building) == 0)
-                    return -1;
-                unitBuilData.getBuildingstorage().add(building);
-            }
-            case LAB_STATION -> {
-                LabStation building = new LabStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
                     return -1;
                 unitBuilData.getBuildingstorage().add(building);
