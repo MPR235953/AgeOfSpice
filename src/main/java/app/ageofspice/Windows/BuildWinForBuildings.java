@@ -13,8 +13,7 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 
 public class BuildWinForBuildings extends Pane{
     public Button closeButton = new Button("Zamknij");
@@ -24,6 +23,8 @@ public class BuildWinForBuildings extends Pane{
     public Pane[] subPanes = {new Pane(), new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();
+
+    public BuildWinForBuildings(){arrayBuildWinForBuildings.add(this);}
 
     public void setParentTile(Tile tile){ parentTile = tile; }
 

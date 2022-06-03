@@ -15,8 +15,7 @@ import javafx.scene.paint.Color;
 
 import java.io.File;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
 
 //klasa robocza. Możliwe błędy
@@ -47,6 +46,8 @@ public class BuildWinForParentalStation extends Pane{
                                         {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
                                         {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))}
     };
+
+    public BuildWinForParentalStation(){arrayBuildWinForParentalStation.add(this);}
 
     public void setParentTile(Tile tile){ parentTile = tile; }
 

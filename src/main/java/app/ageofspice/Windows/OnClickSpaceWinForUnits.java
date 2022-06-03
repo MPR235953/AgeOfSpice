@@ -2,11 +2,14 @@ package app.ageofspice.Windows;
 
 import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesColors;
-import app.ageofspice.units_classes.unit;
+import app.ageofspice.units_classes.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import java.util.Map;
 
 import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
@@ -20,8 +23,15 @@ public class OnClickSpaceWinForUnits extends Pane{
     public Tile parentTile;
     public static unit unitToMove;
 
+    public Pane statisticsPane = new Pane();
+    public Label healthLabel = new Label("HP: ");
+    public Label damageLabel = new Label("DMG: ");
+    public Label speedLabel = new Label("SP: ");
+
+    public OnClickSpaceWinForUnits(){arrayOnClickSpaceWinForUnits.add(this);}
     public OnClickSpaceWinForUnits(unit unit1){
         this.unitToMove = unit1;
+        arrayOnClickSpaceWinForUnits.add(this);
     }
 
     public void setParentTile(Tile tile){ parentTile = tile; }      //funkcja zrobiona po to aby stylizowac kafelek ktory zostal klikniety
@@ -52,15 +62,67 @@ public class OnClickSpaceWinForUnits extends Pane{
         occupyButton.relocate(10, 40);
         occupyButton.setPrefWidth(80);
         occupyButton.setOnAction(this::takePlanetWin);
+
         closeButton.setText("Zamknij");
         closeButton.relocate(10, 70);
         closeButton.setPrefWidth(80);
         closeButton.setOnAction(this::closeWin);
+
+        makeStatisticWin(x, y);
     }
 
+    public void makeStatisticWin(int x, int y){
+        //Konfiguracja Pane ze statami jednostki
+        MapController.staticPane.getChildren().add(statisticsPane);
 
+        statisticsPane.setPrefWidth(100);
+        statisticsPane.setPrefHeight(105);
+        statisticsPane.setStyle(Colors.winBackground +
+                "-fx-border-width: 5;" +
+                "-fx-view-order: -10;" +
+                SpeciesColors.ColorCSS[playerNumber]);
+        statisticsPane.getChildren().addAll(healthLabel, damageLabel, speedLabel);
+        statisticsPane.relocate(x - statisticsPane.getPrefWidth(), y);
+
+        //Konfiguracja labelow do statystyk
+        healthLabel.relocate(10, 15);
+        healthLabel.setTextFill(Color.WHITE);
+        healthLabel.setStyle("-fx-font-size: 15;");
+
+        damageLabel.relocate(10, 45);
+        damageLabel.setTextFill(Color.WHITE);
+        damageLabel.setStyle("-fx-font-size: 15;");
+
+        speedLabel.relocate(10, 75);
+        speedLabel.setTextFill(Color.WHITE);
+        speedLabel.setStyle("-fx-font-size: 15;");
+
+        switch(parentTile.getTileType()){
+            case DESTROYER_SHIP -> {
+                healthLabel.setText(healthLabel.getText() + new DestroyerShip().baseHP);
+                damageLabel.setText(damageLabel.getText() + new DestroyerShip().baseDMG);
+                speedLabel.setText(speedLabel.getText() + new DestroyerShip().movementSpeed);
+            }
+            case DRED_SHIP -> {
+                healthLabel.setText(healthLabel.getText() + new DredShip().baseHP);
+                damageLabel.setText(damageLabel.getText() + new DredShip().baseDMG);
+                speedLabel.setText(speedLabel.getText() + new DredShip().movementSpeed);
+            }
+            case EXPLORER_SHIP -> {
+                healthLabel.setText(healthLabel.getText() + new ExplorerShip().baseHP);
+                damageLabel.setText(damageLabel.getText() + new ExplorerShip().baseDMG);
+                speedLabel.setText(speedLabel.getText() + new ExplorerShip().movementSpeed);
+            }
+            case SCOUT_SHIP -> {
+                healthLabel.setText(healthLabel.getText() + new ScoutShip().baseHP);
+                damageLabel.setText(damageLabel.getText() + new ScoutShip().baseDMG);
+                speedLabel.setText(speedLabel.getText() + new ScoutShip().movementSpeed);
+            }
+        }
+    }
 
     public void closeWin(ActionEvent event){
+        MapController.staticPane.getChildren().remove(statisticsPane);
         MapController.staticPane.getChildren().remove(this);
         if(parentTile.getTileType() == TileType.EMPTY_SPACE)
             parentTile.setStroke(Color.TRANSPARENT);
