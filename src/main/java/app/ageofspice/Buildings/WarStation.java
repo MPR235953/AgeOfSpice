@@ -6,10 +6,11 @@ import app.ageofspice.UnitandBuildingStorage.UnitsStorage;
 import app.ageofspice.movement.ActualPosition;
 
 /**
- * Daje jednostkom bonus do ataku
+ * Daje jednostkom bonus do ataku +20
  */
 
 public class WarStation extends absBuilding{
+    public static Cost staticBaseCost = new Cost(new AlgiRes(20),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(20));
 
     public WarStation(ActualPosition newPosition, UnitsStorage playerStorage){
         baseHP = 40;
@@ -19,6 +20,8 @@ public class WarStation extends absBuilding{
 
         pos = newPosition;
     }
+
+    //TODO wrzucić ten bonus do jednostek
 
     @Override
     void destroy(UnitsStorage playerStorage) {
