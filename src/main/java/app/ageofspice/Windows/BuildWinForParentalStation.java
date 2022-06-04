@@ -137,10 +137,10 @@ public class BuildWinForParentalStation extends Pane{
 
             }
             case SZRUNGALE -> {
-                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_explorer_ship.png").toURI().toString()));
-                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_tank_ship.png").toURI().toString()));
-                imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_sniper_ship.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_scout.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_explorer.png").toURI().toString()));
+                imgines[2].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_dreadnought.png").toURI().toString()));
+                imgines[3].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_destroyer.png").toURI().toString()));
 
             }
         }
