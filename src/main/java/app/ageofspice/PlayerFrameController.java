@@ -15,8 +15,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static app.ageofspice.GameLoop.*;
-import static app.ageofspice.MapController.board;
-import static app.ageofspice.MapController.framePane;
+import static app.ageofspice.MapController.*;
 
 public class PlayerFrameController implements Initializable{
     public static Timer timer;
@@ -130,8 +129,28 @@ public class PlayerFrameController implements Initializable{
             }
         }*/
 
-
+        clearAllWindows();
         timerInit();
+    }
+
+    public void clearAllWindows(){
+        for(int i = 0; i < arrayBuildWinForBuildings.size(); i++){
+                arrayBuildWinForBuildings.get(i).closeWin(null);
+                staticPane.getChildren().remove(arrayBuildWinForBuildings.get(i));
+        }
+
+        for(int i = 0; i < arrayBuildWinForParentalStation.size(); i++){
+                arrayBuildWinForParentalStation.get(i).closeWin(null);
+                staticPane.getChildren().remove(arrayBuildWinForParentalStation.get(i));
+        }
+        for(int i = 0; i < arrayOnClickSpaceWin.size(); i++){
+                arrayOnClickSpaceWin.get(i).closeWin(null);
+                staticPane.getChildren().remove(arrayOnClickSpaceWin.get(i));
+        }
+        for(int i = 0; i < arrayOnClickSpaceWinForUnits.size(); i++){
+                arrayOnClickSpaceWinForUnits.get(i).closeWin(null);
+                staticPane.getChildren().remove(arrayOnClickSpaceWinForUnits.get(i));
+        }
     }
 
 }

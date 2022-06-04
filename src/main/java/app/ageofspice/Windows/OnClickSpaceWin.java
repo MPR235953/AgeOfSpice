@@ -10,13 +10,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
-import static app.ageofspice.GameLoop.playerNumber;
-import static app.ageofspice.GameLoop.playerResources;
+import static app.ageofspice.GameLoop.*;
 
 public class OnClickSpaceWin extends Pane{
     public Button buildButton = new Button();
     public Button closeButton = new Button();
     public Tile parentTile;
+
+    public OnClickSpaceWin(){arrayOnClickSpaceWin.add(this);}
 
     public void setParentTile(Tile tile){ parentTile = tile; }      //funkcja zrobiona po to aby stylizowac kafelek ktory zostal klikniety
 

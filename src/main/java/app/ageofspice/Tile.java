@@ -3,7 +3,6 @@ package app.ageofspice;
 import  app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Windows.OnClickSpaceWin;
 import app.ageofspice.Windows.OnClickSpaceWinForUnits;
-import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.unit;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.paint.Color;
