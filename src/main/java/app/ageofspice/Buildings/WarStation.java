@@ -10,7 +10,6 @@ import app.ageofspice.movement.ActualPosition;
  */
 
 public class WarStation extends absBuilding{
-    public ActualPosition position;
 
     public WarStation(ActualPosition newPosition, UnitsStorage playerStorage){
         baseHP = 40;
@@ -18,10 +17,7 @@ public class WarStation extends absBuilding{
         buildType = TileType.WAR_STATION;
         baseCost = new Cost(new AlgiRes(20),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(20));
 
-        position = newPosition;
-
-        playerStorage.bonusAttack += 20;
-        playerStorage.getBuildingstorage().add(this);
+        pos = newPosition;
     }
 
     @Override

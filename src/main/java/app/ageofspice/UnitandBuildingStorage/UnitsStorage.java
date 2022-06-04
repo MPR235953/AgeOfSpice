@@ -218,7 +218,8 @@ public class UnitsStorage {
                     destroyPlayer(i);
 
                 }
-
+            case MINE_STATION,WAR_STATION:
+                //TODO: atakowanie budynku
             case ALGA_PLANET,CRYSTAL_PLANET,SPICE_PLANET,VIBRANIUM_PLANET:
              //   if (MapController.board[NewCorX][NewCorY].getTileType().)
             default:
@@ -262,11 +263,12 @@ public class UnitsStorage {
     }
 
 
-   /* public ArrayList<Planet> getPlanetStorage() {
+   public ArrayList<Planet> getPlanetStorage() {
         return allPlanetStorage;
     }
 
     void gatherResources(ResourceStorage resources){
+        //surowce z posiadanych planet
         for(Planet planet : allPlanetStorage) {
             if (planet.owner == playerResources[playerNumber].getSpeciesType()) {
                 switch (planet.planetType) {
@@ -277,6 +279,15 @@ public class UnitsStorage {
                 }
             }
         }
+        //bonus z kopalni
+        for (absBuilding building:buildingstorage) {
+            if(building instanceof MineStation) {
+                resources.algi.quantity += 10;
+                resources.wibranium.quantity += 10;
+                resources.krysztal.quantity += 10;
+                resources.przyprawa.quantity += 10;
+            }
+        }
     }
-*/
+
 }

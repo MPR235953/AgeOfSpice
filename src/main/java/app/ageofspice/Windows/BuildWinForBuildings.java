@@ -3,6 +3,7 @@ package app.ageofspice.Windows;
 import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
+import app.ageofspice.movement.ActualPosition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -96,19 +97,18 @@ public class BuildWinForBuildings extends Pane{
     public void buildKop(ActionEvent event){
         switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-                parentTile.setTileType(TileType.ALGA_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
+                //TODO: połączenie wybudowania budynku z postawieniem go na planszy
+                //if(!playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, ActualPosition pos)) zbudowanie kopalni
+                parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                 imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
-                playerResources[playerNumber].getResources().algi.quantity -= 10;
             }
             case LUDZIE -> {
                 parentTile.setTileType(TileType.VIBRANIUM_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
                 imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
-                playerResources[playerNumber].getResources().przyprawa.quantity -= 10;
             }
             case SZRUNGALE -> {
                 parentTile.setTileType(TileType.CRYSTAL_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
                 imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-                playerResources[playerNumber].getResources().krysztal.quantity -= 10;
             }
         }
         MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
@@ -116,11 +116,22 @@ public class BuildWinForBuildings extends Pane{
     }
 
     public void buildFab(ActionEvent event){
-        switch(SpeciesType.JAVALERZY){
+        switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-
+                parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+            }
+            case LUDZIE -> {
+                parentTile.setTileType(TileType.VIBRANIUM_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
+                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+            }
+            case SZRUNGALE -> {
+                parentTile.setTileType(TileType.CRYSTAL_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
+                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
             }
         }
+        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
+        closeWin(event);
     }
 
 

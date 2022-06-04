@@ -13,19 +13,18 @@ import javafx.scene.image.ImageView;
  */
 
 /* TODO: 16.05.2022 Budowa tej klasy
-    * kupowanie
-    * budowanie
-    * bonusy: -kopalnia generuje x surowca, -wojskowa zwiększa bonus do ataku, laboratorium?
+    * kupowanie + budowanie
+    * bonusy: -wojskowa zwiększa bonus do ataku
     * bycie atakowanym
-    * usuwanie bonusów
 */
 
 public abstract class absBuilding {
-    public ImageView imageView;
+    //public ImageView imageView;
     public TileType buildType;
     public int baseHP;
     public int actualHP;
     public Cost baseCost;
+    public ActualPosition pos;
 
     /**
      * usuwa z gry bonusy tego budynku

@@ -1,10 +1,8 @@
 package app.ageofspice.UnitandBuildingStorage;
 
-import app.ageofspice.Buildings.LabStation;
 import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.Buildings.WarStation;
 import app.ageofspice.Buildings.absBuilding;
-import app.ageofspice.MapController;
 import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Species.SpeciesColors;
@@ -12,8 +10,6 @@ import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.TileType;
 import app.ageofspice.movement.ActualPosition;
 import app.ageofspice.units_classes.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 /**
@@ -140,47 +136,35 @@ public class PlayerResourcesandUnitsStorage {
         return  0;
     }
 
-   /* public int buyBuilding(TileType type, ActualPosition pos){
-
+    public int buyBuilding(TileType type, ActualPosition pos){
         switch (type) {
             case MINE_STATION -> {
-                Planet planet = null;
-                for(Planet planet1: unitBuilData.getPlanetStorage()){
-                    if(planet1.planetPosition.x == pos.x && planet1.planetPosition.y == pos.y)
-                        planet = planet1;
-                }
-                if(planet == null)
-                    return -1;
-                MineStation building = new MineStation(planet, unitBuilData);
+                MineStation building = new MineStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
                     return -1;
-                //switch (speciesType) {
-                //    case LUDZIE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                //    case JAVALERZY -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_scout_ship.png");
-                //    case SZRUNGALE -> scout.imageviewconstructor("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_scout.png");
-                //}
                 unitBuilData.getBuildingstorage().add(building);
             }
             case WAR_STATION -> {
                 WarStation building = new WarStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
                     return -1;
+                unitBuilData.bonusAttack += 20;
                 unitBuilData.getBuildingstorage().add(building);
             }
         }
-
         return  0;
     }
-*/
+
 
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
         resources.resourcesaction();
-     //   unitBuilData.gatherResources(resources);
+        unitBuilData.gatherResources(resources);
     }
 
     public Color getSpeciesColor(){ return this.speciesColor; }
+
     public void setSpeciesColor(){
         switch(this.speciesType){
             case JAVALERZY -> this.speciesColor = SpeciesColors.javColor;
