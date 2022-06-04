@@ -33,7 +33,7 @@ public class OnClickSpaceWin extends Pane{
         this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
-                SpeciesColors.ColorCSS[playerNumber]);
+                "-fx-border-color:" + SpeciesColors.ColorCSS[playerNumber]);
         this.getChildren().addAll(buildButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 
@@ -60,7 +60,7 @@ public class OnClickSpaceWin extends Pane{
         this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
-                SpeciesColors.ColorCSS[playerNumber]);
+                "-fx-border-color:" + SpeciesColors.ColorCSS[playerNumber]);
         this.getChildren().addAll(buildButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 

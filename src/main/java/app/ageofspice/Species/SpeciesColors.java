@@ -8,7 +8,7 @@ public interface SpeciesColors {
     Color ludColor = Color.rgb(221, 44,0);
     Color szrColor = Color.rgb(233,30,98);
 
-    String[] ColorCSS = {   "-fx-border-color: rgb(0,230,250);" ,
-                            "-fx-border-color: rgb(221,44,0);",
-                            "-fx-border-color: rgb(233,30,98);" };
+    String[] ColorCSS = {   "rgb(0,230,250);" ,
+                            "rgb(221,44,0);",
+                            "rgb(233,30,98);" };
 }

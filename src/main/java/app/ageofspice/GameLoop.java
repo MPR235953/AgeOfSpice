@@ -32,6 +32,7 @@ public class GameLoop{
 
     public static int roundNumber = 1;
     public static int playerNumber = 0;
+    public static int winner = 2;
     public static ArrayList<Planet> allPlanetStorage = new ArrayList<Planet>();
     public static ArrayList<ParentalStation> allParentalStationStorage = new ArrayList<ParentalStation>();
     public void startGame() {

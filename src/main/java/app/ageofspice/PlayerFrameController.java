@@ -121,13 +121,6 @@ public class PlayerFrameController implements Initializable{
         //###
 
         roundNumber++;
-       /* for(int y = 0; y < MapController.VERTICAL_TILE_COUNT; y++) {
-            for (int x = 0; x < MapController.HORIZONTAL_TILE_COUNT; x++) {
-                if(board[x][y].active){
-
-                }
-            }
-        }*/
 
         clearAllWindows();
         timerInit();

@@ -48,7 +48,7 @@ public class OnClickSpaceWinForUnits extends Pane{
         this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
-                SpeciesColors.ColorCSS[playerNumber]);
+                "-fx-border-color:" + SpeciesColors.ColorCSS[playerNumber]);
         this.getChildren().addAll(moveButton, occupyButton, closeButton);
         this.relocate(x + MapController.TILE_SIZE, y);
 
@@ -80,7 +80,7 @@ public class OnClickSpaceWinForUnits extends Pane{
         statisticsPane.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
-                SpeciesColors.ColorCSS[playerNumber]);
+                "-fx-border-color:" + SpeciesColors.ColorCSS[playerNumber]);
         statisticsPane.getChildren().addAll(healthLabel, damageLabel, speedLabel);
         statisticsPane.relocate(x - statisticsPane.getPrefWidth(), y);
 
