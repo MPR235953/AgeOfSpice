@@ -21,11 +21,12 @@ import java.util.Random;
 public class MapController implements Initializable {
 
     public static final int STROKE_TILE_WIDTH = 3;
+    public static final int MARGIN = 100;
 
     //################################################  Rozmiary kafelkow
     public static final int TILE_SIZE = 70;
-    public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
-    public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
+    public static final int HORIZONTAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_WIDTH - 2 * MARGIN) / TILE_SIZE;
+    public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE  - MARGIN) / TILE_SIZE;
 
     //################################################  skalowanie stacji i statkow
     public static final double SAS_SCALE = 0.66;
@@ -66,11 +67,13 @@ public class MapController implements Initializable {
         //Konfiguracja
         anchorPane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         anchorPane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
+        anchorPane.getChildren().add(background);
+        background.toBack();
 
-        pane.getChildren().add(background);
+        pane.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         pane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         pane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE);
-        pane.relocate(0, AgeOfSpiceApp.FRAME_SIZE);
+        pane.relocate(MARGIN, AgeOfSpiceApp.FRAME_SIZE);
 
         background.setImage(new Image(String.valueOf(getClass().getResource("arts\\space_map.png"))));
         background.setFitWidth(AgeOfSpiceApp.SCREEN_WIDTH);

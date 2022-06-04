@@ -60,7 +60,7 @@ public class BuildWinForParentalStation extends Pane{
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
                 SpeciesColors.ColorCSS[playerNumber]);
-        this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
+        this.relocate(AgeOfSpiceApp.SCREEN_WIDTH / 2 - this.getPrefWidth() / 2 - MapController.MARGIN, AgeOfSpiceApp.SCREEN_HEIGHT / 2 - this.getPrefHeight() / 2);
 
         //konfiguracja przycisku zgaszenia okienka
         closeButton.setPrefWidth(70);
