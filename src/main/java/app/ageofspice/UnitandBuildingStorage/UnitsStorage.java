@@ -218,7 +218,8 @@ public class UnitsStorage {
                     destroyPlayer(i);
 
                 }
-
+            case MINE_STATION,WAR_STATION:
+                //TODO: atakowanie budynku
             case ALGA_PLANET,CRYSTAL_PLANET,SPICE_PLANET,VIBRANIUM_PLANET:
              //   if (MapController.board[NewCorX][NewCorY].getTileType().)
             default:
@@ -239,17 +240,17 @@ public class UnitsStorage {
     public static void destroyPlayer(int playernumber){
 
         playerResources[playernumber].Alive = false;
-        for ( ; !playerResources[playernumber].getUnitBuilData().unitstorage.isEmpty();){
+        while (!playerResources[playernumber].getUnitBuilData().unitstorage.isEmpty()) {
             MapController.staticPane.getChildren().remove(playerResources[playernumber].getUnitBuilData().unitstorage.get(0).imageView);
             MapController.board[playerResources[playernumber].getUnitBuilData().unitstorage.get(0).position.x][playerResources[playernumber].getUnitBuilData().unitstorage.get(0).position.y].setTileType(TileType.EMPTY_SPACE);
             playerResources[playernumber].getUnitBuilData().unitstorage.remove(playerResources[playernumber].getUnitBuilData().unitstorage.get(0));
         }
-        for (int i =0 ; i<allPlanetStorage.size();i++){
-                if (playerResources[playernumber].getSpeciesType() == allPlanetStorage.get(i).owner){
-                    allPlanetStorage.get(i).owner = SpeciesType.NONE;
-                    board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].setStroke(Color.TRANSPARENT);
-                    board[allPlanetStorage.get(i).planetPosition.x][allPlanetStorage.get(i).planetPosition.y].active = false;
-                }
+        for (Planet planet : allPlanetStorage) {
+            if (playerResources[playernumber].getSpeciesType() == planet.owner) {
+                planet.owner = SpeciesType.NONE;
+                board[planet.planetPosition.x][planet.planetPosition.y].setStroke(Color.TRANSPARENT);
+                board[planet.planetPosition.x][planet.planetPosition.y].active = false;
+            }
         }
     }
 
@@ -257,16 +258,12 @@ public class UnitsStorage {
         return buildingstorage;
     }
 
-    public int getsize() {
-        return this.unitstorage.size();
-    }
-
-
-   /* public ArrayList<Planet> getPlanetStorage() {
+    public ArrayList<Planet> getPlanetStorage() {
         return allPlanetStorage;
     }
 
     void gatherResources(ResourceStorage resources){
+        //surowce z posiadanych planet
         for(Planet planet : allPlanetStorage) {
             if (planet.owner == playerResources[playerNumber].getSpeciesType()) {
                 switch (planet.planetType) {
@@ -277,6 +274,15 @@ public class UnitsStorage {
                 }
             }
         }
+        //bonus z kopalni
+        for (absBuilding building:buildingstorage) {
+            if(building instanceof MineStation) {
+                resources.algi.quantity += 10;
+                resources.wibranium.quantity += 10;
+                resources.krysztal.quantity += 10;
+                resources.przyprawa.quantity += 10;
+            }
+        }
     }
-*/
+
 }
