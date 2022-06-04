@@ -13,7 +13,7 @@ public class SceneController {
         Scene scene = new Scene(fxmlLoader.load(), AgeOfSpiceApp.SCREEN_WIDTH, AgeOfSpiceApp.SCREEN_HEIGHT);
         scene.getStylesheets().add(String.valueOf(SceneController.class.getResource("style.css")));
         AgeOfSpiceApp.stage.setTitle("Age of Spice - " + FXML);
-        AgeOfSpiceApp.stage.setFullScreen(true);
+        //AgeOfSpiceApp.stage.setFullScreen(true);
         AgeOfSpiceApp.stage.setScene(scene);
         //AgeOfSpiceApp.stage.getScene().setRoot(scene);
         AgeOfSpiceApp.stage.show();
