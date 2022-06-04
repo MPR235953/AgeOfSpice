@@ -66,9 +66,6 @@ public class BuildWinForBuildings extends Pane{
         buildButtons[0].setOnAction(this::buildKop);
         buildButtons[1].setOnAction(this::buildFab);
 
-        //TODO: Napisac klasy dla stacji i zaprojektowac grafike
-        //Narazie roboczo tylko dla playera nr 0, pozniej nalezy to powiazac z aktualnym
-        //graczem w petli np robiac statyczna zmienna gracza i po kazdej iteracji nadpisywac ta zmienna
         switch(playerResources[playerNumber].getSpeciesType()){//speciesChoiceController.player[0].getSpeciesType()){
             //grafika tez narazie roboczo
             case JAVALERZY -> {
@@ -80,8 +77,8 @@ public class BuildWinForBuildings extends Pane{
                 imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
             }
             case SZRUNGALE -> {
-                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_mine.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_war_station.png").toURI().toString()));
             }
         }
 
@@ -95,43 +92,49 @@ public class BuildWinForBuildings extends Pane{
         imageToUpload.relocate(parentTile.x, parentTile.y);
     }
 
-    public void buildKop(ActionEvent event){
-        switch(playerResources[playerNumber].getSpeciesType()){
-            case JAVALERZY -> {
-                //TODO: połączenie wybudowania budynku z postawieniem go na planszy
-                //if(!playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, ActualPosition pos)) zbudowanie kopalni
-                parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+    public void buildKop(ActionEvent event) {
+        //TODO: wrzucić grafiki
+        //sprawdzenie czy można zbudować budynek + utworzenie
+        if (playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY))) {
+            switch (playerResources[playerNumber].getSpeciesType()) {
+                case JAVALERZY -> {
+                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                }
+                case LUDZIE -> {
+                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                }
+                case SZRUNGALE -> {
+                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_mine.png").toURI().toString()));
+                }
             }
-            case LUDZIE -> {
-                parentTile.setTileType(TileType.VIBRANIUM_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
-            }
-            case SZRUNGALE -> {
-                parentTile.setTileType(TileType.CRYSTAL_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-            }
+            MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         }
-        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         closeWin(event);
     }
 
     public void buildFab(ActionEvent event){
-        switch(playerResources[playerNumber].getSpeciesType()){
-            case JAVALERZY -> {
-                parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+        //TODO: wrzucić grafiki
+        //sprawdzenie czy można zbudować budynek + utworzenie
+        if (playerResources[playerNumber].buyBuilding(TileType.WAR_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY))) {
+            switch (playerResources[playerNumber].getSpeciesType()) {
+                case JAVALERZY -> {
+                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                }
+                case LUDZIE -> {
+                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                }
+                case SZRUNGALE -> {
+                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_war_station.png").toURI().toString()));
+                }
             }
-            case LUDZIE -> {
-                parentTile.setTileType(TileType.VIBRANIUM_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
-            }
-            case SZRUNGALE -> {
-                parentTile.setTileType(TileType.CRYSTAL_PLANET);       //oznaczenie ze obiekt znajduje sie na mapie
-                imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
-            }
+            MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         }
-        MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         closeWin(event);
     }
 

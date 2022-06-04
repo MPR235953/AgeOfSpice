@@ -135,23 +135,23 @@ public class PlayerResourcesandUnitsStorage {
         return  0;
     }
 
-    public int buyBuilding(TileType type, ActualPosition pos){
+    public boolean buyBuilding(TileType type, ActualPosition pos){
         switch (type) {
             case MINE_STATION -> {
                 MineStation building = new MineStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
-                    return -1;
+                    return false;
                 unitBuilData.getBuildingstorage().add(building);
             }
             case WAR_STATION -> {
                 WarStation building = new WarStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
-                    return -1;
+                    return false;
                 unitBuilData.bonusAttack += 20;
                 unitBuilData.getBuildingstorage().add(building);
             }
         }
-        return  0;
+        return true;
     }
 
 
