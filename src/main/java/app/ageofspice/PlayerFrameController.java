@@ -1,18 +1,15 @@
 package app.ageofspice;
 
 import app.ageofspice.Species.SpeciesColors;
-import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BoxBlur;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -94,6 +91,8 @@ public class PlayerFrameController implements Initializable{
             public void run() {
                 Platform.runLater(() -> {
                     refreshStats();
+                    try { searchwinner(); }
+                    catch (IOException e) { e.printStackTrace(); }
 
                     if(counter > 0){
                         String timeFormat = "";
@@ -114,7 +113,20 @@ public class PlayerFrameController implements Initializable{
         }, 0, 1000);
     }
 
-    public void changePlayer() {
+    public void searchwinner() throws IOException {
+        int destroyedParentalStation = 0;
+        for(int i = 0; i < allParentalStationStorage.size(); i++){
+            if(allParentalStationStorage.get(i).getHP() <= 0)
+                destroyedParentalStation++;
+            else winner = i;
+        }
+        if(destroyedParentalStation == 2) {
+            if(timer != null) timer.cancel();
+            SceneController.switchToFXML("end.fxml");
+        }
+    }
+
+    public void changePlayer(){
         if(timer != null) timer.cancel();       //stopowanie timera
         restore();
 
@@ -134,10 +146,6 @@ public class PlayerFrameController implements Initializable{
             }
             countPlayersDead++;
         }
-        //###dodac funkcje do skonczenia gry
-        //if (countPlayersDead==2)
-
-        //###
 
         roundNumber++;
 
