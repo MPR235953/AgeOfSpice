@@ -4,6 +4,7 @@ import app.ageofspice.Species.SpeciesColors;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
@@ -12,9 +13,12 @@ import java.util.ResourceBundle;
 public class EndController implements Initializable {
     @FXML Pane javPane, ludPane, szrPane;
     @FXML Label winnerLabel, winLabel;
+    @FXML AnchorPane anchorPane;
+    public static AnchorPane staticAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        staticAnchorPane = anchorPane;
         switch(GameLoop.winner){
             case 0 -> javPane.relocate(650, 300);
             case 1 -> ludPane.relocate(650, 300);

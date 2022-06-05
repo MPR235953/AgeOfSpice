@@ -159,7 +159,7 @@ public class PlayerFrameController implements Initializable{
         timerInit();
     }
 
-    public void clearAllWindows(){
+    public static void clearAllWindows(){
         for(int i = 0; i < arrayBuildWinForBuildings.size(); i++){
                 arrayBuildWinForBuildings.get(i).closeWin(null);
                 staticPane.getChildren().remove(arrayBuildWinForBuildings.get(i));

@@ -4,6 +4,7 @@ import app.ageofspice.Species.SpeciesType;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,15 +14,18 @@ import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import static app.ageofspice.GameLoop.playerResources;
 
-public class SpeciesChoiceController {
-    @FXML AnchorPane anchorPane;
+public class SpeciesChoiceController implements Initializable {
     @FXML Pane alertPane;
     @FXML Label tryAgainLabel;
     @FXML TextField pl1_TextField, pl2_TextField, pl3_TextField;
     @FXML ImageView playButton;
+    @FXML AnchorPane anchorPane;
+    public static AnchorPane staticAnchorPane;
 
     final int NAME_LENGTH = 10;
 
@@ -82,4 +86,8 @@ public class SpeciesChoiceController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        staticAnchorPane = anchorPane;
+    }
 }
