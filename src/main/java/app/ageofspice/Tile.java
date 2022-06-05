@@ -111,9 +111,15 @@ public class Tile extends Rectangle {
                         int oldX = unitToMove.position.x;
                         int oldY = unitToMove.position.y;
                         int movspedlef = unitToMove.movementSpeedleft;
-                       if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), statusandDirection(unitToMove.position.x, unitToMove.position.y,this.x/TILE_SIZE, this.y/TILE_SIZE), this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
-                            flagToMove = false;
-                            clearFields(oldX,oldY,movspedlef);
+                        clearFields(oldX,oldY,movspedlef);
+                        try {
+                            if ( movement(playerResources[playerNumber].getUnitBuilData().getUnitstorage().get(playerResources[playerNumber].getUnitBuilData().searchforunitindex(unitToMove.position.x, unitToMove.position.y)), statusandDirection(unitToMove.position.x, unitToMove.position.y,this.x/TILE_SIZE, this.y/TILE_SIZE), this.x/TILE_SIZE, this.y/TILE_SIZE) != -1){
+                                 flagToMove = false;
+                             }
+                            System.out.println(unitToMove.imageView.getLayoutX());
+                            System.out.println(unitToMove.imageView.getLayoutY());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -158,7 +164,7 @@ public class Tile extends Rectangle {
 
     }
 
-    public void clearFields(int x1,int y1,int movleft){
+    public  static void clearFields(int x1,int y1,int movleft){
 
         for (int i = x1-movleft; i<=x1+movleft;i++){
             for (int j =y1-movleft; j<=y1+movleft;j++) {
