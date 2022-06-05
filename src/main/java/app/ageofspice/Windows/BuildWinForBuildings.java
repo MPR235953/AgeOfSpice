@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import java.io.File;
 
 import static app.ageofspice.GameLoop.*;
+import static app.ageofspice.MapController.SAS_SCALE_POS;
 
 public class BuildWinForBuildings extends Pane{
     public Button closeButton = new Button("Close");
@@ -110,8 +111,8 @@ public class BuildWinForBuildings extends Pane{
 
         switch(playerResources[playerNumber].getSpeciesType()){
             case JAVALERZY -> {
-                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_mine_station.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_war_station.png").toURI().toString()));
             }
             case LUDZIE -> {
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
@@ -128,9 +129,9 @@ public class BuildWinForBuildings extends Pane{
 
 
         //Centrowanie obrazka stacji na mapie
-        imageToUpload.setFitHeight(MapController.TILE_SIZE);
-        imageToUpload.setFitWidth(MapController.TILE_SIZE);
-        imageToUpload.relocate(parentTile.x, parentTile.y);
+        imageToUpload.setFitWidth(MapController.TILE_SIZE * MapController.SAS_SCALE);
+        imageToUpload.setFitHeight(MapController.TILE_SIZE * MapController.SAS_SCALE);
+        imageToUpload.relocate(parentTile.x + SAS_SCALE_POS, parentTile.y + SAS_SCALE_POS);
     }
 
     public void buildKop(ActionEvent event) {
@@ -140,7 +141,7 @@ public class BuildWinForBuildings extends Pane{
             switch (playerResources[playerNumber].getSpeciesType()) {
                 case JAVALERZY -> {
                     parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
-                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_mine_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
                     parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
@@ -163,7 +164,7 @@ public class BuildWinForBuildings extends Pane{
             switch (playerResources[playerNumber].getSpeciesType()) {
                 case JAVALERZY -> {
                     parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
-                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga_planet100.png").toURI().toString()));
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_war_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
                     parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
