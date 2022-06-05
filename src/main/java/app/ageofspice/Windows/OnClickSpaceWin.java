@@ -38,12 +38,12 @@ public class OnClickSpaceWin extends Pane{
         this.relocate(x + MapController.TILE_SIZE, y);
 
         //Konfiguracja buttonow
-        buildButton.setText("Buduj");
+        buildButton.setText("Build");
         buildButton.relocate(10, 10);
         buildButton.setPrefWidth(80);
         buildButton.setOnAction(this::showBuildWinForBuildings);
 
-        closeButton.setText("Zamknij");
+        closeButton.setText("Close");
         closeButton.relocate(10, 40);
         closeButton.setPrefWidth(80);
         closeButton.setOnAction(this::closeWin);
@@ -65,12 +65,12 @@ public class OnClickSpaceWin extends Pane{
         this.relocate(x + MapController.TILE_SIZE, y);
 
         //Konfiguracja buttonow
-        buildButton.setText("Rekrutuj");
+        buildButton.setText("Recruit");
         buildButton.relocate(10, 10);
         buildButton.setPrefWidth(80);
         buildButton.setOnAction(this::showBuildWinForStation);
 
-        closeButton.setText("Zamknij");
+        closeButton.setText("Close");
         closeButton.relocate(10, 40);
         closeButton.setPrefWidth(80);
         closeButton.setOnAction(this::closeWin);

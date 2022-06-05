@@ -20,11 +20,11 @@ import java.io.File;
 import static app.ageofspice.GameLoop.*;
 
 public class BuildWinForBuildings extends Pane{
-    public Button closeButton = new Button("Zamknij");
+    public Button closeButton = new Button("Close");
     public Pane closePane = new Pane();
-    public Button[] buildButtons = {new Button("Buduj"), new Button("Buduj")};
+    public Button[] buildButtons = {new Button("Build"), new Button("Build")};
     public ImageView[] imgines = {new ImageView(), new ImageView()};
-    public Label[] labels = {new Label("Kopalnia"), new Label("Fabryka")};
+    public Label[] labels = {new Label("Mine"), new Label("Factory")};
     public Pane[] subPanes = {new Pane(), new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();

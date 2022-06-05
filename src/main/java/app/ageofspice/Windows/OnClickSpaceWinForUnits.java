@@ -53,17 +53,17 @@ public class OnClickSpaceWinForUnits extends Pane{
         this.relocate(x + MapController.TILE_SIZE, y);
 
         //Konfiguracja buttonow
-        moveButton.setText("Ruch");
+        moveButton.setText("Move");
         moveButton.relocate(10, 10);
         moveButton.setPrefWidth(80);
         moveButton.setOnAction(this::movementWin);
 
-        occupyButton.setText("Zajmij");
+        occupyButton.setText("Occupy");
         occupyButton.relocate(10, 40);
         occupyButton.setPrefWidth(80);
         occupyButton.setOnAction(this::takePlanetWin);
 
-        closeButton.setText("Zamknij");
+        closeButton.setText("Close");
         closeButton.relocate(10, 70);
         closeButton.setPrefWidth(80);
         closeButton.setOnAction(this::closeWin);

@@ -23,11 +23,11 @@ import static app.ageofspice.MapController.*;
 
 
 public class BuildWinForParentalStation extends Pane{
-    public Button closeButton = new Button("Zamknij");
+    public Button closeButton = new Button("Close");
     public Pane closePane = new Pane();
-    public Button[] buildButtons = {new Button("Rekrutuj"), new Button("Rekrutuj"), new Button("Rekrutuj"),new Button("Rekrutuj")};
+    public Button[] buildButtons = {new Button("Recruit"), new Button("Recruit"), new Button("Recruit"),new Button("Recruit")};
     public ImageView[] imgines = {new ImageView(), new ImageView(), new ImageView(),new ImageView()};
-    public Label[] labels = {new Label("Zwiadowca"), new Label("Explorer"), new Label("Pancernik"), new Label("Niszczyciel")};
+    public Label[] labels = {new Label("Scout"), new Label("Explorer"), new Label("Tank"), new Label("Destroyer")};
     public Pane[] subPanes = {new Pane(), new Pane(), new Pane(),new Pane()};
     public Tile parentTile;
     public ImageView imageToUpload = new ImageView();
