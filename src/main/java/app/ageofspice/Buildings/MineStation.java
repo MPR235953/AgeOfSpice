@@ -19,6 +19,7 @@ public class MineStation extends absBuilding{
         actualHP = baseHP;
         buildType = TileType.MINE_STATION;
         baseCost = new Cost(new AlgiRes(20),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(10));
+        pos = newPosition;
     }
 
 

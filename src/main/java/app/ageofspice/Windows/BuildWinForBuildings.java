@@ -3,6 +3,7 @@ package app.ageofspice.Windows;
 import app.ageofspice.*;
 import app.ageofspice.Buildings.MineStation;
 import app.ageofspice.Buildings.WarStation;
+import app.ageofspice.Buildings.absBuilding;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.movement.ActualPosition;
@@ -137,21 +138,21 @@ public class BuildWinForBuildings extends Pane{
     public void buildKop(ActionEvent event) {
         //TODO: wrzucić grafiki
         //sprawdzenie czy można zbudować budynek + utworzenie
-        if (playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY))) {
+        absBuilding building = playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY));
+        if (building != null) {
+            parentTile.setTileType(TileType.MINE_STATION);          //oznaczenie ze obiekt znajduje sie na mapie
             switch (playerResources[playerNumber].getSpeciesType()) {
                 case JAVALERZY -> {
-                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_mine_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
-                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
                 }
                 case SZRUNGALE -> {
-                    parentTile.setTileType(TileType.MINE_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_mine.png").toURI().toString()));
                 }
             }
+            building.imageView = imageToUpload;
             MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         }
         closeWin(event);
@@ -160,21 +161,21 @@ public class BuildWinForBuildings extends Pane{
     public void buildFab(ActionEvent event){
         //TODO: wrzucić grafiki
         //sprawdzenie czy można zbudować budynek + utworzenie
-        if (playerResources[playerNumber].buyBuilding(TileType.WAR_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY))) {
+        absBuilding building = playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY));
+        if (building != null) {
+            parentTile.setTileType(TileType.WAR_STATION);          //oznaczenie ze obiekt znajduje sie na mapie
             switch (playerResources[playerNumber].getSpeciesType()) {
                 case JAVALERZY -> {
-                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_war_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
-                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
                 }
                 case SZRUNGALE -> {
-                    parentTile.setTileType(TileType.WAR_STATION);       //oznaczenie ze obiekt znajduje sie na mapie
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_war_station.png").toURI().toString()));
                 }
             }
+            building.imageView = imageToUpload;
             MapController.staticPane.getChildren().add(imageToUpload);      //wyswietlenie nowego obiektu na mapie
         }
         closeWin(event);
