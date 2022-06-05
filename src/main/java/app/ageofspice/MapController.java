@@ -43,7 +43,7 @@ public class MapController implements Initializable {
     public static final int CRYSTAL_QUANTITY = 3;
     public static final int SPICE_QUANTITY = 3;
     public static final int PLANET_QUANTITY = ALGA_QUANTITY + VIBRANIUM_QUANTITY + CRYSTAL_QUANTITY + SPICE_QUANTITY;
-    public static final int WINABLE_SPICE_QUANTITY = 2000;
+    public static final int WINABLE_SPICE_QUANTITY = 3000;
 
     //###############################################  Ile jest juz planet na mapie
     private int algaOnMap = 0;
