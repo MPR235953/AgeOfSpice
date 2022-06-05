@@ -91,7 +91,7 @@ public class PlayerFrameController implements Initializable{
             public void run() {
                 Platform.runLater(() -> {
                     refreshStats();
-                    try { searchwinner(); }
+                    try { searchWinner(); }
                     catch (IOException e) { e.printStackTrace(); }
 
                     if(counter > 0){
@@ -113,14 +113,22 @@ public class PlayerFrameController implements Initializable{
         }, 0, 1000);
     }
 
-    public void searchwinner() throws IOException {
-        int destroyedParentalStation = 0;
-        for(int i = 0; i < allParentalStationStorage.size(); i++){
-            if(allParentalStationStorage.get(i).getHP() <= 0)
-                destroyedParentalStation++;
-            else winner = i;
+    public void searchWinner() throws IOException {
+        int deadPlayers = 0;
+        for(int i = 0; i < playerResources.length; i++){
+            if(!playerResources[i].Alive)
+                deadPlayers++;
+            else{
+                winner = i;
+                //przypadek zdobycia wygrywajacej liczby przyprawy
+                if(playerResources[i].getResources().przyprawa.quantity >= WINABLE_SPICE_QUANTITY){
+                    if(timer != null) timer.cancel();
+                    SceneController.switchToFXML("end.fxml");
+                }
+            }
         }
-        if(destroyedParentalStation == 2) {
+        //przypadek pozostania jedynym graczem na planszy
+        if(deadPlayers == 2) {
             if(timer != null) timer.cancel();
             SceneController.switchToFXML("end.fxml");
         }
@@ -134,11 +142,9 @@ public class PlayerFrameController implements Initializable{
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
         playerResources[playerNumber].endturactions();
 
-
-
+        //petla tylko do tego aby nie byl wyswietlany banner martwego gracza (nie jest to petla na warunek wygranej ogarnia to metoda searchWinner)
         int countPlayersDead =0;
-        while(countPlayersDead<3)
-        {
+        while(countPlayersDead<3) {
             playerNumber++;
             if(playerNumber == 3) playerNumber = 0;
             if (playerResources[playerNumber].Alive){
