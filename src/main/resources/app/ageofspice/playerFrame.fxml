@@ -5,6 +5,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="framePane" prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.PlayerFrameController">
@@ -14,7 +16,7 @@
             <Image url="@arts/frame_texture.png" />
          </image>
       </ImageView>
-      <Button fx:id="finishRoundButton" layoutX="716.0" layoutY="24.0" mnemonicParsing="false" onAction="#changePlayer" prefHeight="54.0" prefWidth="185.0" style="-fx-font-size: 20;" text=" Koniec tury">
+      <Button fx:id="finishRoundButton" layoutX="716.0" layoutY="24.0" mnemonicParsing="false" onAction="#changePlayer" prefHeight="54.0" prefWidth="145.0" style="-fx-font-size: 20;" text="End  Round">
          <font>
             <Font size="18.0" />
          </font>
@@ -43,8 +45,8 @@
       <Label fx:id="vibraniumStatusLabel" layoutX="1501.0" layoutY="34.0" text="0" textFill="WHITE" />
       <Label fx:id="crystalStatusLabel" layoutX="1174.0" layoutY="35.0" text="0" textFill="WHITE" />
       <Label fx:id="algaStatusLabel" layoutX="1334.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Label fx:id="roundNumberLabel" layoutX="391.0" layoutY="40.0" prefHeight="17.0" prefWidth="145.0" text="Tura  0" textFill="WHITE" />
-      <Label fx:id="timeLabel" layoutX="550.0" layoutY="40.0" prefHeight="17.0" prefWidth="163.0" text="Czas  2 : 0 0" textFill="WHITE" />
+      <Label fx:id="roundNumberLabel" layoutX="391.0" layoutY="40.0" prefHeight="17.0" prefWidth="145.0" text="Round  0" textFill="WHITE" />
+      <Label fx:id="timeLabel" layoutX="550.0" layoutY="40.0" prefHeight="17.0" prefWidth="163.0" text="Time  2 : 0 0" textFill="WHITE" />
       <Label fx:id="nickLabel" layoutX="228.0" layoutY="42.0" prefHeight="17.0" prefWidth="163.0" text="nick" textFill="WHITE" />
       <Pane fx:id="javPane" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -103,5 +105,24 @@
             </ImageView>
          </children>
       </Pane>
+      <Button fx:id="restoreButton" layoutX="868.0" layoutY="24.0" mnemonicParsing="false" onAction="#restore" prefHeight="54.0" prefWidth="54.0">
+         <graphic>
+            <Pane prefHeight="54.0" prefWidth="54.0">
+               <children>
+                  <Polygon fill="#1fff3d" layoutX="22.0" layoutY="57.0" points="-14.0, -22.0, 15.33331298828125, -22.0, 0.0, -46.0" rotate="90.0" stroke="#18a829" strokeType="INSIDE" />
+               </children>
+            </Pane>
+         </graphic>
+      </Button>
+      <Button fx:id="pauseButton" layoutX="868.0" layoutY="24.0" mnemonicParsing="false" onAction="#pause" prefHeight="54.0" prefWidth="54.0">
+         <graphic>
+            <Pane prefHeight="54.0" prefWidth="54.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bd112e" height="31.0" layoutX="4.0" layoutY="8.0" stroke="#6f0b1e" strokeType="INSIDE" width="13.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#bd112e" height="31.0" layoutX="22.0" layoutY="8.0" stroke="#6f0b1e" strokeType="INSIDE" width="13.0" />
+               </children>
+            </Pane>
+         </graphic>
+      </Button>
    </children>
 </Pane>

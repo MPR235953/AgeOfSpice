@@ -3,9 +3,13 @@ package app.ageofspice;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.UnitandBuildingStorage.PlayerResourcesandUnitsStorage;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -22,6 +26,25 @@ public class PlayerFrameController implements Initializable{
     @FXML private Label timeLabel, roundNumberLabel, nickLabel;
     @FXML private Label spiceStatusLabel, crystalStatusLabel, algaStatusLabel, vibraniumStatusLabel;
     @FXML private Pane javPane, ludPane, szrPane;
+    @FXML private Button pauseButton, restoreButton;
+    private final Pane unactivePane = new Pane();
+    private boolean stopTimerFlag = false;
+
+    public void pause(){
+        unactivePane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
+        unactivePane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
+        unactivePane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.75);");
+        unactivePane.relocate(0, AgeOfSpiceApp.FRAME_SIZE);
+        staticAnchorPane.getChildren().add(unactivePane);
+        restoreButton.toFront();
+        stopTimerFlag = true;
+    }
+
+    public void restore(){
+        staticAnchorPane.getChildren().remove(unactivePane);
+        pauseButton.toFront();
+        stopTimerFlag = false;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,39 +82,33 @@ public class PlayerFrameController implements Initializable{
         crystalStatusLabel.setText(String.valueOf(playerResources[playerNumber].getResources().krysztal.quantity));
         algaStatusLabel.setText(String.valueOf(playerResources[playerNumber].getResources().algi.quantity));
         vibraniumStatusLabel.setText(String.valueOf(playerResources[playerNumber].getResources().wibranium.quantity));
-        roundNumberLabel.setText("Tura   " + roundNumber);
+        roundNumberLabel.setText("Round   " + roundNumber);
     }
 
     public void timerInit(){
         //Aktywacja timera roboczo 15s bo chcialem zobaczyc jak sie kolorek zmienia
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
-            int counter = 120;       // 2 minuty na ture
+            int counter = 90;       // 2 minuty na ture
             @Override
             public void run() {
                 Platform.runLater(() -> {
                     refreshStats();
 
-                    if(counter <= 10) timeLabel.setTextFill(Color.RED);
-                    else timeLabel.setTextFill(Color.WHITE);
                     if(counter > 0){
                         String timeFormat = "";
                         if(counter / 60 < 10) timeFormat += "0" + counter / 60 + " : ";
                         else timeFormat += "0" + counter / 60 + " : ";
                         if(counter % 60 < 10) timeFormat += "0" + counter % 60;
                         else timeFormat += counter % 60;
-                        timeLabel.setText("Czas   " + timeFormat);
-                        counter--;
+                        if(!stopTimerFlag) {
+                            if(counter <= 10) timeLabel.setTextFill(Color.RED);
+                            else timeLabel.setTextFill(Color.WHITE);
+                            timeLabel.setText("Time   " + timeFormat);
+                            counter--;
+                        }
                     }
-                    else{
-                        ///TODO: Zakomentowac sobie fragment ponizej jesli kogos drazni przalacanie banerow
-
-                        //od
-                        //nextPlayer = true;
-                        changePlayer();
-                        //do
-
-                    }
+                    else changePlayer();
                 });
             }
         }, 0, 1000);
@@ -99,6 +116,8 @@ public class PlayerFrameController implements Initializable{
 
     public void changePlayer() {
         if(timer != null) timer.cancel();       //stopowanie timera
+        restore();
+
 
         //zwiekszanie nr rundy i nr playera, ale to chyba bedzie ogarniach GameLoop
         playerResources[playerNumber].endturactions();
