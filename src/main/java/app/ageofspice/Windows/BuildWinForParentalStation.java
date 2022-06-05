@@ -4,6 +4,9 @@ import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.movement.ActualPosition;
+import app.ageofspice.units_classes.DestroyerShip;
+import app.ageofspice.units_classes.DredShip;
+import app.ageofspice.units_classes.ExplorerShip;
 import app.ageofspice.units_classes.ScoutShip;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -42,9 +45,9 @@ public class BuildWinForParentalStation extends Pane{
                                                 {new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spice50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/alga50.png").toURI().toString())), new ImageView(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium50.png").toURI().toString()))},
     };
     public Label[][] materialLabel = {  {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
-                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
-                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))},
-                                        {new Label(String.valueOf(ScoutShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ScoutShip.staticBaseCost.wibranium.quantity))}
+                                        {new Label(String.valueOf(ExplorerShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(ExplorerShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(ExplorerShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(ExplorerShip.staticBaseCost.wibranium.quantity))},
+                                        {new Label(String.valueOf(DredShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(DredShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(DredShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(DredShip.staticBaseCost.wibranium.quantity))},
+                                        {new Label(String.valueOf(DestroyerShip.staticBaseCost.przyprawa.quantity)),new Label(String.valueOf(DestroyerShip.staticBaseCost.krysztal.quantity)),new Label(String.valueOf(DestroyerShip.staticBaseCost.algi.quantity)),new Label(String.valueOf(DestroyerShip.staticBaseCost.wibranium.quantity))}
     };
 
     public BuildWinForParentalStation(){arrayBuildWinForParentalStation.add(this);}

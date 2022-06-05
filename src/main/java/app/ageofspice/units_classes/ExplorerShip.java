@@ -20,14 +20,14 @@ import java.io.File;
 
 
 public class ExplorerShip extends unit{
-    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+    public static Cost staticBaseCost = new Cost(new AlgiRes(20),new SpiceRes(5),new VibraniumRes(20),new CrystalRes(20));
     public ExplorerShip(){
-        baseDMG = 100;
-        baseHP = 40;
-        movementSpeed = 10;
+        baseDMG = 20;
+        baseHP = 60;
+        movementSpeed = 6;
         movementSpeedleft = movementSpeed;
         actualHP = baseHP;
         shipType = TileType.EXPLORER_SHIP;
-        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+        baseCost = new Cost(new AlgiRes(20),new SpiceRes(5),new VibraniumRes(20),new CrystalRes(20));
     }
 }

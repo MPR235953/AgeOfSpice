@@ -21,15 +21,15 @@ import static app.ageofspice.TileType.SCOUT_SHIP;
  */
 
 public class ScoutShip extends unit{
-    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+    public static Cost staticBaseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(10),new CrystalRes(20));
     public ScoutShip(){
-        baseDMG = 50000;
-        baseHP = 45;
+        baseDMG = 10;
+        baseHP = 40;
         shipType = SCOUT_SHIP;
-        movementSpeed = 10;
+        movementSpeed = 9;
         movementSpeedleft = movementSpeed;
         actualHP = baseHP;
-        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+        baseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(10),new CrystalRes(20));
     }
 }
 

@@ -18,14 +18,14 @@ import java.io.File;
  */
 
 public class DestroyerShip extends unit {
-    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(20),new CrystalRes(40));
     public DestroyerShip(){
-        baseDMG = 10;
-        baseHP = 40;
-        movementSpeed = 2;
+        baseDMG = 40;
+        baseHP = 60;
+        movementSpeed = 3;
         movementSpeedleft =movementSpeed;
         actualHP = baseHP;
         shipType = TileType.DESTROYER_SHIP;
-        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(20),new CrystalRes(40));
     }
 }

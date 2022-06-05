@@ -367,6 +367,12 @@ public class UnitsStorage {
     }
 
     void gatherResources(ResourceStorage resources){
+        //surowce ze stacji macierzystej
+        resources.algi.quantity += 10;
+        resources.wibranium.quantity += 10;
+        resources.krysztal.quantity += 10;
+        resources.przyprawa.quantity += 5;
+
         //surowce z posiadanych planet
         for(Planet planet : allPlanetStorage) {
             if (planet.owner == playerResources[playerNumber].getSpeciesType()) {
@@ -381,7 +387,7 @@ public class UnitsStorage {
         //bonus z kopalni
         for (absBuilding building:buildingstorage) {
             if(building instanceof MineStation) {
-                resources.algi.quantity += 10;
+                resources.algi.quantity += 15;
                 resources.wibranium.quantity += 10;
                 resources.krysztal.quantity += 10;
                 resources.przyprawa.quantity += 10;

@@ -166,7 +166,7 @@ public class PlayerResourcesandUnitsStorage {
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
-        resources.resourcesaction();
+        //resources.resourcesaction();
         unitBuilData.gatherResources(resources);
         if(flagToMove) {
             clearFields(unitToMove.position.x, unitToMove.position.y, unitToMove.movementSpeedleft);

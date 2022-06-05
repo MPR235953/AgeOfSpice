@@ -2,16 +2,16 @@ package app.ageofspice.Resourcesandcosts;
 
 public class ResourceStorage {
 
-        public static int BASE_ALGI_GROW = 50;
-        public static int BASE_SPICE_GROW = 50;
-        public static int BASE_VIBRANIUM_GROW = 50;
-        public static int BASE_CRYSTAL_GROW = 50;
+        public static int BASE_ALGI_GROW = 10;
+        public static int BASE_SPICE_GROW = 5;
+        public static int BASE_VIBRANIUM_GROW = 10;
+        public static int BASE_CRYSTAL_GROW = 10;
 
 
-        public AlgiRes algi = new AlgiRes(1000);
-        public SpiceRes przyprawa = new SpiceRes(1000);
-        public VibraniumRes wibranium = new VibraniumRes(1000);
-        public CrystalRes krysztal = new CrystalRes(1000);
+        public AlgiRes algi = new AlgiRes(20);
+        public SpiceRes przyprawa = new SpiceRes(20);
+        public VibraniumRes wibranium = new VibraniumRes(20);
+        public CrystalRes krysztal = new CrystalRes(20);
 
 
 

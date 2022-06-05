@@ -48,7 +48,7 @@ public class BuildWinForBuildings extends Pane{
 
         //konfiguracja glownego Pane okienka
         this.setPrefWidth(500);
-        this.setPrefHeight(150);
+        this.setPrefHeight(370);
         this.setStyle(Colors.winBackground +
                 "-fx-border-width: 5;" +
                 "-fx-view-order: -10;" +
