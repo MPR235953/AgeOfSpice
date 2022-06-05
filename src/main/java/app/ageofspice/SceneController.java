@@ -7,12 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.GenericDeclaration;
 import java.util.Map;
@@ -32,8 +34,9 @@ public class SceneController {
         Scene scene = new Scene(fxmlLoader.load(), AgeOfSpiceApp.SCREEN_WIDTH, AgeOfSpiceApp.SCREEN_HEIGHT);
 
         scene.getStylesheets().add(String.valueOf(SceneController.class.getResource("style.css")));
-        AgeOfSpiceApp.stage.setTitle("Age of Spice - " + FXML);
+        AgeOfSpiceApp.stage.setTitle("Age of Spice");
         AgeOfSpiceApp.stage.setScene(scene);
+        AgeOfSpiceApp.stage.getIcons().add(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/spiceplanet.png").toURI().toString()));
         AgeOfSpiceApp.stage.show();
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
