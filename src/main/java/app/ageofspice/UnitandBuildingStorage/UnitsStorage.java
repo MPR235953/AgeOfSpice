@@ -100,9 +100,10 @@ public class UnitsStorage {
     public static void attackannimation(int nation, int NewCorX, int NewCorY){
         TranslateTransition translateTransition = new TranslateTransition();
         translateTransition.setNode(laserArrayList.get(nation).imageView);
-        translateTransition.setDuration(Duration.seconds(1));
-        translateTransition.setByX(NewCorX);
-        translateTransition.setByY(NewCorY);
+        translateTransition.setDuration(Duration.seconds(4));
+        translateTransition.setByX(NewCorX*TILE_SIZE);
+        translateTransition.setByY(NewCorY*TILE_SIZE);
+
         translateTransition.play();
     }
 
@@ -118,11 +119,13 @@ public class UnitsStorage {
         laserArrayList.get(nation).position.x = NewCorX;
         laserArrayList.get(nation).position.y = NewCorY;
         laserArrayList.get(nation).lasersImviewCreate();
-
+        laserArrayList.get(nation).imageView.relocate(2*SAS_SCALE_POS,2*SAS_SCALE_POS);
+        laserArrayList.get(playerNumber).imageView.relocate(2*SAS_SCALE_POS,2*SAS_SCALE_POS);
         laserArrayList.get(playerNumber).position.x = UnittoMove.position.x;
         laserArrayList.get(playerNumber).position.y = UnittoMove.position.y;
         laserArrayList.get(playerNumber).lasersImviewCreate();
-
+        laserArrayList.get(playerNumber).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
+        laserArrayList.get(nation).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
         //my przezylismy,przeciwnik nie
         if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP>0){
             //
@@ -144,9 +147,9 @@ public class UnitsStorage {
             //
             attackannimation(nation,NewCorX,NewCorY);
             attackannimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y);
-            laserArrayList.get(nation).destroyView();
-            laserArrayList.get(playerNumber).destroyView();
-            TimeUnit.SECONDS.sleep(2);
+            //laserArrayList.get(nation).destroyView();
+            //laserArrayList.get(playerNumber).destroyView();
+           // TimeUnit.SECONDS.sleep(2);
             //
             MapController.staticPane.getChildren().remove(playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).imageView);
             playerResources[nation].getUnitBuilData().unitstorage.remove(shipindex);
@@ -197,28 +200,22 @@ public class UnitsStorage {
         || (NewCorY > UnittoMove.movementSpeedleft + UnittoMove.position.y || NewCorY <  UnittoMove.position.y - UnittoMove.movementSpeedleft ))
             return -1;
 
-
-        switch (Dir){
-            case UP -> UnittoMove.imageView.setRotate(0);
-            case DOWN -> UnittoMove.imageView.setRotate(180);
-            case LEFT -> UnittoMove.imageView.setRotate(270);
-            case RIGHT -> UnittoMove.imageView.setRotate(90);
-
-        }
+        UnittoMove.imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
 
 
         switch (MapController.board[NewCorX][NewCorY].getTileType()){
             case EMPTY_SPACE:
                 MapController.board[NewCorX][NewCorY].setTileType(UnittoMove.shipType);
                 MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
-              //  UnittoMove.imageView.relocate(NewCorX*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS);
+                //ZOSTAWIC NIE RUSZAC
+                UnittoMove.imageView.relocate(2*SAS_SCALE_POS,2*SAS_SCALE_POS);
+                //
                 Path path = new Path();
-                path.getElements().add(new MoveTo(UnittoMove.position.x*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.y*TILE_SIZE + SAS_SCALE_POS));
-               // path.getElements().add(new MoveTo(UnittoMove.position.x + SAS_SCALE_POS,UnittoMove.position.y*TILE_SIZE + SAS_SCALE_POS));
 
-                path.getElements().add(new CubicCurveTo(NewCorX*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.y*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.x*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS,NewCorX*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS));
-//                path.getElements().add(new LineTo(NewCorX*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS));
+                path.getElements().add(new MoveTo((UnittoMove.position.x)*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.y*TILE_SIZE + SAS_SCALE_POS));
+                path.getElements().add(new CubicCurveTo(NewCorX*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.y*TILE_SIZE + SAS_SCALE_POS,UnittoMove.position.x*TILE_SIZE + SAS_SCALE_POS,NewCorY*TILE_SIZE + SAS_SCALE_POS,(Math.abs(NewCorX))*TILE_SIZE + SAS_SCALE_POS,(Math.abs(NewCorY))*TILE_SIZE + SAS_SCALE_POS));
                 PathTransition pathTransition = new PathTransition();
+                //pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
                 pathTransition.setDuration(Duration.millis(4000));
                 pathTransition.setPath(path);
                 pathTransition.setNode(UnittoMove.imageView);
