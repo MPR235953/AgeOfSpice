@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
 */
 
 public abstract class absBuilding {
-    //public ImageView imageView;
+    public ImageView imageView;
     public TileType buildType;
     public int baseHP;
     public int actualHP;
@@ -31,7 +31,7 @@ public abstract class absBuilding {
      */
     abstract void destroy(UnitsStorage playerStorage);
 
-    void changeHP(int change) {
+    public void changeHP(int change) {
         actualHP = Math.min(actualHP + change, baseHP);
     }
 }

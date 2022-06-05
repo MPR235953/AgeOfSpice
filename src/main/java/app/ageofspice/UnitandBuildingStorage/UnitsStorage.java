@@ -285,8 +285,53 @@ public class UnitsStorage {
                     destroyPlayer(i);
 
                 }
+                break;
             case MINE_STATION,WAR_STATION:
-                //TODO: atakowanie budynku
+                int stationindex =-2;
+                int nation1 = playerNumber;
+
+                for (int loop = 0 ; loop<playerResources[playerNumber].getUnitBuilData().buildingstorage.size();loop++){
+                    if (playerResources[playerNumber].getUnitBuilData().buildingstorage.get(loop).pos.x  == NewCorX && playerResources[playerNumber].getUnitBuilData().buildingstorage.get(loop).pos.y  == NewCorY){
+                        stationindex = loop;
+                        break;
+                    }
+                }
+                if (stationindex == -2) {
+
+                    nation1++;
+                    if (nation1 == 3)
+                        nation1 = 0;
+                    for (int loop = 0 ; loop<playerResources[nation1].getUnitBuilData().buildingstorage.size();loop++){
+                        if (playerResources[nation1].getUnitBuilData().buildingstorage.get(loop).pos.x  == NewCorX && playerResources[nation1].getUnitBuilData().buildingstorage.get(loop).pos.y  == NewCorY){
+                            stationindex = loop;
+                            break;
+                        }
+                    }
+                    if (stationindex != -2) {
+                        playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).changeHP(-UnittoMove.baseDMG-playerResources[playerNumber].getUnitBuilData().bonusAttack);
+                            if (playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).baseHP <=0){
+                                MapController.staticPane.getChildren().remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).imageView);
+                                MapController.board[playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.x][playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.y].setTileType(TileType.EMPTY_SPACE);
+                                playerResources[playerNumber].getUnitBuilData().buildingstorage.remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex));
+                            }
+                    } else {
+                        nation1++;
+                        if (nation1 == 3)
+                            nation1 = 0;
+                        for (int loop = 0 ; loop<playerResources[nation1].getUnitBuilData().buildingstorage.size();loop++){
+                            if (playerResources[nation1].getUnitBuilData().buildingstorage.get(loop).pos.x  == NewCorX && playerResources[nation1].getUnitBuilData().buildingstorage.get(loop).pos.y  == NewCorY){
+                                stationindex = loop;
+                                break;
+                            }
+                        }
+                        playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).changeHP(-UnittoMove.baseDMG-playerResources[playerNumber].getUnitBuilData().bonusAttack);
+                        if (playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).baseHP <=0){
+                            MapController.staticPane.getChildren().remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).imageView);
+                            MapController.board[playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.x][playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.y].setTileType(TileType.EMPTY_SPACE);
+                            playerResources[nation1].getUnitBuilData().buildingstorage.remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex));
+                        }
+                    }
+                }
             default:
                 break;
         }
