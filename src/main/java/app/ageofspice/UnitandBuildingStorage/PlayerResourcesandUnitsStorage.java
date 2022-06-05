@@ -12,6 +12,10 @@ import app.ageofspice.movement.ActualPosition;
 import app.ageofspice.units_classes.*;
 import javafx.scene.paint.Color;
 
+import static app.ageofspice.Tile.clearFields;
+import static app.ageofspice.Windows.OnClickSpaceWinForUnits.flagToMove;
+import static app.ageofspice.Windows.OnClickSpaceWinForUnits.unitToMove;
+
 /**
  * Głowna klasa do obsługi gracza.
  * Posiada informacje o jednostkach, budynkach,zasobach gracza.
@@ -160,6 +164,11 @@ public class PlayerResourcesandUnitsStorage {
         unitBuilData.resetstats();
         resources.resourcesaction();
         unitBuilData.gatherResources(resources);
+        if(flagToMove) {
+            clearFields(unitToMove.position.x, unitToMove.position.y, unitToMove.movementSpeedleft);
+            unitToMove = null;
+            flagToMove = false;
+        }
     }
 
     public Color getSpeciesColor(){ return this.speciesColor; }
