@@ -66,7 +66,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="105.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="&gt; Lorem ipsum dolor sit amet, &#10;consectetur adipisci&#10;Quisque finibus imperdiet&#10;justo, ut ullamcorper libe&#10;ro tincidunt non. Integer &#10;o, ut ullamc icula viverra." wrapText="true">
+      <TextArea editable="false" layoutX="105.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="Androids having analytics minds equipped with highly developed technology." wrapText="true">
          <font>
             <Font size="21.0" />
          </font>
@@ -76,7 +76,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="684.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="&gt; Lorem ipsum dolor sit &#10;amet, consectetur adipisci&#10;Quisque finibus imp&#10;erdietjusto, ut ullamcorper libe&#10;ro tincidunt non. Integer &#10;o, ut ullamc icula viverra." wrapText="true">
+      <TextArea editable="false" layoutX="684.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="Humanity at the pinnacle of power. Glorious empire with enormous ambitions." wrapText="true">
          <font>
             <Font name="ArcadeClassic" size="21.0" />
          </font>
@@ -96,7 +96,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="1266.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="&gt; Lorem ipsum dolor sit amet, consectetur adipisciQuisque finibus imp&#10;erdietjusto, utullamcorperlibe&#10;ro tincidunt non. Integer o, ut ullamc icula viverra." wrapText="true">
+      <TextArea editable="false" layoutX="1266.0" layoutY="350.0" prefHeight="100.0" prefWidth="230.0" text="Mysterious shroom-like humanoids. Rumour has it they are all connected through a hive mind." wrapText="true">
          <font>
             <Font name="ArcadeClassic" size="21.0" />
          </font>

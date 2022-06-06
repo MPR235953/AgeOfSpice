@@ -139,30 +139,34 @@ public class PlayerResourcesandUnitsStorage {
         return  0;
     }
 
-    public boolean buyBuilding(TileType type, ActualPosition pos){
+    public absBuilding buyBuilding(TileType type, ActualPosition pos){
+        absBuilding building;
         switch (type) {
             case MINE_STATION -> {
-                MineStation building = new MineStation(pos, unitBuilData);
+                building = new MineStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
-                    return false;
+                    return null;
                 unitBuilData.getBuildingstorage().add(building);
             }
             case WAR_STATION -> {
-                WarStation building = new WarStation(pos, unitBuilData);
+                building = new WarStation(pos, unitBuilData);
                 if (enoughMoneyB(building) == 0)
-                    return false;
+                    return null;
                 unitBuilData.bonusAttack += 20;
                 unitBuilData.getBuildingstorage().add(building);
             }
+            default -> {
+                return null;
+            }
         }
-        return true;
+        return building;
     }
 
 
     //WAZNA
     public void endturactions(){
         unitBuilData.resetstats();
-        resources.resourcesaction();
+        //resources.resourcesaction();
         unitBuilData.gatherResources(resources);
         if(flagToMove) {
             clearFields(unitToMove.position.x, unitToMove.position.y, unitToMove.movementSpeedleft);

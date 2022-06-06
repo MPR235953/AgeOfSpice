@@ -24,10 +24,10 @@ public class AgeOfSpiceApp extends Application {
     public void start(Stage stage) throws IOException {
 
         AgeOfSpiceApp.stage = stage;
-        //SceneController.switchToFXML("start.fxml");
+        SceneController.switchToFXML("start.fxml");
         //SceneController.switchToFXML("speciesChoice.fxml");
 
-        SceneController.switchToFXML("map.fxml");
+        //SceneController.switchToFXML("map.fxml");
         //SceneController.switchToFXML("playerFrame.fxml");
         //SceneController.switchToFXML("end.fxml");
 

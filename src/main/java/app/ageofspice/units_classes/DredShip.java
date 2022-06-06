@@ -20,14 +20,14 @@ import java.io.File;
  */
 
 public class DredShip extends unit{
-    public static Cost staticBaseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+    public static Cost staticBaseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(30),new CrystalRes(20));
     public DredShip(){
         shipType = TileType.DRED_SHIP;
-        baseDMG = 10;
-        baseHP = 40;
-        movementSpeed = 2;
+        baseDMG = 20;
+        baseHP = 100;
+        movementSpeed = 3;
         movementSpeedleft =movementSpeed;
         actualHP = baseHP;
-        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+        baseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(30),new CrystalRes(20));
     }
 }
