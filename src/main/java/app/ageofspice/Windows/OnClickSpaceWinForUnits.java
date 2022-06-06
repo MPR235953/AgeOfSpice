@@ -2,6 +2,7 @@ package app.ageofspice.Windows;
 
 import app.ageofspice.*;
 import app.ageofspice.Species.SpeciesColors;
+import app.ageofspice.UnitandBuildingStorage.UnitsStorage;
 import app.ageofspice.units_classes.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -97,28 +98,11 @@ public class OnClickSpaceWinForUnits extends Pane{
         speedLabel.setTextFill(Color.WHITE);
         speedLabel.setStyle("-fx-font-size: 15;");
 
-        switch(parentTile.getTileType()){
-            case DESTROYER_SHIP -> {
-                healthLabel.setText(healthLabel.getText() + new DestroyerShip().baseHP);
-                damageLabel.setText(damageLabel.getText() + new DestroyerShip().baseDMG);
-                speedLabel.setText(speedLabel.getText() + new DestroyerShip().movementSpeed);
-            }
-            case DRED_SHIP -> {
-                healthLabel.setText(healthLabel.getText() + new DredShip().baseHP);
-                damageLabel.setText(damageLabel.getText() + new DredShip().baseDMG);
-                speedLabel.setText(speedLabel.getText() + new DredShip().movementSpeed);
-            }
-            case EXPLORER_SHIP -> {
-                healthLabel.setText(healthLabel.getText() + new ExplorerShip().baseHP);
-                damageLabel.setText(damageLabel.getText() + new ExplorerShip().baseDMG);
-                speedLabel.setText(speedLabel.getText() + new ExplorerShip().movementSpeed);
-            }
-            case SCOUT_SHIP -> {
-                healthLabel.setText(healthLabel.getText() + new ScoutShip().baseHP);
-                damageLabel.setText(damageLabel.getText() + new ScoutShip().baseDMG);
-                speedLabel.setText(speedLabel.getText() + new ScoutShip().movementSpeed);
-            }
-        }
+        unit newUnit = playerResources[playerNumber].getUnitBuilData().searchforunit(parentTile.boardX, parentTile.boardY);
+
+        healthLabel.setText(healthLabel.getText() + newUnit.actualHP);
+        damageLabel.setText(damageLabel.getText() + (newUnit.baseDMG + playerResources[playerNumber].getUnitBuilData().bonusAttack));
+        speedLabel.setText(speedLabel.getText() + newUnit.movementSpeedleft);
     }
 
     public void closeWin(ActionEvent event){
