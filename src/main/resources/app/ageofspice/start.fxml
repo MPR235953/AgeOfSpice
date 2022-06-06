@@ -11,12 +11,12 @@
             <Image url="@arts/startgr.png" />
          </image>
       </ImageView>
-      <ImageView blendMode="HARD_LIGHT" cache="true" cacheHint="QUALITY" fitHeight="494.0" fitWidth="594.0" layoutX="496.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView blendMode="HARD_LIGHT" cache="true" cacheHint="QUALITY" fitHeight="494.0" fitWidth="594.0" layoutX="481.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@arts/TITLE_START.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="startButton" fitHeight="100.0" fitWidth="200.0" layoutX="693.0" layoutY="651.0">
+      <ImageView fx:id="startButton" fitHeight="100.0" fitWidth="200.0" layoutX="654.0" layoutY="649.0">
          <image>
             <Image url="@arts/start2.png" />
          </image>

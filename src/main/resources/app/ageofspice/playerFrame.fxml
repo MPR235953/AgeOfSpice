@@ -16,37 +16,37 @@
             <Image url="@arts/frame_texture.png" />
          </image>
       </ImageView>
-      <Button fx:id="finishRoundButton" layoutX="716.0" layoutY="24.0" mnemonicParsing="false" onAction="#changePlayer" prefHeight="54.0" prefWidth="145.0" style="-fx-font-size: 20;" text="End  Round">
+      <Button fx:id="finishRoundButton" layoutX="676.0" layoutY="24.0" mnemonicParsing="false" onAction="#changePlayer" prefHeight="54.0" prefWidth="145.0" style="-fx-font-size: 20;" text="End  Round">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <ImageView layoutX="1264.0" layoutY="26.0">
+      <ImageView layoutX="1224.0" layoutY="26.0">
          <image>
             <Image url="@arts/resources_and_planets/alga50.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="1112.0" layoutY="23.0">
+      <ImageView layoutX="1072.0" layoutY="23.0">
          <image>
             <Image url="@arts/resources_and_planets/crystal50.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="951.0" layoutY="23.0">
+      <ImageView layoutX="911.0" layoutY="23.0">
          <image>
             <Image url="@arts/resources_and_planets/spice50.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="1431.0" layoutY="23.0">
+      <ImageView layoutX="1391.0" layoutY="23.0">
          <image>
             <Image url="@arts/resources_and_planets/vibranium50.png" />
          </image>
       </ImageView>
-      <Label fx:id="spiceStatusLabel" layoutX="1009.0" layoutY="34.0" text="0" textFill="WHITE" />
-      <Label fx:id="vibraniumStatusLabel" layoutX="1501.0" layoutY="34.0" text="0" textFill="WHITE" />
-      <Label fx:id="crystalStatusLabel" layoutX="1174.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Label fx:id="algaStatusLabel" layoutX="1334.0" layoutY="35.0" text="0" textFill="WHITE" />
-      <Label fx:id="roundNumberLabel" layoutX="391.0" layoutY="40.0" prefHeight="17.0" prefWidth="145.0" text="Round  0" textFill="WHITE" />
-      <Label fx:id="timeLabel" layoutX="550.0" layoutY="40.0" prefHeight="17.0" prefWidth="163.0" text="Time  2 : 0 0" textFill="WHITE" />
+      <Label fx:id="spiceStatusLabel" layoutX="969.0" layoutY="34.0" text="0" textFill="WHITE" />
+      <Label fx:id="vibraniumStatusLabel" layoutX="1461.0" layoutY="34.0" text="0" textFill="WHITE" />
+      <Label fx:id="crystalStatusLabel" layoutX="1134.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Label fx:id="algaStatusLabel" layoutX="1294.0" layoutY="35.0" text="0" textFill="WHITE" />
+      <Label fx:id="roundNumberLabel" layoutX="351.0" layoutY="40.0" prefHeight="17.0" prefWidth="145.0" text="Round  0" textFill="WHITE" />
+      <Label fx:id="timeLabel" layoutX="510.0" layoutY="40.0" prefHeight="17.0" prefWidth="163.0" text="Time  2 : 0 0" textFill="WHITE" />
       <Label fx:id="nickLabel" layoutX="228.0" layoutY="42.0" prefHeight="17.0" prefWidth="163.0" text="nick" textFill="WHITE" />
       <Pane fx:id="javPane" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -105,7 +105,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="restoreButton" layoutX="868.0" layoutY="24.0" mnemonicParsing="false" onAction="#restore" prefHeight="54.0" prefWidth="54.0">
+      <Button fx:id="restoreButton" layoutX="828.0" layoutY="25.0" mnemonicParsing="false" onAction="#restore" prefHeight="54.0" prefWidth="54.0">
          <graphic>
             <Pane prefHeight="54.0" prefWidth="54.0">
                <children>
@@ -114,7 +114,7 @@
             </Pane>
          </graphic>
       </Button>
-      <Button fx:id="pauseButton" layoutX="868.0" layoutY="24.0" mnemonicParsing="false" onAction="#pause" prefHeight="54.0" prefWidth="54.0">
+      <Button fx:id="pauseButton" layoutX="828.0" layoutY="24.0" mnemonicParsing="false" onAction="#pause" prefHeight="54.0" prefWidth="54.0">
          <graphic>
             <Pane prefHeight="54.0" prefWidth="54.0">
                <children>

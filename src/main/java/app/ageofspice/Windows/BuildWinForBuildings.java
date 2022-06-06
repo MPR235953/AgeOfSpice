@@ -116,8 +116,8 @@ public class BuildWinForBuildings extends Pane{
                 imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_war_station.png").toURI().toString()));
             }
             case LUDZIE -> {
-                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
-                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/crystal_planet100.png").toURI().toString()));
+                imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_mine.png").toURI().toString()));
+                imgines[1].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_war_station.png").toURI().toString()));
             }
             case SZRUNGALE -> {
                 imgines[0].setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_mine.png").toURI().toString()));
@@ -146,7 +146,7 @@ public class BuildWinForBuildings extends Pane{
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_mine_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
-                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_mine.png").toURI().toString()));
                 }
                 case SZRUNGALE -> {
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_mine.png").toURI().toString()));
@@ -169,7 +169,7 @@ public class BuildWinForBuildings extends Pane{
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Javalerzy_textures/Javalerzy_war_station.png").toURI().toString()));
                 }
                 case LUDZIE -> {
-                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/resources_and_planets/vibranium_planet100.png").toURI().toString()));
+                    imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Ludzie_textures/Ludzie_war_station.png").toURI().toString()));
                 }
                 case SZRUNGALE -> {
                     imageToUpload.setImage(new Image(new File("src/main/resources/app/ageofspice/arts/Szrungale_textures/Szrungale_war_station.png").toURI().toString()));

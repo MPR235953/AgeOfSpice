@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 
 public class ParentalStation extends ImageView {
 
-    public static final int BASIC_HP = 1000;
+    public static final int BASIC_HP = 200;
     private TileType parentalStationType;
     private double HP;
     public ActualPosition stationposition= new ActualPosition(0,0);
