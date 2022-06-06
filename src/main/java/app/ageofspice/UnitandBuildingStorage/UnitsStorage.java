@@ -6,6 +6,7 @@ import app.ageofspice.Planet;
 import app.ageofspice.Resourcesandcosts.ResourceStorage;
 import app.ageofspice.Species.SpeciesType;
 import app.ageofspice.TileType;
+import app.ageofspice.movement.ActualPosition;
 import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.unit;
 import app.ageofspice.Buildings.absBuilding;
@@ -13,6 +14,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -97,60 +100,40 @@ public class UnitsStorage {
     }
 
 
-    public static void attackannimation(int nation, int NewCorX, int NewCorY){
+    public static void attackannimation(int nation, int NewCorX, int NewCorY,int time,int x ,int y,unit unit1,int shipindex) throws InterruptedException {
         TranslateTransition translateTransition = new TranslateTransition();
         translateTransition.setNode(laserArrayList.get(nation).imageView);
-        translateTransition.setDuration(Duration.seconds(4));
-        translateTransition.setByX(NewCorX*TILE_SIZE);
-        translateTransition.setByY(NewCorY*TILE_SIZE);
-
+        translateTransition.setDuration(Duration.millis(time));
+        translateTransition.setFromX(x*TILE_SIZE);
+        translateTransition.setFromY(y*TILE_SIZE);
+        translateTransition.setToX(NewCorX*TILE_SIZE);
+        translateTransition.setToY(NewCorY*TILE_SIZE);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    destroyint(nation,shipindex,unit1,NewCorX,NewCorY,StatusandDirection.RIGHT);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         translateTransition.play();
+
     }
 
-    public static int movementCalculator(int oldx,int oldy,int newx,int newy){
-        if (Math.abs(newx-oldx) >= Math.abs(newy-oldy))
-            return Math.abs(newx-oldx);
-
-        return Math.abs(newy-oldy);
-    }
-    public static int attack(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY,StatusandDirection Dir) throws InterruptedException {
-        playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP -=UnittoMove.baseDMG;
-        UnittoMove.actualHP-=playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).baseDMG/2;
-        laserArrayList.get(nation).position.x = NewCorX;
-        laserArrayList.get(nation).position.y = NewCorY;
-        laserArrayList.get(nation).lasersImviewCreate();
-        laserArrayList.get(nation).imageView.relocate(2*SAS_SCALE_POS,2*SAS_SCALE_POS);
-        laserArrayList.get(playerNumber).imageView.relocate(2*SAS_SCALE_POS,2*SAS_SCALE_POS);
-        laserArrayList.get(playerNumber).position.x = UnittoMove.position.x;
-        laserArrayList.get(playerNumber).position.y = UnittoMove.position.y;
-        laserArrayList.get(playerNumber).lasersImviewCreate();
-        laserArrayList.get(playerNumber).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
-        laserArrayList.get(nation).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
+    private static void destroyint(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY,StatusandDirection Dir) throws InterruptedException {
         //my przezylismy,przeciwnik nie
         if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP>0){
-            //
-            attackannimation(nation,NewCorX,NewCorY);
-            attackannimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y);
-            laserArrayList.get(nation).destroyView();
-            laserArrayList.get(playerNumber).destroyView();
-            TimeUnit.SECONDS.sleep(2);
-            //
+
             MapController.staticPane.getChildren().remove(playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).imageView);
             playerResources[nation].getUnitBuilData().unitstorage.remove(shipindex);
             MapController.board[NewCorX][NewCorY].setTileType(TileType.EMPTY_SPACE);
-            movement(UnittoMove,Dir,NewCorX,NewCorY);
+            movement(UnittoMove,StatusandDirection.RIGHT,NewCorX,NewCorY);
 
-            return 0;
         }
         //my nie żyjemy,przeciwnik też
         else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP<=0){
-            //
-            attackannimation(nation,NewCorX,NewCorY);
-            attackannimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y);
-            //laserArrayList.get(nation).destroyView();
-            //laserArrayList.get(playerNumber).destroyView();
-           // TimeUnit.SECONDS.sleep(2);
-            //
             MapController.staticPane.getChildren().remove(playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).imageView);
             playerResources[nation].getUnitBuilData().unitstorage.remove(shipindex);
             MapController.board[NewCorX][NewCorY].setTileType(TileType.EMPTY_SPACE);
@@ -161,28 +144,40 @@ public class UnitsStorage {
         }
         // my nie żyjemy, przeciwnik przeżył
         else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP >0 && UnittoMove.actualHP<=0){
-            //
-            attackannimation(nation,NewCorX,NewCorY);
-            attackannimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y);
-            laserArrayList.get(nation).destroyView();
-            laserArrayList.get(playerNumber).destroyView();
-            TimeUnit.SECONDS.sleep(2);
-            //
             MapController.staticPane.getChildren().remove(UnittoMove.imageView);
             MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
             playerResources[playerNumber].getUnitBuilData().unitstorage.remove(UnittoMove);
         }
         //oboje przeżyliśmy
         else{
-            //
-            attackannimation(nation,NewCorX,NewCorY);
-            attackannimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y);
-            laserArrayList.get(nation).destroyView();
-            laserArrayList.get(playerNumber).destroyView();
-            TimeUnit.SECONDS.sleep(2);
-            //
             UnittoMove.movementSpeedleft = 0;
         }
+        ActualPosition actualPosition =new ActualPosition();
+        if ( laserArrayList.get(nation).position != actualPosition && laserArrayList.get(playerNumber).position != actualPosition) {
+            laserArrayList.get(nation).destroyView();
+            laserArrayList.get(playerNumber).destroyView();
+        }
+    }
+
+    public static int movementCalculator(int oldx,int oldy,int newx,int newy){
+        if (Math.abs(newx-oldx) >= Math.abs(newy-oldy))
+            return Math.abs(newx-oldx);
+
+        return Math.abs(newy-oldy);
+    }
+
+
+
+    public static int attack(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY,StatusandDirection Dir) throws InterruptedException {
+        playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP -=UnittoMove.baseDMG+playerResources[playerNumber].getUnitBuilData().bonusAttack;
+        UnittoMove.actualHP-=playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).baseDMG/2+playerResources[nation].getUnitBuilData().bonusAttack;
+        laserArrayList.get(nation).lasersImviewCreate();
+        laserArrayList.get(playerNumber).lasersImviewCreate();
+        laserArrayList.get(playerNumber).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
+        laserArrayList.get(nation).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
+        attackannimation(playerNumber,NewCorX,NewCorY,600,UnittoMove.position.x,UnittoMove.position.y,UnittoMove,shipindex);
+        attackannimation(nation,UnittoMove.position.x,UnittoMove.position.y,600,NewCorX,NewCorY,UnittoMove,shipindex);
+
 
         return 0;
     }
