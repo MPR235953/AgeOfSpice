@@ -111,6 +111,7 @@ public class UnitsStorage {
         translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+
                 try {
                     destroyint(nation,shipindex,unit1,NewCorX,NewCorY,StatusandDirection.RIGHT);
                 } catch (InterruptedException e) {
@@ -121,6 +122,27 @@ public class UnitsStorage {
         translateTransition.play();
 
     }
+
+    public static void attackannimationforbuildings(int nation, int NewCorX, int NewCorY,int time,int x ,int y,unit unit1,int shipindex) throws InterruptedException {
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setNode(laserArrayList.get(playerNumber).imageView);
+        translateTransition.setDuration(Duration.millis(time));
+        translateTransition.setFromX(x*TILE_SIZE);
+        translateTransition.setFromY(y*TILE_SIZE);
+        translateTransition.setToX(NewCorX*TILE_SIZE);
+        translateTransition.setToY(NewCorY*TILE_SIZE);
+        translateTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                attackbuilding(unit1,nation,shipindex);
+            }
+
+        });
+        translateTransition.play();
+
+    }
+
+
 
     private static void destroyint(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY,StatusandDirection Dir) throws InterruptedException {
         //my przezylismy,przeciwnik nie
@@ -182,7 +204,17 @@ public class UnitsStorage {
         return 0;
     }
 
+    public static void  attackbuilding(unit UnittoMove, int nation1,int stationindex){
 
+            playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).changeHP(-UnittoMove.baseDMG-playerResources[playerNumber].getUnitBuilData().bonusAttack);
+                            if (playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).actualHP <=0){
+                                MapController.staticPane.getChildren().remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).imageView);
+                                MapController.board[playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.x][playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.y].setTileType(TileType.EMPTY_SPACE);
+                                playerResources[playerNumber].getUnitBuilData().buildingstorage.remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex));
+                            }
+        laserArrayList.get(playerNumber).destroyView();
+
+    }
 
 //tu odbywa się ruch jednostek i walka miedzy jednostkami
     public static int movement(unit UnittoMove, StatusandDirection Dir,int NewCorX , int NewCorY) throws InterruptedException {
@@ -284,6 +316,8 @@ public class UnitsStorage {
             case MINE_STATION,WAR_STATION:
                 int stationindex =-2;
                 int nation1 = playerNumber;
+                laserArrayList.get(playerNumber).lasersImviewCreate();
+                laserArrayList.get(playerNumber).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
 
                 for (int loop = 0 ; loop<playerResources[playerNumber].getUnitBuilData().buildingstorage.size();loop++){
                     if (playerResources[playerNumber].getUnitBuilData().buildingstorage.get(loop).pos.x  == NewCorX && playerResources[playerNumber].getUnitBuilData().buildingstorage.get(loop).pos.y  == NewCorY){
@@ -303,12 +337,8 @@ public class UnitsStorage {
                         }
                     }
                     if (stationindex != -2) {
-                        playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).changeHP(-UnittoMove.baseDMG-playerResources[playerNumber].getUnitBuilData().bonusAttack);
-                            if (playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).actualHP <=0){
-                                MapController.staticPane.getChildren().remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).imageView);
-                                MapController.board[playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.x][playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.y].setTileType(TileType.EMPTY_SPACE);
-                                playerResources[playerNumber].getUnitBuilData().buildingstorage.remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex));
-                            }
+                        attackannimationforbuildings(nation1,NewCorX,NewCorY,600,UnittoMove.position.x,UnittoMove.position.y,UnittoMove,stationindex);
+
                     } else {
                         nation1++;
                         if (nation1 == 3)
@@ -319,12 +349,9 @@ public class UnitsStorage {
                                 break;
                             }
                         }
-                        playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).changeHP(-UnittoMove.baseDMG-playerResources[playerNumber].getUnitBuilData().bonusAttack);
-                        if (playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).actualHP <=0){
-                            MapController.staticPane.getChildren().remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).imageView);
-                            MapController.board[playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.x][playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex).pos.y].setTileType(TileType.EMPTY_SPACE);
-                            playerResources[nation1].getUnitBuilData().buildingstorage.remove(playerResources[nation1].getUnitBuilData().buildingstorage.get(stationindex));
-                        }
+
+                        attackannimationforbuildings(nation1,NewCorX,NewCorY,600,UnittoMove.position.x,UnittoMove.position.y,UnittoMove,stationindex);
+
                     }
                 }
             default:
