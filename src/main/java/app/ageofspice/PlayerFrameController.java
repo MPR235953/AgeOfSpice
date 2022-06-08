@@ -177,6 +177,10 @@ public class PlayerFrameController implements Initializable{
                 arrayOnClickSpaceWinForUnits.get(i).closeWin(null);
                 staticPane.getChildren().remove(arrayOnClickSpaceWinForUnits.get(i));
         }
+        for(int i = 0; i < arrayOnClickSpaceWinForBuildings.size(); i++){
+            arrayOnClickSpaceWinForBuildings.get(i).closeWin(null);
+            staticPane.getChildren().remove(arrayOnClickSpaceWinForBuildings.get(i));
+        }
     }
 
 }
