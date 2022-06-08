@@ -38,7 +38,7 @@ public class AgeOfSpiceApp extends Application {
         AgeOfSpiceApp.stage.setOnCloseRequest(event -> end());
     }
 
-    public void end(){
+    public static void end(){
         // podczas zamykania aplikacji trzeba zakonczyc jeszcze dzialanie timera ktory liczy czas do konca tury gracza
         // inaczej po zamknieciu appki timer nadal dziala jako watek a apka dziala w tle
         if(PlayerFrameController.timer != null)

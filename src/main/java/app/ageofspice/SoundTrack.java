@@ -76,8 +76,10 @@ public class SoundTrack{
                 running = true;
                 double current = mediaPlayer.getCurrentTime().toSeconds();
                 double end = media.getDuration().toSeconds();
-                if(current/end == 1)
+                if(current/end == 1) {
                     cancelTimer();
+                    nextMedia();
+                }
             }
         };
         timer.scheduleAtFixedRate(task, 0, 1000);
@@ -86,12 +88,11 @@ public class SoundTrack{
     public void cancelTimer() {
         running = false;
         timer.cancel();
-        nextMedia();
     }
 
     public void destroy(){
-        mediaPlayer.pause();
-        task.cancel();
-        timer.cancel();
+        if(mediaPlayer != null) mediaPlayer.pause();
+        if(task != null) task.cancel();
+        if(timer != null) timer.cancel();
     }
 }
