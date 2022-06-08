@@ -28,6 +28,8 @@ public class PlayerFrameController implements Initializable{
     private boolean stopTimerFlag = false;
 
     public void pause(){
+        /*if(AgeOfSpiceApp.soundTrack != null) AgeOfSpiceApp.soundTrack.pauseMedia();
+        if(EndController.soundTrack != null) EndController.soundTrack.pauseMedia();*/
         unactivePane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
         unactivePane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         unactivePane.setStyle("-fx-background-color: rgba(0, 0, 0, 0.75);");
@@ -38,6 +40,8 @@ public class PlayerFrameController implements Initializable{
     }
 
     public void restore(){
+        /*if(AgeOfSpiceApp.soundTrack != null) AgeOfSpiceApp.soundTrack.playMedia();
+        if(EndController.soundTrack != null) EndController.soundTrack.playMedia();*/
         staticAnchorPane.getChildren().remove(unactivePane);
         pauseButton.toFront();
         stopTimerFlag = false;
@@ -176,6 +180,10 @@ public class PlayerFrameController implements Initializable{
         for(int i = 0; i < arrayOnClickSpaceWinForUnits.size(); i++){
                 arrayOnClickSpaceWinForUnits.get(i).closeWin(null);
                 staticPane.getChildren().remove(arrayOnClickSpaceWinForUnits.get(i));
+        }
+        for(int i = 0; i < arrayOnClickSpaceWinForBuildings.size(); i++){
+            arrayOnClickSpaceWinForBuildings.get(i).closeWin(null);
+            staticPane.getChildren().remove(arrayOnClickSpaceWinForBuildings.get(i));
         }
     }
 

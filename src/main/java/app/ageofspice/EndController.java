@@ -15,9 +15,14 @@ public class EndController implements Initializable {
     @FXML Label winnerLabel, winLabel;
     @FXML AnchorPane anchorPane;
     public static AnchorPane staticAnchorPane;
+    public static SoundTrack soundTrack = new SoundTrack();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(AgeOfSpiceApp.soundTrack != null) AgeOfSpiceApp.soundTrack.destroy();
+        soundTrack.init("src/main/resources/app/ageofspice/egg");
+        soundTrack.playMedia();
+
         staticAnchorPane = anchorPane;
         switch(GameLoop.winner){
             case 0 -> javPane.relocate(600, 250);

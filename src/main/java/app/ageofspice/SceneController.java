@@ -80,8 +80,7 @@ public class SceneController {
                         warningPane.getChildren().addAll(exitNoButton, exitYesButton, warningLabel);
 
                         exitYesButton.setOnAction((ActionEvent event) -> {
-                            if(PlayerFrameController.timer != null)
-                                PlayerFrameController.timer.cancel();
+                            AgeOfSpiceApp.end();
                             Platform.exit();
                         });
 

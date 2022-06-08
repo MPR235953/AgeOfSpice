@@ -2,6 +2,7 @@ package app.ageofspice;
 
 import  app.ageofspice.Species.SpeciesColors;
 import app.ageofspice.Windows.OnClickSpaceWin;
+import app.ageofspice.Windows.OnClickSpaceWinForBuildings;
 import app.ageofspice.Windows.OnClickSpaceWinForUnits;
 import app.ageofspice.units_classes.unit;
 import javafx.beans.value.ChangeListener;
@@ -139,7 +140,7 @@ public class Tile extends Rectangle {
                     win.setParentTile(this);
                     win.makeWinForStation(this.x, this.y);
                 }
-                else{
+                else if (this.tileType == SZR_PARENTAL_STATION && playerNumber == 2){
                     OnClickSpaceWin win = new OnClickSpaceWin();
                     win.setParentTile(this);
                     win.makeWinForStation(this.x, this.y);
@@ -156,6 +157,11 @@ public class Tile extends Rectangle {
                     win.setParentTile(this);
                     win.makeWin(this.x, this.y);
                 }
+            }
+            else if(this.tileType == MINE_STATION || this.tileType == WAR_STATION){
+                OnClickSpaceWinForBuildings win = new OnClickSpaceWinForBuildings();
+                win.setParentTile(this);
+                win.makeStatisticWin(this.x, this.y);
             }
 
 

@@ -66,6 +66,14 @@ public class UnitsStorage {
         return null;
     }
 
+    public absBuilding searchForBuilding(int x,int y){
+        for (int i = 0; i<this.buildingstorage.size();i++){
+            if (buildingstorage.get(i).pos.x  == x && buildingstorage.get(i).pos.y  == y)
+                return  buildingstorage.get(i);
+        }
+        return null;
+    }
+
     public int searchforunitindex(int x,int y){
         for (int i = 0; i<this.unitstorage.size();i++){
             if (unitstorage.get(i).position.x  == x && unitstorage.get(i).position.y  == y){
