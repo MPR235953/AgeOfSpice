@@ -121,7 +121,7 @@ public class BuildWinForParentalStation extends Pane{
         buildButtons[1].setOnAction(this::buildExpl);
         buildButtons[2].setOnAction(this::buildDred);
         buildButtons[3].setOnAction(this::buildDest);
-        //TODO: Napisac klasy dla stacji i zaprojektowac grafike
+
         //Narazie roboczo tylko dla playera nr 0, pozniej nalezy to powiazac z aktualnym
         //graczem w petli np robiac statyczna zmienna gracza i po kazdej iteracji nadpisywac ta zmienna
         switch(playerResources[playerNumber].getSpeciesType()){//speciesChoiceController.player[0].getSpeciesType()){

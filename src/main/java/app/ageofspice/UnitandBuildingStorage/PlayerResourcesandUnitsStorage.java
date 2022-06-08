@@ -22,9 +22,6 @@ import static app.ageofspice.Windows.OnClickSpaceWinForUnits.unitToMove;
  * WAZNA
  */
 
-/// TODO: 16.05.2022 Rozbudowa i zastanowienie sie nad kolejnymi polami klasy (status gracza,nacja,żyje czy nie itp.)
-/// TODO: 17.05.2022 Funkcja endturaction do rozbudowy. Ma zawierać wszystkie akcje dziejące się na koniec tury(zasoby itp)
-/// TODO: 17.05.2022 Buyunits funkcja dokonczyc spawnowanie sie statkow na mapi i przemysleć kod
 
 public class PlayerResourcesandUnitsStorage {
 
@@ -82,7 +79,6 @@ public class PlayerResourcesandUnitsStorage {
         return 0;
     }
 
-    /// TODO: 24.05.2022 zmiana obrazow imageview, przemyslec wyglad funkcji, dodac spawnowanie sie na mapie.Do poprawy
     public int buyunits(TileType type, ActualPosition pos){
 
         switch (type) {

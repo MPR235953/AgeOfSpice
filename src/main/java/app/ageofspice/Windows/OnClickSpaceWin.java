@@ -21,7 +21,7 @@ public class OnClickSpaceWin extends Pane{
 
     public void setParentTile(Tile tile){ parentTile = tile; }      //funkcja zrobiona po to aby stylizowac kafelek ktory zostal klikniety
 
-    ///TODO: podlaczenie kolejnych zdarzen pod przyciski
+
 
     public void makeWinForBuildings(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie

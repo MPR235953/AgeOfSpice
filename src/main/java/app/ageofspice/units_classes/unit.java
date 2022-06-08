@@ -19,12 +19,7 @@ import static app.ageofspice.MapController.SAS_SCALE_POS;
  *
  */
 
-//statystyki randomowo dałem
-//można zmienic do jednostek
-// TODO: 16.05.2022 Zmienic ilosci przy zmiennych(baseHP itp) oraz zastanowic sie czy nad ostatecznym wygladem tych klas
-// TODO: 16.05.2022 Przemyslec i potestowac stworzone klasy
-// TODO: 16.05.2022 Przemyslec czy bawimy sie w armor czy nie
-//Koszt zmienic o klase zawierającą koszty
+
 public abstract class unit {
     public ImageView imageView ;
     public TileType shipType ;

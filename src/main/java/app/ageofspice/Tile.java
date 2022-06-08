@@ -128,7 +128,7 @@ public class Tile extends Rectangle {
             else if (this.tileType == TileType.JAV_PARENTAL_STATION || this.tileType == TileType.LUD_PARENTAL_STATION
                     || this.tileType == TileType.SZR_PARENTAL_STATION){
 
-                /// TODO: 29.05.2022 Do poprawy. Zmienić na enumy i zbadać stacje
+
                 if (this.tileType == JAV_PARENTAL_STATION && playerNumber == 0) {
                     OnClickSpaceWin win = new OnClickSpaceWin();
                     win.setParentTile(this);
@@ -158,7 +158,7 @@ public class Tile extends Rectangle {
                 }
             }
 
-            ///TODO: inne okienka dla innych rodzajow obiektow
+
         });
 
 

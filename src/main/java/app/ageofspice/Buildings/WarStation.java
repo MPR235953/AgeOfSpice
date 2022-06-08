@@ -20,7 +20,6 @@ public class WarStation extends absBuilding{
         pos = newPosition;
     }
 
-    //TODO wrzucić ten bonus do jednostek
 
     @Override
     void destroy(UnitsStorage playerStorage) {

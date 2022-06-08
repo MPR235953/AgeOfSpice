@@ -96,7 +96,7 @@ public class MapController implements Initializable {
             }
         }
 
-        /// TODO: Uzupelnienie pol klasy z zasobami gracza
+
         //generacja stacji macierzystych kazdej z ras (stale polozenie)
         board[JAV_X][JAV_Y].setTileType(TileType.JAV_PARENTAL_STATION);
         board[JAV_X][JAV_Y].setStroke(SpeciesColors.javColor);
@@ -157,7 +157,6 @@ public class MapController implements Initializable {
         }
 
 
-        ///TODO: przez staticPane mozna pokazywac obiekty na mapie
 
         staticAnchorPane = anchorPane;
         staticPane = pane;

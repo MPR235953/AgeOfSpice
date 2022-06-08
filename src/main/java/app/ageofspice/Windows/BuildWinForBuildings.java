@@ -136,7 +136,7 @@ public class BuildWinForBuildings extends Pane{
     }
 
     public void buildKop(ActionEvent event) {
-        //TODO: wrzucić grafiki
+
         //sprawdzenie czy można zbudować budynek + utworzenie
         absBuilding building = playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY));
         if (building != null) {
@@ -159,9 +159,9 @@ public class BuildWinForBuildings extends Pane{
     }
 
     public void buildFab(ActionEvent event){
-        //TODO: wrzucić grafiki
+
         //sprawdzenie czy można zbudować budynek + utworzenie
-        absBuilding building = playerResources[playerNumber].buyBuilding(TileType.MINE_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY));
+        absBuilding building = playerResources[playerNumber].buyBuilding(TileType.WAR_STATION, new ActualPosition(parentTile.boardX, parentTile.boardY));
         if (building != null) {
             parentTile.setTileType(TileType.WAR_STATION);          //oznaczenie ze obiekt znajduje sie na mapie
             switch (playerResources[playerNumber].getSpeciesType()) {

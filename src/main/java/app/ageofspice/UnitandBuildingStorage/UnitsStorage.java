@@ -10,13 +10,11 @@ import app.ageofspice.movement.ActualPosition;
 import app.ageofspice.movement.StatusandDirection;
 import app.ageofspice.units_classes.unit;
 import app.ageofspice.Buildings.absBuilding;
-import javafx.animation.FadeTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
@@ -24,14 +22,15 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static app.ageofspice.Explosion.createview;
+import static app.ageofspice.Explosion.imageViewArrayList;
 import static app.ageofspice.GameLoop.*;
 import static app.ageofspice.MapController.*;
 
 /**
  * klasa przeznaczona do trzymania informacji o ilosci i budynkach oraz jednostakch danej nacji/gracza.
  */
-/// TODO: 16.05.2022 Modyfikacja funkcji do ruchu i rozbudowa ich
-/// TODO: 16.05.2022 Modyfikacja movementu
+
 public class UnitsStorage {
 
 
@@ -100,7 +99,7 @@ public class UnitsStorage {
     }
 
 
-    public static void attackannimation(int nation, int NewCorX, int NewCorY,int time,int x ,int y,unit unit1,int shipindex) throws InterruptedException {
+    public static void attackannimation(int nation, int NewCorX, int NewCorY,int time,int x ,int y,unit unit1,int shipindex,int nationtodestroy) throws InterruptedException {
         TranslateTransition translateTransition = new TranslateTransition();
         translateTransition.setNode(laserArrayList.get(nation).imageView);
         translateTransition.setDuration(Duration.millis(time));
@@ -113,7 +112,11 @@ public class UnitsStorage {
             public void handle(ActionEvent actionEvent) {
 
                 try {
-                    destroyint(nation,shipindex,unit1,NewCorX,NewCorY,StatusandDirection.RIGHT);
+                    laserArrayList.get(nation).destroyView();
+                    laserArrayList.get(playerNumber).destroyView();
+                    if (playerResources[nationtodestroy].getUnitBuilData().searchforunitindex(NewCorX,NewCorY) !=-1) {
+                        destroyint(nationtodestroy, shipindex, unit1, NewCorX, NewCorY);
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -142,44 +145,83 @@ public class UnitsStorage {
 
     }
 
+    public static void destroyanimation(int nation,int NewCorX, int NewCorY,int shipindex){
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setNode(playerResources[nation].getUnitBuilData().searchforunit(NewCorX,NewCorY).imageView);
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    afterattackupdate(nation, NewCorX, NewCorY,shipindex);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
+        });
+        fadeTransition.play();
+    }
+        // modyfikacja
+    public static void explosionanimation(int nation,int NewCorX, int NewCorY,int shipindex,int imageviewnumber,int time,int size){
 
-    private static void destroyint(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY,StatusandDirection Dir) throws InterruptedException {
-        //my przezylismy,przeciwnik nie
-        if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP>0){
+        ImageView imageView = createview(imageViewArrayList.get(imageviewnumber),size,NewCorX,NewCorY);
+        ScaleTransition scaleTransition = new ScaleTransition();
+        scaleTransition.setNode(imageView);
+        scaleTransition.setDuration(Duration.millis(time));
+        scaleTransition.setByX(2.0);
+        scaleTransition.setByY(2.0);
+        scaleTransition.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
 
+                MapController.staticPane.getChildren().remove(imageView);
+                if (imageviewnumber+1<imageViewArrayList.size()){
+                    explosionanimation(nation, NewCorX, NewCorY, shipindex, imageviewnumber+1, time+30,size+10);
+                }
+            }
+        });
+        scaleTransition.play();
+    }
+    public static void afterattackupdate(int nation,int NewCorX, int NewCorY,int shipindex) throws InterruptedException {
+        if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0){
             MapController.staticPane.getChildren().remove(playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).imageView);
             playerResources[nation].getUnitBuilData().unitstorage.remove(shipindex);
             MapController.board[NewCorX][NewCorY].setTileType(TileType.EMPTY_SPACE);
-            movement(UnittoMove,StatusandDirection.RIGHT,NewCorX,NewCorY);
+            explosionanimation(nation,NewCorX,NewCorY,shipindex,0,50,20);
+        }
+    }
+    private static void destroyint(int nation,int shipindex,unit UnittoMove, int NewCorX, int NewCorY) throws InterruptedException {
 
-        }
-        //my nie żyjemy,przeciwnik też
-        else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP<=0){
-            MapController.staticPane.getChildren().remove(playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).imageView);
-            playerResources[nation].getUnitBuilData().unitstorage.remove(shipindex);
-            MapController.board[NewCorX][NewCorY].setTileType(TileType.EMPTY_SPACE);
-            MapController.staticPane.getChildren().remove(UnittoMove.imageView);
-            MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
-            playerResources[playerNumber].getUnitBuilData().unitstorage.remove(UnittoMove);
-
-        }
-        // my nie żyjemy, przeciwnik przeżył
-        else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP >0 && UnittoMove.actualHP<=0){
-            MapController.staticPane.getChildren().remove(UnittoMove.imageView);
-            MapController.board[UnittoMove.position.x][UnittoMove.position.y].setTileType(TileType.EMPTY_SPACE);
-            playerResources[playerNumber].getUnitBuilData().unitstorage.remove(UnittoMove);
-        }
-        //oboje przeżyliśmy
-        else{
-            UnittoMove.movementSpeedleft = 0;
-        }
         ActualPosition actualPosition =new ActualPosition();
         if ( laserArrayList.get(nation).position != actualPosition && laserArrayList.get(playerNumber).position != actualPosition) {
             laserArrayList.get(nation).destroyView();
             laserArrayList.get(playerNumber).destroyView();
         }
+        //my przezylismy,przeciwnik nie
+        if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP>0){
+            destroyanimation(nation,NewCorX,NewCorY,playerResources[nation].getUnitBuilData().searchforunitindex(NewCorX,NewCorY));
+         UnittoMove.movementSpeedleft=0;
+        }
+        //my nie żyjemy,przeciwnik też
+        else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP <=0 && UnittoMove.actualHP<=0){
+            destroyanimation(nation,NewCorX,NewCorY,playerResources[nation].getUnitBuilData().searchforunitindex(NewCorX,NewCorY));
+            destroyanimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y,playerResources[playerNumber].getUnitBuilData().searchforunitindex(UnittoMove.position.x,UnittoMove.position.y));
+        }
+        // my nie żyjemy, przeciwnik przeżył
+        else if (playerResources[nation].getUnitBuilData().unitstorage.get(shipindex).actualHP >0 && UnittoMove.actualHP<=0){
+            destroyanimation(playerNumber,UnittoMove.position.x,UnittoMove.position.y,playerResources[playerNumber].getUnitBuilData().searchforunitindex(UnittoMove.position.x,UnittoMove.position.y));
+        }
+        //oboje przeżyliśmy
+        else{
+            UnittoMove.movementSpeedleft = 0;
+        }
+
     }
+
+
 
     public static int movementCalculator(int oldx,int oldy,int newx,int newy){
         if (Math.abs(newx-oldx) >= Math.abs(newy-oldy))
@@ -197,8 +239,8 @@ public class UnitsStorage {
         laserArrayList.get(playerNumber).lasersImviewCreate();
         laserArrayList.get(playerNumber).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
         laserArrayList.get(nation).imageView.setRotate(Math.atan2(NewCorY-UnittoMove.position.y,NewCorX-UnittoMove.position.x)*(180/Math.PI)+90);
-        attackannimation(playerNumber,NewCorX,NewCorY,600,UnittoMove.position.x,UnittoMove.position.y,UnittoMove,shipindex);
-        attackannimation(nation,UnittoMove.position.x,UnittoMove.position.y,600,NewCorX,NewCorY,UnittoMove,shipindex);
+        attackannimation(playerNumber,NewCorX,NewCorY,600,UnittoMove.position.x,UnittoMove.position.y,UnittoMove,shipindex,nation);
+        attackannimation(nation,UnittoMove.position.x,UnittoMove.position.y,600,NewCorX,NewCorY,UnittoMove,shipindex,nation);
 
 
         return 0;

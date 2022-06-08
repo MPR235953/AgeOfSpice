@@ -37,7 +37,7 @@ public class OnClickSpaceWinForUnits extends Pane{
 
     public void setParentTile(Tile tile){ parentTile = tile; }      //funkcja zrobiona po to aby stylizowac kafelek ktory zostal klikniety
 
-    ///TODO: podlaczenie kolejnych zdarzen pod przyciski
+
 
     public void makeWin(int x, int y){
         MapController.staticPane.getChildren().add(this);   //wyswietlenie okienka na mapie
@@ -114,7 +114,7 @@ public class OnClickSpaceWinForUnits extends Pane{
     }
     public void movementWin(ActionEvent event) {
 
-    /// TODO: 29.05.2022 Ustawienie grubości linii zobaczyć tu
+
         for (int i = unitToMove.position.x-unitToMove.movementSpeedleft; i<=unitToMove.position.x+unitToMove.movementSpeedleft;i++){
             for (int j = unitToMove.position.y-unitToMove.movementSpeedleft; j<=unitToMove.position.y+unitToMove.movementSpeedleft;j++) {
                 if (!((i < 0 || i >= HORIZONTAL_TILE_COUNT) || (j < 0 || j >= VERTICAL_TILE_COUNT))  &&  (board[i][j].getTileType() == EMPTY_SPACE || board[i][j].getTileType() == DESTROYER_SHIP
@@ -156,7 +156,7 @@ public class OnClickSpaceWinForUnits extends Pane{
         Planet planet;
         for (int i =0; i< allPlanetStorage.size();i++){
             planet = allPlanetStorage.get(i);
-            if (Math.abs(unitToMove.position.x - planet.planetPosition.x) <=1 &&  Math.abs(unitToMove.position.y - planet.planetPosition.y) <=1)
+            if (Math.abs(unitToMove.position.x - planet.planetPosition.x) <=1 &&  Math.abs(unitToMove.position.y - planet.planetPosition.y) <=1 && planet.owner != playerResources[playerNumber].getSpeciesType())
               return i;
         }
       return -1;

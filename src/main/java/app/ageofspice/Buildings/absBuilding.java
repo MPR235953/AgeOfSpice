@@ -12,11 +12,7 @@ import javafx.scene.image.ImageView;
  * budynki dają różne bonusy
  */
 
-/* TODO: 16.05.2022 Budowa tej klasy
-    * kupowanie + budowanie
-    * bonusy: -wojskowa zwiększa bonus do ataku
-    * bycie atakowanym
-*/
+
 
 public abstract class absBuilding {
     public ImageView imageView;
