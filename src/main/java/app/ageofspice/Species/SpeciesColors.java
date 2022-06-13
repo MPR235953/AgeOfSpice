@@ -7,4 +7,8 @@ public interface SpeciesColors {
     Color javColor = Color.rgb(0,230,250);
     Color ludColor = Color.rgb(221, 44,0);
     Color szrColor = Color.rgb(233,30,98);
+
+    String[] ColorCSS = {   "rgb(0,230,250);" ,
+                            "rgb(221,44,0);",
+                            "rgb(233,30,98);" };
 }

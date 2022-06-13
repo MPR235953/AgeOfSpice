@@ -20,8 +20,11 @@ public enum TileType {
 
     //TUTAJ ROB CO CHCESZ
 
-    WAR_SHIP,
+    DESTROYER_SHIP,
     EXPLORER_SHIP,
+    SCOUT_SHIP,
+    DRED_SHIP,
+
     NORMAL_SHIP,
     FRIENDLY_SHIP,
     ENEMY_SHIP,
@@ -44,19 +47,8 @@ public enum TileType {
     SZRUNGALS_SCOUT_SHIP,
     SZRUNGALS_DRED_SHIP,
 
-
-    JAVALERERS_MINE_STATION,
-    JAVALERERS_LAB_STATION,
-    JAVALERERS_WAR_STATION,
-
-
-    PEOPLE_MINE_STATION,
-    PEOPLE_LAB_STATION,
-    PEOPLE_WAR_STATION,
-
-    SZRUNGALS_MINE_STATION,
-    SZRUNGALS_LAB_STATION,
-    SZRUNGALS_WAR_STATION;
+    MINE_STATION,
+    WAR_STATION;
 
     private static final List<TileType> VALUES =
             Collections.unmodifiableList(Arrays.asList(values()));

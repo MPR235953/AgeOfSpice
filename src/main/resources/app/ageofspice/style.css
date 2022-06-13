@@ -29,3 +29,6 @@
     -fx-font-size: 20;
 }
 
+.button{
+    -fx-cursor: hand;
+}

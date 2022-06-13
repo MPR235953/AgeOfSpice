@@ -20,14 +20,31 @@ public class AgeOfSpiceApp extends Application {
 
     public static Stage stage = null;
 
+    public static SoundTrack soundTrack = new SoundTrack();
+
     @Override
     public void start(Stage stage) throws IOException {
+        soundTrack.init("src/main/resources/app/ageofspice/music");
+        soundTrack.playMedia();
 
         AgeOfSpiceApp.stage = stage;
         //SceneController.switchToFXML("start.fxml");
         //SceneController.switchToFXML("speciesChoice.fxml");
-        SceneController.switchToFXML("map.fxml");
 
+        SceneController.switchToFXML("map.fxml");
+        //SceneController.switchToFXML("playerFrame.fxml");
+        //SceneController.switchToFXML("end.fxml");
+
+        AgeOfSpiceApp.stage.setOnCloseRequest(event -> end());
+    }
+
+    public static void end(){
+        // podczas zamykania aplikacji trzeba zakonczyc jeszcze dzialanie timera ktory liczy czas do konca tury gracza
+        // inaczej po zamknieciu appki timer nadal dziala jako watek a apka dziala w tle
+        if(PlayerFrameController.timer != null)
+            PlayerFrameController.timer.cancel();
+        soundTrack.destroy();
+        if(EndController.soundTrack != null) EndController.soundTrack.destroy();
     }
 
     public static void main(String[] args) {

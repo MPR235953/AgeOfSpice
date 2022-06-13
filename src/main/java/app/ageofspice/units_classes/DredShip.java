@@ -4,9 +4,11 @@ package app.ageofspice.units_classes;
 import app.ageofspice.MapController;
 import app.ageofspice.Resourcesandcosts.*;
 import app.ageofspice.TileType;
+import app.ageofspice.movement.ActualPosition;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-import javax.swing.text.html.ImageView;
+import java.io.File;
 
 /**
  * Ciezka  jednostka.
@@ -18,11 +20,14 @@ import javax.swing.text.html.ImageView;
  */
 
 public class DredShip extends unit{
+    public static Cost staticBaseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(30),new CrystalRes(20));
     public DredShip(){
-        baseDMG = 10;
-        baseHP = 40;
-        movementSpeed = 2;
+        shipType = TileType.DRED_SHIP;
+        baseDMG = 20;
+        baseHP = 100;
+        movementSpeed = 3;
+        movementSpeedleft =movementSpeed;
         actualHP = baseHP;
-        baseCost = new Cost(new AlgiRes(10),new SpiceRes(20),new VibraniumRes(30),new CrystalRes(30));
+        baseCost = new Cost(new AlgiRes(20),new SpiceRes(15),new VibraniumRes(30),new CrystalRes(20));
     }
 }

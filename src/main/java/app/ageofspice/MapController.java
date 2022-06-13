@@ -1,30 +1,36 @@
 package app.ageofspice;
 
 import app.ageofspice.Species.SpeciesColors;
+import app.ageofspice.Species.SpeciesType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Random;
 
 public class MapController implements Initializable {
 
     public static final int STROKE_TILE_WIDTH = 3;
+    public static final int MARGIN = 100;
 
     //################################################  Rozmiary kafelkow
     public static final int TILE_SIZE = 70;
-    public static final int HORIZONTAL_TILE_COUNT = AgeOfSpiceApp.SCREEN_WIDTH / TILE_SIZE;
-    public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE) / TILE_SIZE;
+    public static final int HORIZONTAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_WIDTH - 2 * MARGIN) / TILE_SIZE;
+    public static final int VERTICAL_TILE_COUNT = (AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE  - MARGIN) / TILE_SIZE;
 
     //################################################  skalowanie stacji i statkow
-    public static final double SAS_SCALE = 0.5;
-    public static final double SAS_SCALE_POS = TILE_SIZE * SAS_SCALE / 2;
+    public static final double SAS_SCALE = 0.66;
+    public static final double SAS_SCALE_POS = TILE_SIZE * SAS_SCALE / 4;
 
     //################################################ Poczatkowe pozycje statkow macierzytych dla ras
     public static final int JAV_X = 0, JAV_Y = 1;
@@ -37,6 +43,7 @@ public class MapController implements Initializable {
     public static final int CRYSTAL_QUANTITY = 3;
     public static final int SPICE_QUANTITY = 3;
     public static final int PLANET_QUANTITY = ALGA_QUANTITY + VIBRANIUM_QUANTITY + CRYSTAL_QUANTITY + SPICE_QUANTITY;
+    public static final int WINABLE_SPICE_QUANTITY = 300;
 
     //###############################################  Ile jest juz planet na mapie
     private int algaOnMap = 0;
@@ -46,6 +53,7 @@ public class MapController implements Initializable {
 
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
+    public static Pane framePane;
     ImageView background = new ImageView();
     Group tileGroup = new Group();                                      //###### Grupy kafelkow, planet i stacji
     Group planetGroup = new Group();
@@ -53,16 +61,20 @@ public class MapController implements Initializable {
     public static Tile[][] board = new Tile[HORIZONTAL_TILE_COUNT][VERTICAL_TILE_COUNT];          //##### Tablica kafelkow
 
     public static Pane staticPane;
+    public static AnchorPane staticAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Konfiguracja
         anchorPane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         anchorPane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT);
+        anchorPane.getChildren().add(background);
+        background.toBack();
 
-        pane.getChildren().add(background);
+        pane.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");
         pane.setPrefWidth(AgeOfSpiceApp.SCREEN_WIDTH);
         pane.setPrefHeight(AgeOfSpiceApp.SCREEN_HEIGHT - AgeOfSpiceApp.FRAME_SIZE);
-        pane.relocate(0, AgeOfSpiceApp.FRAME_SIZE);
+        pane.relocate(MARGIN, AgeOfSpiceApp.FRAME_SIZE);
 
         background.setImage(new Image(String.valueOf(getClass().getResource("arts\\space_map.png"))));
         background.setFitWidth(AgeOfSpiceApp.SCREEN_WIDTH);
@@ -84,22 +96,28 @@ public class MapController implements Initializable {
             }
         }
 
-        /// TODO: Uzupelnienie pol klasy z zasobami gracza
+
         //generacja stacji macierzystych kazdej z ras (stale polozenie)
         board[JAV_X][JAV_Y].setTileType(TileType.JAV_PARENTAL_STATION);
         board[JAV_X][JAV_Y].setStroke(SpeciesColors.javColor);
         board[JAV_X][JAV_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation javParentalStation = new ParentalStation(JAV_X, JAV_Y, TileType.JAV_PARENTAL_STATION);
+        javParentalStation.owner = SpeciesType.JAVALERZY;
+        GameLoop.allParentalStationStorage.add(javParentalStation);
 
         board[LUD_X][LUD_Y].setTileType(TileType.LUD_PARENTAL_STATION);
         board[LUD_X][LUD_Y].setStroke(SpeciesColors.ludColor);
         board[LUD_X][LUD_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation ludParentalStation = new ParentalStation(LUD_X, LUD_Y, TileType.LUD_PARENTAL_STATION);
+        ludParentalStation.owner = SpeciesType.LUDZIE;
+        GameLoop.allParentalStationStorage.add(ludParentalStation);
 
         board[SZR_X][SZR_Y].setTileType(TileType.SZR_PARENTAL_STATION);
         board[SZR_X][SZR_Y].setStroke(SpeciesColors.szrColor);
         board[SZR_X][SZR_Y].setStrokeWidth(STROKE_TILE_WIDTH);
         ParentalStation szrParentalStation = new ParentalStation(SZR_X, SZR_Y, TileType.SZR_PARENTAL_STATION);
+        szrParentalStation.owner = SpeciesType.SZRUNGALE;
+        GameLoop.allParentalStationStorage.add(szrParentalStation);
 
         parentalStationGroup.getChildren().addAll(javParentalStation, ludParentalStation, szrParentalStation);
 
@@ -134,12 +152,19 @@ public class MapController implements Initializable {
 
             board[randX][randY].setTileType(parentalStationType);
             Planet planet = new Planet(randX, randY, parentalStationType);
+            GameLoop.allPlanetStorage.add(planet);
             planetGroup.getChildren().add(planet);
         }
 
 
-        ///TODO: przez staticPane mozna pokazywac obiekty na mapie
+
+        staticAnchorPane = anchorPane;
         staticPane = pane;
+
+        try { framePane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playerFrame.fxml"))); }
+        catch (IOException e) { e.printStackTrace(); }
+
+        staticAnchorPane.getChildren().add(framePane);  //wyswietlenie frama graczy
 
         //Wystartowanie petli gry
         GameLoop gameLoop = new GameLoop();

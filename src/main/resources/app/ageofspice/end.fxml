@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ageofspice.EndController">
+   <children>
+      <ImageView fitHeight="1080.0" fitWidth="1920.0">
+         <image>
+            <Image url="@arts/choseSpecies_background.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="ludPane" layoutX="351.0" layoutY="1123.0" prefHeight="550.0" prefWidth="300.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="300.0">
+               <image>
+                  <Image url="@arts/Ludzie_textures/Ludzie_choice_frame.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="50.0" layoutY="57.0">
+               <image>
+                  <Image url="@arts/Ludzie_textures/Ludzie_portret300.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="32.0" layoutY="307.0" prefHeight="35.0" prefWidth="237.0" text="Humans" textFill="#dd2c00">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="szrPane" layoutX="1298.0" layoutY="1153.0" prefHeight="550.0" prefWidth="300.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="300.0">
+               <image>
+                  <Image url="@arts/Szrungale_textures/Szrungals_choice_frame.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="50.0" layoutY="42.0">
+               <image>
+                  <Image url="@arts/Szrungale_textures/Szrungale_portret300.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="28.0" layoutY="299.0" prefHeight="35.0" prefWidth="244.0" text="Szrung'als" textFill="#e91e62">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="javPane" layoutX="37.0" layoutY="1161.0" prefHeight="550.0" prefWidth="300.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="300.0">
+               <image>
+                  <Image url="@arts/Javalerzy_textures/Javalerzy_choice_frame.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="50.0" layoutY="45.0">
+               <image>
+                  <Image url="@arts/Javalerzy_textures/Javalerzy_profile300.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="JavelersNameLabel1" alignment="CENTER" layoutX="35.0" layoutY="302.0" prefHeight="35.0" prefWidth="230.0" text="Javalers" textFill="#00e6ff">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="winnerLabel" alignment="CENTER" layoutX="404.0" layoutY="144.0" prefHeight="89.0" prefWidth="710.0" text="NickName" textFill="WHITE">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label fx:id="winLabel" alignment="CENTER" layoutX="404.0" layoutY="55.0" prefHeight="89.0" prefWidth="710.0" text="You   Win" textFill="WHITE">
+         <font>
+            <Font size="73.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
